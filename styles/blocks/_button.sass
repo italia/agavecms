@@ -1,0 +1,113 @@
+.button
+  +heading-font-family
+  padding: 0.7em 1em
+  text-decoration: none
+  display: inline-block
+  vertical-align: middle
+  white-space: nowrap
+  font-family: inherit
+  cursor: pointer
+  line-height: inherit
+  background-color: transparent
+  color: $base-body-color
+  -webkit-appearance: none
+  border-radius: 3px
+  box-sizing: border-box
+  transition: all 0.3s $material-ease
+  font-size: 0.9em
+  text-transform: uppercase
+  font-weight: 500
+  border-width: 0
+  +accent-color-rule(color)
+
+  &:hover
+    background-color: rgba(black, 0.05)
+
+  &:active
+    background-color: rgba(black, 0.15)
+
+  i, .Spinner
+    display: inline-block
+    vertical-align: middle
+    font-size: 1.4em
+    line-height: 0.6
+
+  i:first-child, .Spinner:first-child
+    margin-right: 0.5em
+
+  i:last-child, .Spinner:last-child
+    margin-left: 0.5em
+
+  i:first-child:last-child, .Spinner:first-child:last-child
+    margin-left: 0
+    margin-right: 0
+
+  &[disabled], &.is-disabled
+    border-width: 0
+    color: rgba(black, 0.2)
+    background-color: $light-bg-color
+    cursor: not-allowed
+
+.button--micro
+  @extend .button
+  font-size: 0.8em
+  padding: 0.5em 0.8em
+
+.button--tiny
+  @extend .button
+  font-size: 0.8em
+  padding: 0.6em 1em
+
+.button--small
+  @extend .button
+  font-size: 0.8em
+
+.button--large
+  @extend .button
+  font-size: 1.1em
+
+.button--huge
+  @extend .button
+  font-size: 1.1em
+  padding: 1em 1em
+
+.button--expand
+  @extend .button
+  text-align: center
+  display: block
+  width: 100%
+
+.button--primary
+  @extend .button
+  +accent-color-rule(background-color)
+  color: white
+
+  &:hover, &:active
+    color: white
+    +slightly-transparent-accent-color-rule(background-color)
+
+  &[disabled]
+    background-color: $disabled-color
+
+    &:hover
+      color: rgba(black, 0.2)
+
+.button--rev
+  @extend .button
+  color: white
+
+  &:hover
+    background-color: rgba(black, 0.4)
+
+  &:active
+    background-color: rgba(black, 0.8)
+
+.button--alert
+  @extend .button
+  color: $alert-color
+
+.button--waiting
+  cursor: default
+
+  &:hover
+    color: $base-body-color

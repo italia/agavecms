@@ -1,0 +1,151 @@
+.form
+  fieldset
+    +padding(2)
+    +margin-bottom(2)
+    border-color: $border-color
+
+    &:last-child
+      margin-bottom: 0
+
+    legend
+      +font-size(beta)
+      padding: 0 10px
+      margin: 0 -10px
+
+  hr
+    +vertical-margin(2)
+
+.form__label
+  display: block
+  color: $light-body-color
+  +margin-bottom(0.5)
+  position: relative
+
+  i
+    display: inline-block
+    vertical-align: middle
+    margin-right: 5px
+
+.form__label__code
+  +center-vertically
+  right: 0
+  font-family: $monospaced-font-family
+  +font-size(milli)
+  opacity: 0
+  transition: opacity 0.2s $material-ease
+
+  .form__label:hover &
+    opacity: 1
+
+.form__field
+  +margin-bottom(2)
+
+  &:last-child
+    margin-bottom: 0
+
+.form__field--no-margin
+  +margin-bottom(1)
+
+  .form__label
+    color: $base-body-color
+
+.form__field-group
+  display: flex
+  align-items: stretch
+
+  > *
+    margin-right: 10px
+
+    &:last-child
+      margin-right: 0
+
+  > span
+    line-height: 40px
+
+.form__field--inline
+  display: inline-block
+  margin-bottom: 0
+  vertical-align: middle
+
+  #{$all-text-inputs}
+    width: auto
+    display: inline-block
+
+.form__actions
+  +margin-top(2)
+
+.form__field--invalid
+  .form__label
+    color: $alert-color
+
+    a
+      color: $alert-color
+
+  > #{$all-text-inputs}, > textarea
+    border-color: $alert-color
+
+  > #{$all-text-inputs-focus}, > textarea:focus
+    box-shadow: 0 0 0 3px rgba($alert-color, 0.2)
+
+.form__global-error
+  color: $alert-color
+  +margin-bottom(1)
+
+.form__error
+  color: $alert-color
+  +margin-top(1)
+  +font-size(milli)
+
+.form__hint
+  color: $light-body-color
+  +margin-top(0.5)
+  +font-size(milli)
+
+  .form__label + &
+    +margin-top(-0.5)
+    +margin-bottom(1)
+
+.form__hint__docs
+  +margin-top(0.5)
+  display: block
+  text-decoration: underline
+  +accent-color-rule(color)
+
+  i
+    display: inline-block
+    vertical-align: middle
+    font-size: 1.4em
+    line-height: 0.6
+    margin-right: 0.5em
+
+.form__input--large
+  font-size: 1.5em
+  font-weight: 500
+
+.form__input--small
+  font-size: 0.8em
+
+.form__input--code
+  font-family: $monospaced-font-family
+
+.form__input--milli
+  +font-size(smallprint)
+
+.form__block
+  +margin-bottom(3)
+  +padding-bottom(3)
+  border-bottom: 1px solid $border-color
+
+.form__field--with-prefix
+  position: relative
+
+  .form__field__prefix
+    +center-vertically
+    left: 0px
+    width: 2em
+    text-align: right
+    z-index: 2
+
+  .form__field__input *
+    padding-left: 2.5em
+

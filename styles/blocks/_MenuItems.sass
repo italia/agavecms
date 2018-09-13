@@ -1,0 +1,101 @@
+.MenuItems__item
+  position: relative
+  padding-left: 35px
+
+.MenuItems__item__inner
+  position: relative
+
+.MenuItems__item__content
+  padding: 10px 15px
+  background-color: white
+  display: flex
+  box-shadow: 0 1px 2px rgba(black, 0.2)
+  border-radius: 3px
+  align-items: center
+
+.MenuItems__item__handle
+  position: absolute
+  left: 0px
+  width: 20px
+  height: 30px
+  top: 22px
+  margin-top: -15px
+  cursor: move
+  cursor: -webkit-grabbing
+  cursor: -moz-grab
+  cursor: -moz-grabbing
+  line-height: 30px
+  color: $light-body-color
+
+  .icon--hamburger
+    font-size: 20px
+
+.MenuItems__item__tick
+  position: absolute
+  top: -3px
+  left: 0px
+  right: 0
+  height: 2px
+  background-color: #888
+  z-index: 10
+
+  &:before
+    content: ""
+    position: absolute
+    left: -10px
+    top: -5px
+    +triangle(10px, #888, right)
+
+a.MenuItems__item__link:hover
+  background-color: $light-bg-color
+
+.MenuItems__item__title
+  display: inline-block
+  +font-size(gamma)
+
+.MenuItems__item__actions
+  opacity: 0
+  flex: 1
+  text-align: right
+  transition: opacity .2s $material-ease
+
+  .MenuItems__item__content:hover &
+    opacity: 1
+
+  .button
+    margin-left: 10px
+
+.MenuItems__item__content-type
+  display: inline-block
+  margin-left: 10px
+  color: $light-body-color
+  +font-size(smallprint)
+
+  &:before
+    content: "\2192"
+    display: inline-block
+    margin-right: 10px
+
+.MenuItems__item__children__hover
+  z-index: 10
+  position: relative
+
+.MenuItems__item__hover
+  +position(absolute, null 0 0 -1px)
+  width: 35px
+  z-index: 2
+
+.MenuItems__item__children__hover,
+.MenuItems__item__hover
+  height: 5px
+
+  &:before
+    content: ""
+    +position(absolute, -3px 0 -3px 0)
+
+.MenuItems__item.is-hover
+  .MenuItems__item__children__hover,
+  .MenuItems__item__hover
+    &:before
+      +position(absolute, -15px 0 -15px 0)
+

@@ -1,0 +1,124 @@
+{
+  "$schema": "http://json-schema.org/draft-04/hyper-schema",
+  "type": "object",
+  "title": "User",
+  "description": "Agave user",
+  "required": [
+    "type",
+    "id",
+    "attributes",
+    "relationships"
+  ],
+  "additionalProperties": false,
+  "definitions": {
+    "data": {
+      "description": "JSON API data",
+      "type": "object",
+      "required": [
+        "type",
+        "id"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "$ref": "#/definitions/user/properties/type"
+        },
+        "id": {
+          "$ref": "#/definitions/user/properties/id"
+        }
+      }
+    },
+    "identity": {
+      "$ref": "#/definitions/user/properties/id"
+    },
+    "type": {
+      "description": "JSON API type field",
+      "type": [
+        "string"
+      ],
+      "pattern": "^user$",
+      "example": "user"
+    },
+    "id": {
+      "description": "ID of editor",
+      "type": "string",
+      "example": "312"
+    },
+    "attributes": {
+      "description": "JSON API attributes",
+      "type": "object",
+      "required": [
+        "email",
+        "first_name",
+        "last_name",
+        "state"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "email": {
+          "type": "string",
+          "description": "Email",
+          "example": "mark.smith@example.com"
+        },
+        "first_name": {
+          "type": "string",
+          "description": "First name",
+          "example": "Mark"
+        },
+        "last_name": {
+          "type": "string",
+          "description": "Last name",
+          "example": "Smith"
+        },
+        "state": {
+          "type": "string",
+          "enum": [
+            "INVITATION_PENDING",
+            "REGISTERED"
+          ],
+          "description": "Status of user registration",
+          "example": "REGISTERED"
+        },
+        "activate_url": {
+          "type": ["string", "null"],
+          "description": "Activate url"
+        }
+      }
+    },
+    "relationships": {
+      "description": "JSON API links",
+      "type": "object",
+      "required": [
+        "role"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "role": {
+          "type": "object",
+          "description": "Role",
+          "required": [ "data" ],
+          "additionalProperties": false,
+          "properties": {
+            "data": {
+              "$ref": "#/definitions/role/definitions/data"
+            }
+          }
+        }
+      }
+    }
+  },
+  "properties": {
+    "type": {
+      "$ref": "#/definitions/user/definitions/type"
+    },
+    "id": {
+      "$ref": "#/definitions/user/definitions/id"
+    },
+    "attributes": {
+      "$ref": "#/definitions/user/definitions/attributes"
+    },
+    "relationships": {
+      "$ref": "#/definitions/user/definitions/relationships"
+    }
+  }
+}

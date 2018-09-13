@@ -1,0 +1,195 @@
+{
+  "$schema": "http://json-schema.org/draft-04/hyper-schema",
+  "title": "Role",
+  "description": "A role",
+  "type": "object",
+  "required": [
+    "type",
+    "id",
+    "attributes"
+  ],
+  "additionalProperties": false,
+  "definitions": {
+    "data": {
+      "type": "object",
+      "description": "JSON API data",
+      "required": [
+        "type",
+        "id"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "$ref": "#/definitions/role/properties/type"
+        },
+        "id": {
+          "$ref": "#/definitions/role/properties/id"
+        }
+      }
+    },
+    "identity": {
+      "$ref": "#/definitions/role/properties/id"
+    },
+    "type": {
+      "description": "JSON API type field",
+      "type": [
+        "string"
+      ],
+      "pattern": "^role$",
+      "example": "role"
+    },
+    "id": {
+      "description": "ID of role",
+      "type": "string",
+      "example": "34"
+    },
+    "attributes": {
+      "description": "JSON API attributes",
+      "type": "object",
+      "required": [
+        "name",
+        "can_edit_site",
+        "can_edit_favicon",
+        "can_edit_schema",
+        "can_manage_users",
+        "can_manage_access_tokens",
+        "can_perform_site_search",
+        "can_publish_to_production",
+        "can_dump_data",
+        "can_import_and_export",
+        "positive_item_type_permissions",
+        "negative_item_type_permissions"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "The name of the role",
+          "example": "Editor"
+        },
+        "can_edit_favicon": {
+          "type": "boolean",
+          "description": "Can users edit the site favicon/global SEO settings?",
+          "example": true
+        },
+        "can_edit_site": {
+          "type": "boolean",
+          "description": "Can users edit the site settings?",
+          "example": true
+        },
+        "can_edit_schema": {
+          "type": "boolean",
+          "description": "Can users edit the schema?",
+          "example": true
+        },
+        "can_manage_users": {
+          "type": "boolean",
+          "description": "Can users invite other users?",
+          "example": true
+        },
+        "can_manage_access_tokens": {
+          "type": "boolean",
+          "description": "Can manage access tokens",
+          "example": true
+        },
+        "can_perform_site_search": {
+          "type": "boolean",
+          "description": "Can perform site search",
+          "example": true
+        },
+        "can_publish_to_production": {
+          "type": "boolean",
+          "description": "Can users publish to production environment?",
+          "example": true
+        },
+        "can_dump_data": {
+          "type": "boolean",
+          "description": "Can dump data",
+          "example": true
+        },
+        "can_import_and_export": {
+          "type": "boolean",
+          "description": "Can import and export JSON site structure",
+          "example": true
+        },
+        "positive_item_type_permissions": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "item_type",
+              "action"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "item_type": {
+                "anyOf": [
+                  { "$ref": "#/definitions/item_type/definitions/data/properties/id" },
+                  { "type": [ "null" ] }
+                ]
+              },
+              "action": {
+                "type": [
+                  "string"
+                ],
+                "enum": [
+                  "all",
+                  "read",
+                  "update",
+                  "create",
+                  "delete"
+                ],
+                "description": "Permitted action",
+                "example": "all"
+              }
+            }
+          }
+        },
+        "negative_item_type_permissions": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "item_type",
+              "action"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "item_type": {
+                "anyOf": [
+                  { "$ref": "#/definitions/item_type/definitions/data/properties/id" },
+                  { "type": [ "null" ] }
+                ]
+              },
+              "action": {
+                "type": [
+                  "string"
+                ],
+                "enum": [
+                  "all",
+                  "read",
+                  "update",
+                  "create",
+                  "delete"
+                ],
+                "description": "Permitted action",
+                "example": "all"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "properties": {
+    "type": {
+      "$ref": "#/definitions/role/definitions/type"
+    },
+    "id": {
+      "$ref": "#/definitions/role/definitions/id"
+    },
+    "attributes": {
+      "$ref": "#/definitions/role/definitions/attributes"
+    }
+  }
+}

@@ -1,0 +1,78 @@
+.seo-preview
+  background-color: white
+  position: relative
+
+.seo-preview__google
+  font-family: arial, sans-serif
+  box-shadow: 0 2px 6px rgba(black, 0.2)
+  border-radius: 3px
+  +padding(2)
+  +clearfix
+
+.seo-preview__title
+  color: #1a0dab
+  line-height: 21px
+  font-size: 18px
+
+.seo-preview__url
+  color: #006621
+  font-size: 14px
+  line-height: 16px
+
+.seo-preview__description
+  color: #545454
+  font-size: 13px
+  line-height: 18px
+  margin-top: 5px
+
+.seo-preview__image
+  float: right
+  height: 80px
+  width: 80px
+  margin-left: 20px
+
+  img
+    display: block
+
+  &.is-missing
+    border: 1px dashed $border-color
+
+.seo-preview__edit
+  +position(absolute, 0 0 0 0)
+  background-color: rgba(white, 0.9)
+  opacity: 0
+  transition: opacity 0.2s ease-out
+  +body-font-family
+  z-index: 2
+  display: none
+
+  .seo-preview.is-filled &
+    display: block
+
+  .seo-preview:hover &
+    opacity: 1
+
+.seo-preview__blank-slate
+  border-radius: 3px
+  border: 1px dashed $border-color
+  text-align: center
+  +padding(2)
+
+.seo-preview__actions
+  +body-font-family
+  +margin-top(1)
+
+.seo-preview__social
+  +font-size(smallprint)
+  font-size: 13px
+  line-height: 18px
+  margin-top: 5px
+  color: $light-body-color
+
+.seo-preview__social__item
+  display: inline-block
+  margin-right: 0.5em
+
+  i
+    display: inline-block
+    margin-right: 0.2em

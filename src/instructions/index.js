@@ -1,0 +1,5 @@
+export { default as apiTokens } from 'instructions/apiTokens.ejs'
+export { default as deployment } from 'instructions/deployment.ejs'
+export { default as logs } from 'instructions/logs.ejs'
+export { default as menuItems } from 'instructions/menuItems.ejs'
+export { default as importSite } from 'instructions/importSite.ejs'

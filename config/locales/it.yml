@@ -1,0 +1,22 @@
+it:
+  errors:
+    format: '%{message}'
+    messages:
+      unique_title: TITLE_ALREADY_PRESENT
+      blank: VALIDATION_REQUIRED
+      empty: VALIDATION_REQUIRED
+      taken: VALIDATION_UNIQUENESS
+      invalid: VALIDATION_INVALID
+      inclusion: VALIDATION_INCLUSION
+      reserved: VALIDATION_RESERVED
+      plural: VALIDATION_PLURAL
+      json: VALIDATION_JSON
+      invalid_hostname_length: VALIDATION_DOMAIN_INVALID_HOSTNAME_LENGTH
+      invalid_label_length: VALIDATION_DOMAIN_INVALID_LABEL_LENGTH
+      label_begins_or_ends_with_hyphen: VALIDATION_DOMAIN_LABEL_BEGINS_OR_ENDS_WITH_HYPHEN
+      label_contains_invalid_characters: VALIDATION_DOMAIN_LABEL_CONTAINS_INVALID_CHARACTERS
+      hostname_label_is_numeric: VALIDATION_DOMAIN_HOSTNAME_LABEL_IS_NUMERIC
+      hostname_is_not_fqdn: VALIDATION_DOMAIN_HOSTNAME_IS_NOT_FQDN
+      single_numeric_hostname_label: VALIDATION_DOMAIN_SINGLE_NUMERIC_HOSTNAME_LABEL
+      hostname_contains_consecutive_dots: VALIDATION_DOMAIN_HOSTNAME_CONTAINS_CONSECUTIVE_DOTS
+      hostname_ends_with_dot: VALIDATION_DOMAIN_HOSTNAME_ENDS_WITH_DOT

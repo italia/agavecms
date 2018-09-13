@@ -1,0 +1,72 @@
+version: "3"
+
+services:
+  db:
+    image: postgres:9.6
+    volumes:
+      - db:/var/lib/postgresql/data
+
+  images:
+    build:
+      context: ./images
+    working_dir: /images
+    tty: true
+    stdin_open: true
+    volumes:
+      - uploads:/images/uploads
+    ports:
+      - "39876:39876"
+
+  app: &app_base
+    build:
+      context: ..
+      dockerfile: ./docker/app/Dockerfile
+      args:
+        NODE_ENV: development
+        RAILS_ENV: development
+    env_file: .env.development.docker
+    working_dir: /app
+    command: ./start
+    ports:
+      - "3000:3000"
+    stdin_open: true
+    tty: true
+    depends_on:
+      - db
+    volumes:
+      - ../app:/app/app:ro
+      - uploads:/app/public/uploads
+
+  node:
+    <<: *app_base
+    stdin_open: true
+    tty: true
+    ports:
+      - "3001:3001"
+    command: yarn run dev
+    volumes:
+      - ../styles:/app/styles:ro
+      - ../src:/app/src:ro
+
+  worker:
+    <<: *app_base
+    stdin_open: true
+    tty: true
+    command: bundle exec rake jobs:work
+    ports: []
+    volumes:
+      - build:/app/tmp/build
+
+  static:
+    <<: *app_base
+    command: bundle exec puma -b tcp://0.0.0.0 -p 3002
+    working_dir: /app
+    ports:
+      - "3002:3002"
+    volumes:
+      - build:/app/public:rw
+
+volumes:
+  build:
+  db:
+  uploads:

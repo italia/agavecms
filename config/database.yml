@@ -1,0 +1,17 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+
+development:
+  <<: *default
+  database: agave_api_development
+
+production:
+  <<: *default
+  database: agave_api_production
+
+test:
+  <<: *default
+  database: agave_api_test
+

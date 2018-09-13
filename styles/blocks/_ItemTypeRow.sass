@@ -1,0 +1,38 @@
+.ItemTypeRow
+  border-bottom: 1px solid $border-color
+  text-decoration: none
+  background-color: white
+  padding: 16px
+  padding-left: 28px
+  display: block
+  text-decoration: none
+  position: relative
+
+  &:before
+    content: ""
+    +position(absolute, 0 null 0 0 0)
+    transition: width 0.2s $material-ease
+    +accent-color-rule(background-color)
+    width: 0px
+
+  &:hover
+    +light-color-rule(background-color)
+
+.ItemTypeRow__name
+  +font-size(gamma)
+  line-height: 1.2
+
+.ItemTypeRow__api
+  +monospaced-font-family
+  color: $light-body-color
+  +font-size(milli)
+
+.ItemTypeRow--active:before
+  width: 8px
+
+.ItemTypeRow--block
+  padding-top: 10px
+  padding-bottom: 10px
+
+  .ItemTypeRow__name
+    +font-size(regular)

@@ -1,0 +1,95 @@
+.DeployEvent
+  padding: 10px 0 10px 50px
+  position: relative
+
+  &:before
+    content: ""
+    position: absolute
+    left: 10px
+    width: 4px
+    background-color: #ccc
+    top: 0
+    bottom: 0
+
+  &:first-child:before
+    top: 50%
+
+  &:last-child:before
+    bottom: 50%
+
+  &:first-child:last-child:before
+    display: none
+
+  &:after
+    content: ""
+    height: 20px
+    width: 20px
+    border-radius: 50%
+    box-sizing: border-box
+    background-color: white
+    border: 7px solid $border-color
+    +accent-color-rule(border-color)
+    +center-vertically
+    left: 2px
+
+.DeployEvent__inner
+  background-color: white
+  border-radius: 3px
+  +padding(2)
+  +vertical-padding(1)
+
+.DeployEvent__sub
+  +font-size(milli)
+  color: $light-body-color
+
+.DeployEvent__sub__item
+  display: inline-block
+
+  &:before
+    content: "\00A0\2022\00A0"
+
+  &:first-child:before
+    display: none
+
+.DeployEvent__title
+  +font-size(gamma)
+  font-weight: 500
+
+  span
+    display: inline-block
+    margin-right: 10px
+
+.DeployEvent__detail
+  +margin-bottom(2)
+
+  &:last-child
+    margin-bottom: 0
+
+.DeployEvent__detail__title
+  text-transform: uppercase
+  +font-size(smallprint)
+  font-weight: 500
+  color: $light-body-color
+  +margin-bottom(0.5)
+
+.DeployEvent__environment
+  text-transform: uppercase
+  +accent-color-rule(background-color)
+  padding: 0.4em 0.8em 0.2em
+  border-radius: 2px
+  color: white
+  +font-size(micro)
+  display: inline-block
+  margin-bottom: 8px
+  margin-right: 10px
+  vertical-align: middle
+
+.DeployEvent__pages
+  background-color: #333
+  +font-size(milli)
+  +monospaced-font-family
+  max-height: 500px
+  +padding(1)
+  overflow: auto
+  color: white
+  white-space: nowrap

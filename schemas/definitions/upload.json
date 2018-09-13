@@ -1,0 +1,125 @@
+{
+  "$schema": "http://json-schema.org/draft-04/hyper-schema",
+  "title": "Upload",
+  "description": "An upload",
+  "type": "object",
+  "required": [ "type", "id", "attributes"],
+  "additionalProperties": false,
+  "definitions": {
+    "data": {
+      "description": "JSON API data",
+      "type": "object",
+      "required": [ "type", "id" ],
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "$ref": "#/definitions/upload/properties/type"
+        },
+        "id": {
+          "$ref": "#/definitions/upload/properties/id"
+        }
+      }
+    },
+    "identity": {
+      "$ref": "#/definitions/upload/properties/id"
+    },
+    "type": {
+      "description": "JSON API type upload",
+      "type": [ "string" ],
+      "pattern": "^upload$",
+      "example": "upload"
+    },
+    "id": {
+      "description": "ID of upload",
+      "type": "string",
+      "example": "666"
+    },
+    "attributes": {
+      "description": "JSON API attributes",
+      "type": "object",
+      "required": [
+        "size",
+        "path",
+        "format"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "size": {
+          "type": "integer",
+          "description": "size of the upload",
+          "example": 444
+        },
+        "width": {
+          "type": "integer",
+          "description": "Width of image",
+          "example": 30
+        },
+        "height": {
+          "type": "integer",
+          "description": "Height of image",
+          "example": 30
+        },
+        "path": {
+          "type": "string",
+          "description": "Upload path",
+          "example": "/45/1496845848-digital-cats.jpg"
+        },
+        "format": {
+          "type": "string",
+          "description": "Format",
+          "example": "jpg"
+        },
+        "alt": {
+          "type": ["string", "null"],
+          "description": "Alt",
+          "example": "Nyan the cat"
+        },
+        "title": {
+          "type": ["string", "null"],
+          "description": "Upload title",
+          "example": "My cat"
+        },
+        "is_image": {
+          "type": "boolean",
+          "description": "Is this upload an image?",
+          "example": true
+        },
+        "created_at": {
+          "description": "Date of upload",
+          "type": ["null", "string"],
+          "format": "date-time"
+        }
+      }
+    },
+    "relationships": {
+      "description": "JSON API links",
+      "type": "object",
+      "required": [ "site" ],
+      "additionalProperties": false,
+      "properties": {
+        "site": {
+          "type": "object",
+          "description": "Field item type",
+          "required": [ "data" ],
+          "additionalProperties": false,
+          "properties": {
+            "data": {
+              "$ref": "#/definitions/site/definitions/data"
+            }
+          }
+        }
+      }
+    }
+  },
+  "properties": {
+    "type": {
+      "$ref": "#/definitions/upload/definitions/type"
+    },
+    "id": {
+      "$ref": "#/definitions/upload/definitions/id"
+    },
+    "attributes": {
+      "$ref": "#/definitions/upload/definitions/attributes"
+    }
+  }
+}

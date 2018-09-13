@@ -1,0 +1,141 @@
+.NavigationBar
+  display: flex
+  align-items: center
+  justify-content: center
+  color: white
+  z-index: 10
+
+.NavigationBar__site-name img
+  display: block
+  height: 35px
+
+.NavigationBar__site-name__link
+  +heading-font-family
+  +font-size(gamma)
+  font-weight: 500
+  color: white
+  text-decoration: none
+  display: inline-block
+  vertical-align: middle
+
+.NavigationBar__site-name,
+.NavigationBar__button
+  display: flex
+  flex-direction: column
+  justify-content: center
+  height: 55px
+  box-sizing: border-box
+  padding: 0 20px
+  border-right: 1px solid rgba(white, 0.1)
+  position: relative
+  color: black
+  text-decoration: none
+
+.NavigationBar__site-name__tag
+  background-color: rgba(white, 0.8)
+  text-decoration: none
+  padding: 2px 6px
+  border-radius: 3px
+  +font-size(milli)
+  margin-left: 10px
+  display: inline-block
+  vertical-align: middle
+
+  &:hover
+    background-color: white
+
+.NavigationBar__tooltip
+  position: absolute
+  left: 13px
+  top: 100%
+  margin-top: -3px
+
+.NavigationBar__deploy
+  align-self: stretch
+  display: flex
+  align-items: stretch
+  padding: 0
+
+.NavigationBar__button:hover
+  background-color: rgba(white, 0.1)
+
+.NavigationBar__button:active
+  background-color: rgba(white, 0.2)
+
+.NavigationBar__button--active
+  background-color: rgba(white, 0.2)
+
+.NavigationBar__space
+  flex-grow: 1
+
+.NavigationBar__button__label
+  i
+    font-size: 18px
+    display: inline-block
+    vertical-align: middle
+
+    &:first-child
+      margin-right: 10px
+
+    &:last-child
+      margin-left: 10px
+
+.NavigationBar__auth
+  border-left: 1px solid rgba(white, 0.1)
+  align-self: stretch
+  padding: 0 15px
+  display: flex
+  align-items: center
+  position: relative
+
+.NavigationBar__auth__avatar
+  display: block
+  width: 37px
+  height: 37px
+  text-decoration: none
+
+.NavigationBar__auth__dropdown
+  position: absolute
+  top: 100%
+  right: 5px
+  min-width: 220px
+  background-color: white
+  box-shadow: 0 5px 14px rgba(black, 0.5)
+  margin-top: -5px
+  border-radius: 3px
+  z-index: 10
+
+  a
+    color: $base-body-color
+
+.NavigationBar__auth__dropdown--left
+  left: 10px
+  right: auto
+  margin-top: 5px
+
+.NavigationBar__site-name__span
+  display: inline-block
+  vertical-align: middle
+  position: relative
+
+.NavigationBar__auth__dropdown__item
+  display: block
+  padding: 15px
+  border-bottom: 1px solid $border-color
+  text-decoration: none
+
+  &:last-child
+    border-bottom-width: 0
+    border-radius: 0 0 3px 3px
+
+  &:hover
+    +light-color-rule(background-color)
+
+  &:first-child
+    border-radius: 3px 3px 0 0
+
+  i
+    display: inline-block
+    width: 25px
+    text-align: center
+    margin-right: 5px

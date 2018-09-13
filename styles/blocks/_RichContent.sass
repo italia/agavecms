@@ -1,0 +1,111 @@
+.RichContent
+  +margin-bottom(2)
+
+.RichContent__label
+  +margin-bottom(0.5)
+  color: $light-body-color
+
+.RichContent__content
+  +vertical-margin(2)
+
+.RichContentItem
+  position: relative
+  margin-right: -45px
+  padding-right: 45px
+
+.RichContentItem__handle
+  +position(absolute)
+  background-color: white
+  transform: translateX(-20px) scale(0)
+  right: 0
+  top: 0
+  height: 40px
+  width: 40px
+  border-radius: 20px
+  color: black
+  transition: transform 0.2s $material-ease
+  z-index: 5000
+
+  i
+    +center
+
+  .RichContentItem:hover &
+    transform: translateX(0) scale(1)
+
+.RichContentItem__menu
+  +position(absolute, 28px 0 null null)
+  display: none
+  background-color: white
+  border-radius: 3px
+  +font-size(smallprint)
+  box-shadow: 0 3px 10px rgba(black, 0.2)
+
+  &:after
+    content: ""
+    position: absolute
+    right: 13px
+    bottom: 100%
+    +triangle(15px, white, up)
+
+  .RichContentItem__handle:hover &
+    display: block
+
+.RichContentItem__content
+  +vertical-padding(1)
+
+  .form__field
+    +margin-bottom(1)
+
+    &:last-child
+      margin-bottom: 0
+
+  .RichContentItem:last-child &
+    +padding-bottom(0)
+
+.RichContentItem__menu__item
+  border-bottom: 1px solid $border-color
+  line-height: 40px
+  white-space: nowrap
+  +horizontal-padding(1.5)
+  text-decoration: none
+  display: block
+
+  a
+    text-decoration: none
+    display: block
+
+  &:hover
+    background-color: rgba(black, 0.05)
+
+  &:last-child
+    border-bottom-width: 0
+
+.RichContentItem__menu__item--alert
+  color: $alert-color
+
+.RichContentItem__menu__item--disabled
+  color: $light-body-color
+  text-transform: uppercase
+
+  &:hover
+    background-color: transparent
+
+.RichContentItem--big .RichContentItem__content
+  box-shadow: 0 2px 6px rgba(black, 0.2)
+  border-radius: 3px
+  +padding(2)
+  +vertical-margin(1)
+
+  &:last-child
+    +padding-bottom(2)
+
+  .form__label
+    +font-size(smallprint)
+
+.RichContentItem__header
+  color: $light-body-color
+  +font-size(milli)
+  +margin-bottom(2)
+  border-bottom: 1px solid $border-color
+  font-weight: bold
+  text-transform: uppercase

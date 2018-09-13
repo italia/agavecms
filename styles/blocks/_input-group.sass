@@ -1,0 +1,45 @@
+.input-group
+  display: block
+  box-sizing: border-box
+  width: 100%
+  border: 1px solid $border-color
+  -webkit-appearance: none
+  display: flex
+  align-items: stretch
+
+  input
+    border-width: 0
+    flex: 1
+    display: inline-block
+    padding-left: 10px
+    padding-right: 10px
+
+.input-group__addon
+  display: inline-block
+  padding: 10px
+  border-left: 1px solid $border-color
+  border-right: 1px solid $border-color
+  background-color: $light-bg-color
+
+  &:first-child
+    border-left-width: 0
+
+  &:last-child
+    border-right-width: 0
+
+.input-group__addon--button
+  +accent-color-rule(background-color)
+  text-decoration: none
+  color: white
+  border: 0
+  min-width: 60px
+  text-align: center
+  display: block
+
+.input-group--code
+  input, .input-group__addon
+    font-family: $monospaced-font-family
+
+.input-group--small
+  input, .input-group__addon
+    font-size: 0.9em

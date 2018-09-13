@@ -1,0 +1,194 @@
+{
+  "$mergeExternalRef": "../definitions/item_type.json",
+  "links": [
+    {
+      "method": "POST",
+      "rel": "create",
+      "title": "Create",
+      "description": "Create a new model",
+      "href": "/api/item-types",
+      "schema": {
+        "type": "object",
+        "required": [ "data" ],
+        "additionalProperties": false,
+        "properties": {
+          "data": {
+            "type": "object",
+            "required": [ "type", "attributes", "relationships" ],
+            "additionalProperties": false,
+            "properties": {
+              "type": {
+                "$ref": "#/definitions/item_type/definitions/type"
+              },
+              "attributes": {
+                "$ref": "#/definitions/item_type/definitions/attributes"
+              },
+              "relationships": {
+                "type": "object",
+                "required": [ "ordering_field" ],
+                "additionalProperties": false,
+                "properties": {
+                  "ordering_field": {
+                    "$ref": "#/definitions/item_type/definitions/relationships/properties/ordering_field"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "targetSchema": {
+        "type": "object",
+        "required": [ "data" ],
+        "additionalProperties": false,
+        "properties": {
+          "data": {
+            "$ref": "#/definitions/item_type"
+          },
+          "included": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "oneOf": [
+                { "$ref": "#/definitions/menu_item" }
+              ]
+            }
+          }
+        }
+      }
+    },
+
+    {
+      "method": "PUT",
+      "rel": "update",
+      "title": "Update",
+      "description": "Updates a model",
+      "href": "/api/item-types/{(%2Fschemata%2Fitem_type%23%2Fdefinitions%2Fitem_type%2Fdefinitions%2Fidentity)}",
+      "schema": {
+        "type": "object",
+        "required": [ "data" ],
+        "additionalProperties": false,
+        "properties": {
+          "data": {
+            "type": "object",
+            "required": [ "type", "id", "attributes", "relationships" ],
+            "additionalProperties": false,
+            "properties": {
+              "type": {
+                "$ref": "#/definitions/item_type/properties/type"
+              },
+              "id": {
+                "$ref": "#/definitions/item_type/properties/id"
+              },
+              "attributes": {
+                "$ref": "#/definitions/item_type/properties/attributes"
+              },
+              "relationships": {
+                "type": "object",
+                "required": [ "ordering_field" ],
+                "additionalProperties": false,
+                "properties": {
+                  "ordering_field": {
+                    "$ref": "#/definitions/item_type/definitions/relationships/properties/ordering_field"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "targetSchema": {
+        "type": "object",
+        "required": [ "data" ],
+        "additionalProperties": false,
+        "properties": {
+          "data": {
+            "$ref": "#/definitions/item_type"
+          }
+        }
+      }
+    },
+
+    {
+      "method": "GET",
+      "rel": "instances",
+      "title": "Index",
+      "description": "Lists models",
+      "href": "/api/item-types",
+      "targetSchema": {
+        "type": "object",
+        "required": [ "data" ],
+        "additionalProperties": false,
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/item_type"
+            }
+          },
+          "included": {
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/field"
+            }
+          }
+        }
+      }
+    },
+
+    {
+      "method": "GET",
+      "rel": "self",
+      "title": "Show",
+      "description": "Show model",
+      "href": "/api/item-types/{(%2Fschemata%2Fitem_type%23%2Fdefinitions%2Fitem_type%2Fdefinitions%2Fidentity)}",
+      "targetSchema": {
+        "type": "object",
+        "required": [ "data" ],
+        "additionalProperties": false,
+        "properties": {
+          "data": {
+            "$ref": "#/definitions/item_type"
+          }
+        }
+      }
+    },
+
+    {
+      "method": "POST",
+      "rel": "duplicate",
+      "title": "Duplicate",
+      "description": "Duplicate model",
+      "href": "/api/item-types/{(%2Fschemata%2Fitem_type%23%2Fdefinitions%2Fitem_type%2Fdefinitions%2Fidentity)}/duplicate",
+      "targetSchema": {
+        "type": "object",
+        "required": [ "data" ],
+        "additionalProperties": false,
+        "properties": {
+          "data": {
+            "$ref": "#/definitions/item_type"
+          }
+        }
+      }
+    },
+
+    {
+      "method": "DELETE",
+      "rel": "destroy",
+      "title": "Delete",
+      "description": "Deletes model",
+      "href": "/api/item-types/{(%2Fschemata%2Fitem_type%23%2Fdefinitions%2Fitem_type%2Fdefinitions%2Fidentity)}",
+      "targetSchema": {
+        "type": "object",
+        "required": [ "data" ],
+        "additionalProperties": false,
+        "properties": {
+          "data": {
+            "$ref": "#/definitions/item_type"
+          }
+        }
+      }
+    }
+
+  ]
+}

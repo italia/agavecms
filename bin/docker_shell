@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+SERVICE=${1:-app}
+
+docker exec -ti `docker ps -a | grep "agave_$SERVICE" | cut -d ' ' -f 1` /bin/bash

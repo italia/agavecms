@@ -1,0 +1,70 @@
+{
+  "$schema": "http://json-schema.org/draft-04/hyper-schema",
+  "type": "object",
+  "title": "Account",
+  "description": "Agave account",
+  "required": [ "type", "id", "attributes" ],
+  "additionalProperties": false,
+  "definitions": {
+    "data": {
+      "description": "JSON API data",
+      "type": "object",
+      "required": [ "type", "id" ],
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "$ref": "#/definitions/account/properties/type"
+        },
+        "id": {
+          "$ref": "#/definitions/account/properties/id"
+        }
+      }
+    },
+    "identity": {
+      "$ref": "#/definitions/account/properties/id"
+    },
+    "type": {
+      "description": "JSON API type field",
+      "type": [ "string" ],
+      "pattern": "^account$",
+      "example": "account"
+    },
+    "id": {
+      "description": "ID of account",
+      "type": "string",
+      "example": "312"
+    },
+    "attributes": {
+      "description": "JSON API attributes",
+      "type": "object",
+      "required": [ "email" ],
+      "additionalProperties": false,
+      "properties": {
+        "email": {
+          "type": "string",
+          "description": "Email",
+          "example": "foo@bar.com"
+        },
+        "password": {
+          "type": "string",
+          "description": "Password"
+        },
+        "api_token": {
+          "type": "string",
+          "description": "API token"
+        }
+      }
+    }
+  },
+  "properties": {
+    "type": {
+      "$ref": "#/definitions/account/definitions/type"
+    },
+    "id": {
+      "$ref": "#/definitions/account/definitions/id"
+    },
+    "attributes": {
+      "$ref": "#/definitions/account/definitions/attributes"
+    }
+  }
+}

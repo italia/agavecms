@@ -1,0 +1,68 @@
+.FieldRow
+  display: flex
+  border-bottom: 1px solid $border-color
+  background-color: white
+  border-radius: 3px
+  box-shadow: 0 1px 2px rgba(black, 0.2)
+  margin-bottom: 10px
+  align-items: center
+
+  &:last-child
+    border-bottom-width: 0
+
+  &.is-dragging
+    opacity: 0.2
+
+.FieldRow__handle
+  width: 20px
+  color: $light-body-color
+  font-size: 20px
+  cursor: move
+  cursor: -webkit-grabbing
+  cursor: -moz-grab
+  cursor: -moz-grabbing
+  margin-right: 15px
+  position: relative
+
+  i
+    +center-vertically
+    +left(1)
+
+.FieldRow__info
+  flex: 1
+  +padding(1)
+  align-items: center
+  line-height: 1.3em
+
+.FieldRow__label
+  font-weight: 500
+
+.FieldRow__api
+  +monospaced-font-family
+  color: $light-body-color
+  +font-size(milli)
+
+.FieldRow__item-type
+  color: $light-body-color
+  display: inline-block
+  font-weight: normal
+
+.FieldRow__actions
+  +padding-right(1)
+  opacity: 0
+  transition: opacity .2s $material-ease
+
+  .FieldRow:hover &
+    opacity: 1
+
+  .button
+    margin-left: 10px
+
+.FieldRow__action
+  +primary-color-rule(color)
+  text-decoration: none
+  display: inline-block
+  vertical-align: middle
+  margin-right: 20px
+
+

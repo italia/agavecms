@@ -1,0 +1,78 @@
+{
+  "$schema": "http://json-schema.org/draft-04/hyper-schema",
+  "title": "Record",
+  "description": "A item is a single instance of a item type",
+  "type": "object",
+  "required": [ "type", "id", "attributes", "relationships" ],
+  "additionalProperties": false,
+  "definitions": {
+    "data": {
+      "type": "object",
+      "description": "JSON API data",
+      "required": [ "type", "id" ],
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "$ref": "#/definitions/item/properties/type"
+        },
+        "id": {
+          "$ref": "#/definitions/item/properties/id"
+        }
+      }
+    },
+    "identity": {
+      "$ref": "#/definitions/item/properties/id"
+    },
+    "type": {
+      "description": "JSON API type field",
+      "type": [ "string" ],
+      "pattern": "^item$",
+      "example": "item"
+    },
+    "id": {
+      "description": "ID of item",
+      "type": "string",
+      "example": "4235"
+    },
+    "attributes": {
+      "description": "The JSON data associated to the item",
+      "type": "object",
+      "example": {
+        "title": "This is a item!"
+      }
+    },
+    "relationships": {
+      "description": "JSON API links",
+      "type": "object",
+      "required": [ "item_type" ],
+      "additionalProperties": false,
+      "properties": {
+        "item_type": {
+          "description": "The item item type",
+          "type": "object",
+          "required": [ "data" ],
+          "additionalProperties": false,
+          "properties": {
+            "data": {
+              "$ref": "#/definitions/item_type/definitions/data"
+            }
+          }
+        }
+      }
+    }
+  },
+  "properties": {
+    "type": {
+      "$ref": "#/definitions/item/definitions/type"
+    },
+    "id": {
+      "$ref": "#/definitions/item/definitions/id"
+    },
+    "attributes": {
+      "$ref": "#/definitions/item/definitions/attributes"
+    },
+    "relationships": {
+      "$ref": "#/definitions/item/definitions/relationships"
+    }
+  }
+}

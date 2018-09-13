@@ -1,0 +1,76 @@
+.Modal
+  position: fixed
+  top: 0
+  left: 0
+  right: 0
+  bottom: 0
+  z-index: 1000
+  overflow: auto
+
+.Modal__backdrop
+  background: linear-gradient(to bottom, rgba(black, 0.7) 150px, rgba(black, 0.5))
+  position: fixed
+  top: 0
+  left: 0
+  right: 0
+  bottom: 0
+  z-index: 1
+  animation: Modal__backdrop-appear .2s $material-ease
+  animation-fill-mode: both
+
+.Modal__modal
+  margin: 30px auto
+  max-width: 600px
+  position: relative
+  z-index: 2
+  border-radius: 3px
+  animation: Modal__modal-appear .3s $material-ease
+  animation-fill-mode: both
+
+.Modal__modal--huge
+  max-width: 1200px
+
+.Modal__modal--wide
+  max-width: 900px
+
+.Modal__modal--big
+  max-width: 700px
+
+.Modal__modal__header
+  position: relative
+
+.Modal__modal__title
+  +margin-bottom(2)
+  color: white
+  margin-right: 150px
+  +heading-font-family
+  +font-size(alpha)
+  margin-right: 15px
+  font-weight: 500
+
+.Modal__modal__close
+  +center-vertically
+  right: 0
+
+.Modal__modal__content
+  background-color: white
+  box-shadow: 0 2px 4px rgba(black, 0.2)
+  +padding(2)
+  border-radius: 3px
+  position: relative
+
+@keyframes Modal__backdrop-appear
+  0%
+    opacity: 0
+
+  100%
+    opacity: 1
+
+@keyframes Modal__modal-appear
+  0%
+    opacity: 0
+    transform: translateY(-80px)
+
+  100%
+    opacity: 1
+    transform: translateY(0)

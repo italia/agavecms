@@ -1,0 +1,44 @@
+.sidebar
+  background-color: white
+  position: relative
+  border-radius: 3px
+  +padding(2)
+  +font-size(smallprint)
+
+.sidebar__section
+  +margin-bottom(2)
+
+  &:last-child
+    margin-bottom: 0
+
+.sidebar__section__title
+  text-transform: uppercase
+  color: $light-body-color
+  border-bottom: 1px solid $border-color
+  +font-size(milli)
+  +margin-bottom(1)
+
+.sidebar__versions
+  position: relative
+  min-height: 37px
+
+.sidebar__last-editor__name
+  flex: 1
+  margin-left: 5px
+
+.sidebar__versions__item
+  text-decoration: none
+  display: block
+  margin-bottom: 3px
+
+  &:hover .sidebar__versions__item__date
+    text-decoration: underline
+
+.sidebar__versions__item__author
+  +font-size(milli)
+  color: $light-body-color
+
+.sidebar__versions__other
+  margin-top: 5px
+  color: $light-body-color
+  +font-size(milli)

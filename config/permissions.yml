@@ -1,0 +1,47 @@
+minimum:
+  - sites#show
+  - global_settings#show
+  - menu_items#index
+  - menu_items#show
+  - sites#diagram
+  - item_types#index
+  - item_types#show
+  - fields#index
+  - fields#show
+  - users#me
+  - users#reset_password
+
+edit_site_settings:
+  - sites#update
+
+edit_schema:
+  - item_types#create
+  - item_types#update
+  - item_types#destroy
+  - fields#create
+  - fields#update
+  - fields#destroy
+  - menu_items#create
+  - menu_items#update
+  - menu_items#destroy
+
+manage_users:
+  - users#index
+  - users#show
+  - users#create
+  - users#destroy
+
+publish:
+  - sites#deploy
+  - deploy_events#index
+  - deploy_events#show
+
+read_items(item_id):
+  - items#index
+  - items#show
+  - items#validate_new
+
+edit_items(item_id):
+  - items#create
+  - items#update
+  - items#destroy

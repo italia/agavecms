@@ -1,0 +1,35 @@
+.ImageMetadataForm
+  display: flex
+  align-items: stretch
+
+.ImageMetadataForm__preview
+  flex: 1
+  margin-right: 20px
+  background-color: $light-bg-color
+  position: relative
+  border-radius: 3px
+
+.ImageMetadataForm__preview__image
+  +position(absolute, 0 0 0 0)
+  background-position: center center
+  background-repeat: no-repeat
+
+.ImageMetadataForm__form
+  width: 460px
+
+.ImageMetadataForm__details
+  +margin-top(3)
+  background-color: $light-bg-color
+  border-radius: 3px
+  +padding(2)
+
+.ImageMetadataForm__details__label
+  text-transform: uppercase
+  color: $light-body-color
+  font-weight: bold
+  +font-size(smallprint)
+
+.ImageMetadataForm__details__value
+  white-space: nowrap
+  overflow: hidden
+  text-overflow: ellipsis

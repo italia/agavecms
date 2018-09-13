@@ -1,0 +1,164 @@
+{
+  "$mergeExternalRef": "../definitions/menu_item.json",
+  "links": [
+    {
+      "method": "POST",
+      "rel": "create",
+      "title": "Create",
+      "description": "Create a new menu item",
+      "href": "/api/menu-items",
+      "schema": {
+        "type": "object",
+        "required": [ "data" ],
+        "additionalProperties": false,
+        "properties": {
+          "data": {
+            "type": "object",
+            "required": [ "type", "attributes", "relationships" ],
+            "additionalProperties": false,
+            "properties": {
+              "type": {
+                "$ref": "#/definitions/menu_item/definitions/type"
+              },
+              "attributes": {
+                "$ref": "#/definitions/menu_item/definitions/attributes"
+              },
+              "relationships": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "item_type": {
+                    "$ref": "#/definitions/menu_item/definitions/relationships/properties/item_type"
+                  },
+                  "parent": {
+                    "$ref": "#/definitions/menu_item/definitions/relationships/properties/parent"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "targetSchema": {
+        "type": "object",
+        "required": [ "data" ],
+        "additionalProperties": false,
+        "properties": {
+          "data": {
+            "$ref": "#/definitions/menu_item"
+          }
+        }
+      }
+    },
+
+    {
+      "method": "PUT",
+      "rel": "update",
+      "title": "Update",
+      "description": "Updates a menu item",
+      "href": "/api/menu-items/{(%2Fschemata%2Fmenu_item%23%2Fdefinitions%2Fmenu_item%2Fdefinitions%2Fidentity)}",
+      "schema": {
+        "type": "object",
+        "required": [ "data" ],
+        "additionalProperties": false,
+        "properties": {
+          "data": {
+            "type": "object",
+            "required": [ "type", "id", "attributes", "relationships" ],
+            "additionalProperties": false,
+            "properties": {
+              "type": {
+                "$ref": "#/definitions/menu_item/properties/type"
+              },
+              "id": {
+                "$ref": "#/definitions/menu_item/properties/id"
+              },
+              "attributes": {
+                "$ref": "#/definitions/menu_item/properties/attributes"
+              },
+              "relationships": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "item_type": {
+                    "$ref": "#/definitions/menu_item/definitions/relationships/properties/item_type"
+                  },
+                  "parent": {
+                    "$ref": "#/definitions/menu_item/definitions/relationships/properties/parent"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "targetSchema": {
+        "type": "object",
+        "required": [ "data" ],
+        "additionalProperties": false,
+        "properties": {
+          "data": {
+            "$ref": "#/definitions/menu_item"
+          }
+        }
+      }
+    },
+
+    {
+      "method": "GET",
+      "rel": "instances",
+      "title": "Index",
+      "description": "Lists menu items",
+      "href": "/api/menu-items",
+      "targetSchema": {
+        "type": "object",
+        "required": [ "data" ],
+        "additionalProperties": false,
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/menu_item"
+            }
+          }
+        }
+      }
+    },
+
+    {
+      "method": "GET",
+      "rel": "self",
+      "title": "Show",
+      "description": "Show menu item",
+      "href": "/api/menu-items/{(%2Fschemata%2Fmenu_item%23%2Fdefinitions%2Fmenu_item%2Fdefinitions%2Fidentity)}",
+      "targetSchema": {
+        "type": "object",
+        "required": [ "data" ],
+        "additionalProperties": false,
+        "properties": {
+          "data": {
+            "$ref": "#/definitions/menu_item"
+          }
+        }
+      }
+    },
+
+    {
+      "method": "DELETE",
+      "rel": "destroy",
+      "title": "Delete",
+      "description": "Deletes menu item",
+      "href": "/api/menu-items/{(%2Fschemata%2Fmenu_item%23%2Fdefinitions%2Fmenu_item%2Fdefinitions%2Fidentity)}",
+      "targetSchema": {
+        "type": "object",
+        "required": [ "data" ],
+        "additionalProperties": false,
+        "properties": {
+          "data": {
+            "$ref": "#/definitions/menu_item"
+          }
+        }
+      }
+    }
+  ]
+}

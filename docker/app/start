@@ -1,0 +1,66 @@
+#!/usr/bin/env ruby
+
+def clean_old_pid
+  `rm -f tmp/pids/server.pid`
+end
+
+def generate_docs
+  `bin/generate_docs`
+end
+
+def run_webpack
+  app_version = File.read("APP_VERSION")
+  ENV["APP_VERSION"] = app_version
+  puts `yarn build`
+  `cp -r public/* static/`
+end
+
+def postgresql_running?
+  puts `psql -h db -U postgres -c '\\q'`
+  $?.success?
+end
+
+def wait_for_postgres
+  while !postgresql_running?
+    puts "Postgres is unavailable - sleeping"
+    sleep 1
+  end
+
+  puts "Postgres is up - continuing"
+end
+
+def database_exists?
+  exists = `psql -h db -tAc "SELECT 1 FROM pg_database WHERE datname='agave_api_$RAILS_ENV'" -U postgres template1`
+  exists.to_i == 1
+end
+
+def create_db
+  return true if database_exists?
+  puts `bundle exec rails db:create`
+  $?.success?
+end
+
+def migrate_db
+  puts `bundle exec rake db:migrate`
+  $?.success?
+end
+
+def seed_db
+  puts `bundle exec rake db:seed`
+  $?.success?
+end
+
+def replace_this_process_with_rails
+  exec "bundle exec rails server -b 0.0.0.0 -p 3000"
+end
+
+clean_old_pid
+generate_docs
+run_webpack if ENV["RAILS_ENV"] == "production"
+wait_for_postgres
+
+loop until create_db
+loop until migrate_db
+loop until seed_db
+
+replace_this_process_with_rails

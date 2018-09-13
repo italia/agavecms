@@ -1,0 +1,12 @@
+<wrapper class="header">
+  <container>
+    <row class="collapse">
+      <columns small="6" valign="middle">
+        <h4>Agave</h4>
+      </columns>
+      <columns small="6" valign="middle">
+        <p class="text-right"><%= @site.name %></p>
+      </columns>
+    </row>
+  </container>
+</wrapper>

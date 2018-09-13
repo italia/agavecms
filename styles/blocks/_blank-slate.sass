@@ -1,0 +1,29 @@
+.blank-slate
+  background-color: white
+  box-shadow: 0 3px 4px rgba(black, 0.1)
+  text-align: center
+  +padding(3)
+
+.blank-slate--tiny
+  +padding(2)
+
+.blank-slate__image
+  +margin-bottom(2)
+
+  img
+    max-width: 150px
+    display: block
+    margin: 0 auto
+
+.blank-slate__title
+  +font-size(alpha)
+  color: $light-body-color
+  +margin-bottom(1)
+
+.blank-slate__description
+  max-width: 500px
+  margin: 0 auto
+  +margin-bottom(2)
+
+  &:last-child
+    margin-bottom: 0

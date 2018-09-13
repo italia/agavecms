@@ -1,0 +1,225 @@
+{
+  "$mergeExternalRef": "../definitions/user.json",
+  "links": [
+    {
+      "method": "POST",
+      "rel": "create",
+      "title": "Create",
+      "description": "Invite a new editor",
+      "href": "/api/users",
+      "schema": {
+        "type": "object",
+        "required": [ "data" ],
+        "additionalProperties": false,
+        "properties": {
+          "data": {
+            "type": "object",
+            "required": [ "type", "attributes", "relationships" ],
+            "additionalProperties": false,
+            "properties": {
+              "type": {
+                "$ref": "#/definitions/user/definitions/type"
+              },
+              "attributes": {
+                "type": "object",
+                "required": [ "email", "first_name", "last_name" ],
+                "additionalProperties": false,
+                "properties": {
+                  "email": {
+                    "$ref": "#/definitions/user/definitions/attributes/properties/email"
+                  },
+                  "first_name": {
+                    "$ref": "#/definitions/user/definitions/attributes/properties/first_name"
+                  },
+                  "last_name": {
+                    "$ref": "#/definitions/user/definitions/attributes/properties/last_name"
+                  }
+                }
+              },
+              "relationships": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": ["role"],
+                "properties": {
+                  "role": {
+                    "$ref": "#/definitions/user/definitions/relationships/properties/role"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "targetSchema": {
+        "type": "object",
+        "required": [ "data" ],
+        "additionalProperties": false,
+        "properties": {
+          "data": {
+            "$ref": "#/definitions/user"
+          }
+        }
+      }
+    },
+
+    {
+      "method": "PUT",
+      "rel": "update",
+      "title": "Update",
+      "description": "Updates a editor",
+      "href": "/api/users/{(%2Fschemata%2Fuser%23%2Fdefinitions%2Fuser%2Fdefinitions%2Fidentity)}",
+      "schema": {
+        "type": "object",
+        "required": [ "data" ],
+        "additionalProperties": false,
+        "properties": {
+          "data": {
+            "type": "object",
+            "required": [ "type", "id", "attributes", "relationships" ],
+            "additionalProperties": false,
+            "properties": {
+              "type": {
+                "$ref": "#/definitions/user/properties/type"
+              },
+              "id": {
+                "$ref": "#/definitions/user/properties/id"
+              },
+              "attributes": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "email": {
+                    "$ref": "#/definitions/user/definitions/attributes/properties/email"
+                  },
+                  "first_name": {
+                    "$ref": "#/definitions/user/definitions/attributes/properties/first_name"
+                  },
+                  "last_name": {
+                    "$ref": "#/definitions/user/definitions/attributes/properties/last_name"
+                  },
+                  "password": {
+                    "type": "string",
+                    "description": "Password",
+                    "example": "supersecret"
+                  }
+                }
+              },
+              "relationships": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "role": {
+                    "$ref": "#/definitions/user/definitions/relationships/properties/role"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "targetSchema": {
+        "type": "object",
+        "required": [ "data" ],
+        "additionalProperties": false,
+        "properties": {
+          "data": {
+            "$ref": "#/definitions/user"
+          }
+        }
+      }
+    },
+
+    {
+      "method": "GET",
+      "rel": "instances",
+      "title": "Index",
+      "description": "Lists editors",
+      "href": "/api/users",
+      "targetSchema": {
+        "type": "object",
+        "required": [ "data" ],
+        "additionalProperties": false,
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/user"
+            }
+          }
+        }
+      }
+    },
+
+    {
+      "method": "GET",
+      "rel": "self",
+      "title": "Show",
+      "description": "Show editor",
+      "href": "/api/users/{(%2Fschemata%2Fuser%23%2Fdefinitions%2Fuser%2Fdefinitions%2Fidentity)}",
+      "targetSchema": {
+        "type": "object",
+        "required": [ "data" ],
+        "additionalProperties": false,
+        "properties": {
+          "data": {
+            "$ref": "#/definitions/user"
+          }
+        }
+      }
+    },
+
+    {
+      "method": "POST",
+      "rel": "reset_password",
+      "title": "Reset password",
+      "description": "Request a password reset",
+      "private": true,
+      "href": "/api/users/reset_password",
+      "schema": {
+        "type": "object",
+        "required": [ "data" ],
+        "additionalProperties": false,
+        "properties": {
+          "data": {
+            "type": "object",
+            "required": [ "type", "attributes" ],
+            "additionalProperties": false,
+            "properties": {
+              "type": {
+                "$ref": "#/definitions/user/definitions/type"
+              },
+              "attributes": {
+                "type": "object",
+                "required": [ "email" ],
+                "additionalProperties": false,
+                "properties": {
+                  "email": {
+                    "$ref": "#/definitions/user/definitions/attributes/properties/email"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+
+    {
+      "method": "DELETE",
+      "rel": "destroy",
+      "title": "Delete",
+      "description": "Deletes a editor",
+      "href": "/api/users/{(%2Fschemata%2Fuser%23%2Fdefinitions%2Fuser%2Fdefinitions%2Fidentity)}",
+      "targetSchema": {
+        "type": "object",
+        "required": [ "data" ],
+        "additionalProperties": false,
+        "properties": {
+          "data": {
+            "$ref": "#/definitions/user"
+          }
+        }
+      }
+    }
+  ]
+}

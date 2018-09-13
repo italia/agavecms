@@ -1,0 +1,20 @@
+.ItemsTree
+  +position(absolute, 0 0 0 0)
+  display: flex
+  flex-direction: column
+  border-right: 1px solid $border-color
+  background: linear-gradient(to right, $light-bg-color 50%, white)
+
+  &.is-dnd-disabled
+    margin-left: -35px
+
+    .ItemTreeRow__children__hover, .ItemTreeRow__hover
+      background-color: transparent
+      border-right-width: 0
+
+    .ItemTreeRow__handle
+      display: none
+
+.ItemsTree__inner
+  overflow: auto
+  +padding(2)

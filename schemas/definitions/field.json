@@ -1,0 +1,127 @@
+{
+  "$schema": "http://json-schema.org/draft-04/hyper-schema",
+  "title": "Field",
+  "description": "A field represents a single chunk of data associated to a item type",
+  "type": "object",
+  "required": [ "type", "id", "attributes", "relationships" ],
+  "additionalProperties": false,
+  "definitions": {
+    "data": {
+      "description": "JSON API data",
+      "type": "object",
+      "required": [ "type", "id" ],
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "$ref": "#/definitions/field/properties/type"
+        },
+        "id": {
+          "$ref": "#/definitions/field/properties/id"
+        }
+      }
+    },
+    "identity": {
+      "$ref": "#/definitions/field/properties/id"
+    },
+    "type": {
+      "description": "JSON API type field",
+      "type": [ "string" ],
+      "pattern": "^field$",
+      "example": "field"
+    },
+    "id": {
+      "description": "ID of field",
+      "type": "string",
+      "example": "124"
+    },
+    "attributes": {
+      "description": "JSON API attributes",
+      "type": "object",
+      "required": [
+        "label",
+        "field_type",
+        "api_key",
+        "localized",
+        "validators",
+        "appeareance",
+        "position",
+        "hint"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "label": {
+          "type": "string",
+          "description": "The label of the field",
+          "example": "Title"
+        },
+        "field_type": {
+          "type": "string",
+          "description": "Type of input",
+          "example": "string"
+        },
+        "localized": {
+          "type": "boolean",
+          "description": "Whether the field needs to be multilanguage or not"
+        },
+        "api_key": {
+          "type": "string",
+          "description": "Field API key",
+          "example": "title"
+        },
+        "hint": {
+          "type": ["string", "null"],
+          "description": "Field hint",
+          "example": "This field will be used as post title"
+        },
+        "validators": {
+          "type": "object",
+          "description": "Optional field validations",
+          "example": { "required": {} }
+        },
+        "appeareance": {
+          "type": [ "null", "object" ],
+          "description": "Field appeareance",
+          "example": { "type": "plain" }
+        },
+        "position": {
+          "type": "integer",
+          "description": "Ordering index",
+          "example": 1
+        }
+      }
+    },
+    "relationships": {
+      "description": "JSON API links",
+      "type": "object",
+      "required": [ "item_type" ],
+      "additionalProperties": false,
+      "properties": {
+        "item_type": {
+          "type": "object",
+          "description": "Field item type",
+          "required": [ "data" ],
+          "additionalProperties": false,
+          "properties": {
+            "data": {
+              "$ref": "#/definitions/item_type/definitions/data"
+            }
+          }
+        }
+      }
+    }
+  },
+  "properties": {
+    "type": {
+      "$ref": "#/definitions/field/definitions/type"
+    },
+    "id": {
+      "$ref": "#/definitions/field/definitions/id"
+    },
+    "attributes": {
+      "$ref": "#/definitions/field/definitions/attributes"
+    },
+    "relationships": {
+      "$ref": "#/definitions/field/definitions/relationships"
+    }
+  }
+}

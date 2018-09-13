@@ -1,0 +1,37 @@
+#!/usr/bin/env bash
+
+set -e
+
+chmod 777 /etc/resty-auto-ssl;
+
+cat ./app.conf \
+  | envsubst '${APP_DOMAIN}' \
+  > /usr/local/openresty/nginx/conf/sites-enabled/https_app.conf
+cat ./images.conf \
+  | envsubst '${IMAGES_DOMAIN}' \
+  > /usr/local/openresty/nginx/conf/sites-enabled/https_images.conf
+cat ./static_site.conf \
+  | envsubst '${STATIC_SITE_DOMAIN}' \
+  > /usr/local/openresty/nginx/conf/sites-enabled/https_static_site.conf
+
+# create fallback SSL certificates
+if [[ ! -f /webserver/ssl/ssl-fallback.key ]]; then
+  openssl \
+    req \
+    -new \
+    -newkey rsa:2048 \
+    -days 3650 \
+    -nodes \
+    -x509 \
+    -subj '/CN=sni-support-required-for-valid-ssl' \
+    -keyout /webserver/ssl/ssl-fallback.key \
+    -out /webserver/ssl/ssl-fallback.pem
+fi
+
+if [[ ! -f /webserver/ssl/dhparam.pem ]]; then
+  openssl \
+    dhparam \
+    -out /webserver/ssl/dhparam.pem 2048
+fi
+
+exec "$@";

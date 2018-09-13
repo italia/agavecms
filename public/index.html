@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset=utf-8 />
+    <title>Loading...</title>
+    <style>
+      .FullpageLoader{position:fixed;left:0;right:0;top:0;bottom:0}
+      .LoadingSpinner{position:absolute;top:50%;left:50%}.LoadingSpinner__bar{animation:LoadingSpinner__spin 1.2s linear infinite;background-color:#848484;position:absolute;width:20%;height:7.8%;top:-3.9%;left:-10%}@keyframes LoadingSpinner__spin{0%{opacity:1}100%{opacity:.15}}
+    </style>
+    <link rel="stylesheet" type="text/css" href="/assets/style.css">
+    <script type="text/javascript">
+      var _iub = _iub || [];
+      _iub.csConfiguration ={
+        "cookiePolicyId": null,
+        "siteId": null,
+        "lang":"it"
+      };
+    </script>
+    <script type="text/javascript" src="//cdn.iubenda.com/cookie_solution/safemode/iubenda_cs.js" charset="UTF-8" async></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=Intl.~locale.en,Intl.~locale.it,fetch" async></script>
+    <script>
+      function setVendor(element, property, value) {
+        element.style[property] = value;
+        element.style["webkit" + property] = value;
+        element.style["moz" + property] = value;
+        element.style["ms" + property] = value;
+        element.style["o" + property] = value;
+      }
+
+      function addElement(className, parent) {
+        var element = document.createElement('div');
+        element.className = className;
+        parent.appendChild(element);
+        return element;
+      }
+
+      function addSpinner(size, parent) {
+        var spinner = addElement('LoadingSpinner', parent);
+        spinner.style.width = size + 'px';
+        spinner.style.height = size + 'px';
+
+        for (var i = 0; i < 12; i++) {
+          var bar = addElement('LoadingSpinner__bar', spinner);
+          setVendor(bar, 'animationDelay', (i - 12) / 10 + 's');
+          setVendor(bar, 'transform', 'rotate(' + (i * 30) + 'deg) translate(146%)');
+        }
+
+        return spinner;
+      }
+
+      function getScript() {
+        var script = document.createElement("script");
+        script.src = '/assets/bundle.js';
+
+        script.async = true;
+        document.documentElement.appendChild(script);
+      }
+
+      var root = document.getElementById('root');
+      var loader = addElement('FullpageLoader', root);
+      var spinner = addSpinner(100, loader);
+
+      getScript();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,107 @@
+{
+  "$schema": "http://interagent.github.io/interagent-hyper-schema",
+  "title": "Agave Site API",
+  "description": "",
+  "type": "object",
+  "id": "agave-api",
+  "links": [
+    {
+      "href": "https://api.agave.it",
+      "rel": "self"
+    }
+  ],
+  "properties": {
+    "session": {
+      "$ref": "#/definitions/session"
+    },
+    "account": {
+      "$ref": "#/definitions/account"
+    },
+    "user": {
+      "$ref": "#/definitions/user"
+    },
+    "access_token": {
+      "$ref": "#/definitions/access_token"
+    },
+    "site": {
+      "$ref": "#/definitions/site"
+    },
+    "menu_item": {
+      "$ref": "#/definitions/menu_item"
+    },
+    "deploy_event": {
+      "$ref": "#/definitions/deploy_event"
+    },
+    "item_type": {
+      "$ref": "#/definitions/item_type"
+    },
+    "field": {
+      "$ref": "#/definitions/field"
+    },
+    "item": {
+      "$ref": "#/definitions/item"
+    },
+    "upload": {
+      "$ref": "#/definitions/upload"
+    },
+    "search_result": {
+      "$ref": "#/definitions/search_result"
+    },
+    "role": {
+      "$ref": "#/definitions/role"
+    }
+  },
+  "definitions": {
+    "item": {
+      "$mergeExternalRef": "site_api/item.json",
+      "position": 2
+    },
+    "site": {
+      "$mergeExternalRef": "site_api/site.json",
+      "position": 1
+    },
+    "menu_item": {
+      "$mergeExternalRef": "site_api/menu_item.json",
+      "position": 6
+    },
+    "deploy_event": {
+      "$mergeExternalRef": "site_api/deploy_event.json",
+      "position": 7
+    },
+    "account": {
+      "$mergeExternalRef": "definitions/account.json",
+      "links": []
+    },
+    "item_type": {
+      "$mergeExternalRef": "site_api/item_type.json",
+      "position": 3
+    },
+    "field": {
+      "$mergeExternalRef": "site_api/field.json",
+      "position": 4
+    },
+    "user": {
+      "$mergeExternalRef": "site_api/user.json",
+      "position": 5
+    },
+    "search_result": {
+      "$mergeExternalRef": "site_api/search_result.json",
+      "position": 6
+    },
+    "session": {
+      "$externalRef": "site_api/session.json"
+    },
+    "role": {
+      "$externalRef": "site_api/role.json",
+      "position": 7
+    },
+    "access_token": {
+      "$mergeExternalRef": "site_api/access_token.json",
+      "position": 8
+    },
+    "upload": {
+      "$mergeExternalRef": "site_api/upload.json",
+      "position": 9
+    }
+  }
+}

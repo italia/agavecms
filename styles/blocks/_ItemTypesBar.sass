@@ -1,0 +1,77 @@
+.ItemTypesBar
+  +position(absolute, 0 0 0 0)
+  +dark-color-rule(background-color)
+  color: #e8e8e8
+  overflow: auto
+  +vertical-padding(2)
+
+.ItemTypesBar__item__link
+  +horizontal-padding(1.5)
+  +vertical-padding(1)
+  display: block
+  text-decoration: none
+  position: relative
+
+a.ItemTypesBar__item__link
+  color: #e8e8e8
+
+  &:hover
+    background-color: rgba(white, 0.1)
+
+a.ItemTypesBar__item__link--active
+  background-color: rgba(white, 0.1)
+  color: white
+
+@for $level from 0 through 4
+  .ItemTypesBar__item__link--level-#{$level}
+    +space-rule("padding-left", $level + 2)
+
+    & > .ItemTypesBar__item__link__toggler
+      +right(.5)
+
+.ItemTypesBar__item__link__toggler
+  +center-vertically
+  cursor: pointer
+  height: 40px
+  width: 40px
+  transition: transform 0.2s ease-out
+  transform-origin: 50% 50%
+
+  &:before
+    content: ""
+    position: absolute
+    left: 20px - 3px
+    top: 20px - 7px
+    +triangle(15px, white, right)
+
+  &:hover:before
+    +triangle(15px, darken(white, 15%), right)
+
+  &.is-open
+    transform: translateY(-50%) rotate(90deg)
+
+.ItemTypesBar__item__link__invalid-tag
+  +center-vertically
+  right: 10px
+  width: 10px
+  height: 10px
+  border-radius: 5px
+  background-color: $alert-color
+  +right(1.5)
+
+.ItemTypesBar__item__link__icon
+  +center-vertically
+  +right(1.5)
+  color: $light-body-color
+  font-size: 18px
+  line-height: 1
+
+  &:hover
+    color: white
+
+a.ItemTypesBar__item__link--active
+  .ItemTypesBar__item__link__icon
+    opacity: 0.8
+
+    &:hover
+      opacity: 1

@@ -1,0 +1,149 @@
+{
+  "$schema": "http://json-schema.org/draft-04/hyper-schema",
+  "title": "Model",
+  "description": "A model is a specific kind of editable content",
+  "type": "object",
+  "required": [ "type", "id", "relationships", "attributes" ],
+  "additionalProperties": false,
+  "definitions": {
+    "data": {
+      "description": "JSON API data",
+      "type": "object",
+      "required": [ "type", "id" ],
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "$ref": "#/definitions/item_type/properties/type"
+        },
+        "id": {
+          "$ref": "#/definitions/item_type/properties/id"
+        }
+      }
+    },
+    "identity": {
+      "$ref": "#/definitions/item_type/properties/id"
+    },
+    "type": {
+      "description": "JSON API type field",
+      "type": [ "string" ],
+      "pattern": "^item_type$",
+      "example": "item_type"
+    },
+    "id": {
+      "description": "ID of item type",
+      "type": "string",
+      "example": "44"
+    },
+    "attributes": {
+      "description": "JSON API attributes",
+      "type": "object",
+      "required": [ "name", "api_key", "singleton", "sortable", "tree", "ordering_direction" ],
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "type": "string",
+          "example": "Blog post"
+        },
+        "api_key": {
+          "type": "string",
+          "example": "post"
+        },
+        "singleton": {
+          "type": "boolean"
+        },
+        "sortable": {
+          "type": "boolean"
+        },
+        "tree": {
+          "type": "boolean"
+        },
+        "ordering_direction": {
+          "type": [ "string", "null" ],
+          "example": "desc",
+          "enum": [ null, "asc", "desc" ]
+        }
+      }
+    },
+    "relationships": {
+      "description": "JSON API links",
+      "type": "object",
+      "required": [ "fields" ],
+      "additionalProperties": false,
+      "properties": {
+        "menu_item": {
+          "type": "object",
+          "description": "The menu item instance related to this item type",
+          "required": [ "data" ],
+          "additionalProperties": false,
+          "properties": {
+            "data": {
+              "anyOf": [
+                { "$ref": "#/definitions/menu_item/definitions/data" },
+                { "type": [ "null" ] }
+              ],
+              "example": null
+            }
+          }
+        },
+        "singleton_item": {
+          "type": "object",
+          "description": "The item instance related to this item type",
+          "required": [ "data" ],
+          "additionalProperties": false,
+          "properties": {
+            "data": {
+              "anyOf": [
+                { "$ref": "#/definitions/item/definitions/data" },
+                { "type": [ "null" ] }
+              ],
+              "example": null
+            }
+          }
+        },
+        "fields": {
+          "type": "object",
+          "description": "The list of item type fields",
+          "required": [ "data" ],
+          "additionalProperties": false,
+          "properties": {
+            "data": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/field/definitions/data"
+              }
+            }
+          }
+        },
+        "ordering_field": {
+          "type": "object",
+          "description": "The field upon which the collection is sorted",
+          "required": [ "data" ],
+          "additionalProperties": false,
+          "properties": {
+            "data": {
+              "anyOf": [
+                { "$ref": "#/definitions/field/definitions/data" },
+                { "type": [ "null" ] }
+              ],
+              "example": null
+            }
+          }
+        }
+      }
+    }
+  },
+  "properties": {
+    "type": {
+      "$ref": "#/definitions/item_type/definitions/type"
+    },
+    "id": {
+      "$ref": "#/definitions/item_type/definitions/id"
+    },
+    "attributes": {
+      "$ref": "#/definitions/item_type/definitions/attributes"
+    },
+    "relationships": {
+      "$ref": "#/definitions/item_type/definitions/relationships"
+    }
+  }
+}

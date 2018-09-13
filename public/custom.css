@@ -1,0 +1,20 @@
+.header .wrapper-inner {
+  padding: 20px;
+}
+
+.footer .wrapper-inner {
+  padding: 20px;
+}
+
+.header .container,
+.footer .container {
+  background-color: transparent;
+}
+
+.header .columns {
+  padding-bottom: 0;
+}
+
+.footer .small-text {
+  font-size: 14px;
+}

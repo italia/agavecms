@@ -1,0 +1,121 @@
+{
+  "$schema": "http://json-schema.org/draft-04/hyper-schema",
+  "title": "Menu Item",
+  "description": "A menu item helps organize item types within the backend interface",
+  "type": "object",
+  "required": [ "type", "id", "relationships", "attributes" ],
+  "additionalProperties": false,
+  "definitions": {
+    "data": {
+      "type": "object",
+      "description": "JSON API data",
+      "required": [ "type", "id" ],
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "$ref": "#/definitions/menu_item/properties/type"
+        },
+        "id": {
+          "$ref": "#/definitions/menu_item/properties/id"
+        }
+      }
+    },
+    "identity": {
+      "$ref": "#/definitions/menu_item/properties/id"
+    },
+    "type": {
+      "description": "JSON API type field",
+      "type": [ "string" ],
+      "pattern": "^menu_item$",
+      "example": "menu_item"
+    },
+    "id": {
+      "description": "ID of menu item",
+      "type": "string",
+      "example": "34"
+    },
+    "attributes": {
+      "description": "JSON API attributes",
+      "type": "object",
+      "required": [ "label", "position" ],
+      "additionalProperties": false,
+      "properties": {
+        "label": {
+          "type": "string",
+          "description": "The label of the menu item",
+          "example": "Posts"
+        },
+        "position": {
+          "type": "integer",
+          "description": "Ordering index",
+          "example": 1
+        }
+      }
+    },
+    "relationships": {
+      "description": "JSON API links",
+      "type": "object",
+      "required": [ "item_type", "parent", "children" ],
+      "additionalProperties": false,
+      "properties": {
+        "item_type": {
+          "type": "object",
+          "description": "item type associated with the menu item",
+          "required": [ "data" ],
+          "additionalProperties": false,
+          "properties": {
+            "data": {
+              "anyOf": [
+                { "$ref": "#/definitions/item_type/definitions/data" },
+                { "type": [ "null" ] }
+              ]
+            }
+          }
+        },
+        "parent": {
+          "type": "object",
+          "description": "Parent menu item",
+          "required": [ "data" ],
+          "additionalProperties": false,
+          "properties": {
+            "data": {
+              "anyOf": [
+                { "type": [ "null" ] },
+                { "$ref": "#/definitions/menu_item/definitions/data" }
+              ],
+              "example": null
+            }
+          }
+        },
+        "children": {
+          "type": "object",
+          "description": "Underlying menu items",
+          "required": [ "data" ],
+          "additionalProperties": false,
+          "properties": {
+            "data": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/menu_item/definitions/data"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "properties": {
+    "type": {
+      "$ref": "#/definitions/menu_item/definitions/type"
+    },
+    "id": {
+      "$ref": "#/definitions/menu_item/definitions/id"
+    },
+    "attributes": {
+      "$ref": "#/definitions/menu_item/definitions/attributes"
+    },
+    "relationships": {
+      "$ref": "#/definitions/menu_item/definitions/relationships"
+    }
+  }
+}

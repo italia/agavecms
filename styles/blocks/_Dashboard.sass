@@ -1,0 +1,44 @@
+.Dashboard
+  +position(absolute, 0 0 0 0)
+  background-color: $light-bg-color
+  background-position: 50% 50%
+
+.Dashboard__opacity
+  +position(absolute, 0 0 0 0)
+
+.Dashboard__image
+  +accent-color-rule(background-color)
+  background-image: url("https://source.unsplash.com/collection/238472/200x200/daily")
+  background-size: cover
+  border-radius: 50%
+  height: 150px
+  width: 150px
+  margin: 0 auto
+  +margin-bottom(2)
+
+.Dashboard__inner
+  +center
+
+.Dashboard__inner__bg
+  +position(absolute, 0 0 0 0)
+  z-index: 1
+
+.Dashboard__inner__content
+  position: relative
+  z-index: 2
+  text-align: center
+  max-width: 500px
+
+.Dashboard__title
+  font-weight: 300
+  +font-size(huge)
+  +margin-bottom(1)
+
+.Dashboard__quote
+  width: 80%
+  max-width: 900px
+  text-align: center
+  +center-horizontally
+  color: $light-body-color
+  bottom: 40px
+  line-height: 1.3

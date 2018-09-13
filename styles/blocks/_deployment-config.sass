@@ -1,0 +1,24 @@
+.deployment-config__step
+  +margin-bottom(3)
+  border-bottom: 1px solid $border-color
+  +padding-bottom(3)
+  display: flex
+
+  &:last-child
+    padding-bottom: 0
+    border-bottom-width: 0
+
+.deployment-config__step__image
+  width: 300px
+  margin-right: 50px
+
+.deployment-config__step__content
+  flex: 1
+
+  h3
+    +font-size(beta)
+    +margin-bottom(1)
+
+  p
+    max-width: 700px
+    +margin-bottom(1)

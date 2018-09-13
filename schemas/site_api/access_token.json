@@ -1,0 +1,190 @@
+{
+  "$mergeExternalRef": "../definitions/access_token.json",
+  "links": [
+    {
+      "method": "POST",
+      "rel": "create",
+      "title": "Create",
+      "description": "Create a new access token",
+      "href": "/api/access_tokens",
+      "schema": {
+        "type": "object",
+        "required": [ "data" ],
+        "additionalProperties": false,
+        "properties": {
+          "data": {
+            "type": "object",
+            "required": [ "type", "attributes", "relationships" ],
+            "additionalProperties": false,
+            "properties": {
+              "type": {
+                "$ref": "#/definitions/access_token/definitions/type"
+              },
+              "attributes": {
+                "type": "object",
+                "required": [ "name" ],
+                "additionalProperties": false,
+                "properties": {
+                  "name": {
+                    "$ref": "#/definitions/access_token/definitions/attributes/properties/name"
+                  }
+                }
+              },
+              "relationships": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "role": {
+                    "$ref": "#/definitions/access_token/definitions/relationships/properties/role"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "targetSchema": {
+        "type": "object",
+        "required": [ "data" ],
+        "additionalProperties": false,
+        "properties": {
+          "data": {
+            "$ref": "#/definitions/access_token"
+          }
+        }
+      }
+    },
+
+    {
+      "method": "PUT",
+      "rel": "update",
+      "title": "Update",
+      "description": "Updates an access token",
+      "href": "/api/access_tokens/{(%2Fschemata%2Faccess_token%23%2Fdefinitions%2Fuser%2Fdefinitions%2Fidentity)}",
+      "schema": {
+        "type": "object",
+        "required": [ "data" ],
+        "additionalProperties": false,
+        "properties": {
+          "data": {
+            "type": "object",
+            "required": [ "type", "id", "attributes", "relationships" ],
+            "additionalProperties": false,
+            "properties": {
+              "type": {
+                "$ref": "#/definitions/access_token/properties/type"
+              },
+              "id": {
+                "$ref": "#/definitions/access_token/properties/id"
+              },
+              "attributes": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "name": {
+                    "$ref": "#/definitions/access_token/definitions/attributes/properties/name"
+                  }
+                }
+              },
+              "relationships": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "role": {
+                    "$ref": "#/definitions/access_token/definitions/relationships/properties/role"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "targetSchema": {
+        "type": "object",
+        "required": [ "data" ],
+        "additionalProperties": false,
+        "properties": {
+          "data": {
+            "$ref": "#/definitions/access_token"
+          }
+        }
+      }
+    },
+
+    {
+      "method": "GET",
+      "rel": "instances",
+      "title": "Index",
+      "description": "Lists access tokens",
+      "href": "/api/access_tokens",
+      "targetSchema": {
+        "type": "object",
+        "required": [ "data" ],
+        "additionalProperties": false,
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/access_token"
+            }
+          }
+        }
+      }
+    },
+
+    {
+      "method": "GET",
+      "rel": "self",
+      "title": "Show",
+      "description": "Show access tokens",
+      "href": "/api/access_tokens/{(%2Fschemata%2Faccess_token%23%2Fdefinitions%2Fuser%2Fdefinitions%2Fidentity)}",
+      "targetSchema": {
+        "type": "object",
+        "required": [ "data" ],
+        "additionalProperties": false,
+        "properties": {
+          "data": {
+            "$ref": "#/definitions/access_token"
+          }
+        }
+      }
+    },
+
+    {
+      "method": "POST",
+      "rel": "regenerate_token",
+      "title": "Regenerate token",
+      "description": "Request a new API token",
+      "private": true,
+      "href": "/api/access_tokens/{(%2Fschemata%2Faccess_token%23%2Fdefinitions%2Fuser%2Fdefinitions%2Fidentity)}/regenerate_token",
+      "targetSchema": {
+        "type": "object",
+        "required": [ "data" ],
+        "additionalProperties": false,
+        "properties": {
+          "data": {
+            "$ref": "#/definitions/access_token"
+          }
+        }
+      }
+    },
+
+    {
+      "method": "DELETE",
+      "rel": "destroy",
+      "title": "Delete",
+      "description": "Deletes a access token",
+      "href": "/api/access_tokens/{(%2Fschemata%2Faccess_token%23%2Fdefinitions%2Fuser%2Fdefinitions%2Fidentity)}",
+      "targetSchema": {
+        "type": "object",
+        "required": [ "data" ],
+        "additionalProperties": false,
+        "properties": {
+          "data": {
+            "$ref": "#/definitions/access_token"
+          }
+        }
+      }
+    }
+  ]
+}

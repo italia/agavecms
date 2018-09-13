@@ -1,0 +1,111 @@
+{
+  "$schema": "http://json-schema.org/draft-04/hyper-schema",
+  "type": "object",
+  "title": "Editor",
+  "description": "Agave editor",
+  "required": [ "type", "id", "attributes" ],
+  "additionalProperties": false,
+  "definitions": {
+    "data": {
+      "description": "JSON API data",
+      "type": "object",
+      "required": [ "type", "id" ],
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "$ref": "#/definitions/search_result/properties/type"
+        },
+        "id": {
+          "$ref": "#/definitions/search_result/properties/id"
+        }
+      }
+    },
+    "identity": {
+      "$ref": "#/definitions/search_result/properties/id"
+    },
+    "type": {
+      "description": "JSON API type field",
+      "type": [ "string" ],
+      "pattern": "^search_result$",
+      "example": "search_result"
+    },
+    "id": {
+      "description": "ID of result",
+      "type": "string",
+      "example": "312"
+    },
+    "attributes": {
+      "description": "JSON API attributes",
+      "type": "object",
+      "required": [ "title", "body_excerpt", "url", "score", "highlight" ],
+      "additionalProperties": false,
+      "properties": {
+        "title": {
+          "type": "string",
+          "description": "Page title",
+          "example": "My Page"
+        },
+        "body_excerpt": {
+          "type": "string",
+          "description": "First lines of body",
+          "example": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed eiusmod"
+        },
+        "url": {
+          "type": "string",
+          "description": "URL",
+          "example": "Smith"
+        },
+        "score": {
+          "type": "number",
+          "description": "Score",
+          "example": 11.3
+        },
+        "highlight": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "title": {
+              "anyOf": [
+                {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "example": "Foo <em>bar</em> qux"
+                  }
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "body": {
+              "anyOf": [
+                {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "example": "Foo <em>bar</em> qux"
+                  }
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          }
+        }
+      }
+    }
+  },
+  "properties": {
+    "type": {
+      "$ref": "#/definitions/search_result/definitions/type"
+    },
+    "id": {
+      "$ref": "#/definitions/search_result/definitions/id"
+    },
+    "attributes": {
+      "$ref": "#/definitions/search_result/definitions/attributes"
+    }
+  }
+}

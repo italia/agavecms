@@ -1,0 +1,28 @@
+.Spinner--inline
+  display: inline-block
+  position: relative
+  vertical-align: middle
+
+.Spinner--centered
+  position: absolute
+  top: 50%
+  left: 50%
+
+.Spinner__bar
+  animation: Spinner__spin 1.2s linear infinite
+  background-color: $light-body-color
+  position: absolute
+  width: 40%
+  height: 14%
+  top: 0
+  left: -20%
+
+  .Spinner--reverse &
+    background-color: white
+
+@keyframes Spinner__spin
+  0%
+    opacity: 1
+
+  100%
+    opacity: 0.15

@@ -1,0 +1,143 @@
+{
+  "$mergeExternalRef": "../definitions/user_session.json",
+  "links": [
+    {
+      "method": "POST",
+      "rel": "create",
+      "title": "Create",
+      "description": "Create a new session",
+      "private": true,
+      "href": "/api/sessions",
+      "schema": {
+        "type": "object",
+        "required": [ "data" ],
+        "additionalProperties": false,
+        "properties": {
+          "data": {
+            "anyOf": [
+              {
+                "type": "object",
+                "required": [ "type", "attributes" ],
+                "additionalProperties": false,
+                "properties": {
+                  "type": {
+                    "type": [ "string" ],
+                    "description": "JSON API type field",
+                    "pattern": "^email_credentials$",
+                    "example": "email_credentials"
+                  },
+                  "attributes": {
+                    "description": "JSON API attributes",
+                    "type": "object",
+                    "required": [ "email", "password" ],
+                    "additionalProperties": false,
+                    "properties": {
+                      "email": {
+                        "type": "string",
+                        "description": "Email",
+                        "example": "foo@bar.com"
+                      },
+                      "password": {
+                        "type": "string",
+                        "description": "Password",
+                        "example": "changeme"
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "type": "object",
+                "required": [ "type", "attributes" ],
+                "additionalProperties": false,
+                "properties": {
+                  "type": {
+                    "type": [ "string" ],
+                    "description": "JSON API type field",
+                    "pattern": "^password_reset$",
+                    "example": "password_reset"
+                  },
+                  "attributes": {
+                    "description": "JSON API attributes",
+                    "type": "object",
+                    "required": [ "token", "password", "check_policy" ],
+                    "additionalProperties": false,
+                    "properties": {
+                      "token": {
+                        "type": "string",
+                        "description": "Invitation token",
+                        "example": "XXXYYYZZZ"
+                      },
+                      "password": {
+                        "type": "string",
+                        "description": "Password",
+                        "example": "changeme"
+                      },
+                      "check_policy": {
+                        "type": "boolean",
+                        "description": "Check policy",
+                        "example": "true"
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "type": "object",
+                "required": [ "type", "attributes" ],
+                "additionalProperties": false,
+                "properties": {
+                  "type": {
+                    "type": [ "string" ],
+                    "description": "JSON API type field",
+                    "pattern": "^invitation$",
+                    "example": "invitation"
+                  },
+                  "attributes": {
+                    "description": "JSON API attributes",
+                    "type": "object",
+                    "required": [ "token", "password", "check_policy" ],
+                    "additionalProperties": false,
+                    "properties": {
+                      "token": {
+                        "type": "string",
+                        "description": "Invitation token",
+                        "example": "XXXYYYZZZ"
+                      },
+                      "password": {
+                        "type": "string",
+                        "description": "Password",
+                        "example": "changeme"
+                      },
+                      "check_policy": {
+                        "type": "boolean",
+                        "description": "Check policy",
+                        "example": "true"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        }
+      },
+      "targetSchema": {
+        "type": "object",
+        "required": [ "data", "included" ],
+        "additionalProperties": false,
+        "properties": {
+          "data": {
+            "$ref": "#/definitions/session"
+          },
+          "included": {
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/user"
+            }
+          }
+        }
+      }
+    }
+  ]
+}

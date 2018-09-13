@@ -1,0 +1,63 @@
+.formatted-content
+  +font-size(smallprint)
+
+  h1, h2, h3, h4, h5, h6, hgroup,
+  ul, ol, dd, p, figure, pre, table,
+  fieldset, hr, form, blockquote
+    +margin-bottom(0.5)
+
+    &:last-child
+      margin-bottom: 0
+
+  ul, ol, blockquote
+    padding-left: 30px
+
+  ul li
+    list-style-type: disc
+
+  ol li
+    list-style-type: decimal
+
+  ul li, ol li
+    +margin-bottom(0.2)
+
+  a, strong
+    font-weight: 500
+
+  h1, h2, h3, h4, h5, h6
+    +heading-font-family
+    +margin-top(2)
+    font-weight: 500
+
+    &:first-child
+      margin-top: 0
+
+  @for $i from 1 through 6
+    h#{$i}
+      $index: $i + 2
+
+      @if $index > length($heading-font-sizes)
+        $index: length($heading-font-sizes)
+
+      $size: nth(map-values($heading-font-sizes), $index)
+      +rem-rule(font-size, $size)
+
+  table
+    width: 100%
+    @extend .table
+
+  pre
+    +padding(1)
+    +vertical-margin(2)
+    white-space: pre
+    overflow-wrap: normal
+    overflow-x: auto
+    background-color: $light-bg-color
+    line-height: 1.2
+    max-height: 150px
+    border-left: 5px solid $border-color
+    +primary-color-rule(border-left-color)
+
+  code
+    background-color: $light-bg-color
+    padding: 1px 3px

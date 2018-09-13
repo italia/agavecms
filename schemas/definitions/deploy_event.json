@@ -1,0 +1,119 @@
+{
+  "$schema": "http://json-schema.org/draft-04/hyper-schema",
+  "title": "Deploy activity",
+  "description": "Represents an event occurred during the deploy process",
+  "type": "object",
+  "required": [ "type", "id", "attributes", "relationships" ],
+  "additionalProperties": false,
+  "definitions": {
+    "data": {
+      "type": "object",
+      "description": "JSON API data",
+      "required": [ "type", "id" ],
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "$ref": "#/definitions/deploy_event/properties/type"
+        },
+        "id": {
+          "$ref": "#/definitions/deploy_event/properties/id"
+        }
+      }
+    },
+    "identity": {
+      "$ref": "#/definitions/deploy_event/properties/id"
+    },
+    "type": {
+      "description": "JSON API type field",
+      "type": [ "string" ],
+      "pattern": "^deploy_event$",
+      "example": "deploy_event"
+    },
+    "id": {
+      "description": "ID of menu item",
+      "type": "string",
+      "example": "34"
+    },
+    "attributes": {
+      "description": "JSON API attributes",
+      "type": "object",
+      "required": [ "event_type", "data", "created_at", "environment" ],
+      "additionalProperties": false,
+      "properties": {
+        "event_type": {
+          "type": "string",
+          "enum": [ "request", "request_failed", "response_success", "response_failure", "response_timeout" ],
+          "description": "The type of activity",
+          "example": "response_success"
+        },
+        "environment": {
+          "description": "Environment",
+          "type": [ "string" ],
+          "example": "production",
+          "enum": [ "production" ]
+        },
+        "created_at": {
+          "description": "The moment the activity occurred",
+          "type": ["string"],
+          "format": "date-time",
+          "example": "2016-09-20T18:50:24.914Z"
+        },
+        "data": {
+          "description": "Any details regarding the event",
+          "type": ["object"],
+          "example": {
+            "request_body": "{\"object_kind\":\"build\",\"ref\":\"master\",\"tag\":false,\"before_sha\":\"0000000000000000000000000000000000000000\",\"sha\":\"ecfccf5ea28af900c14b499a2b762e029c7492\",\"build_id\":10495,\"build_name\":\"build\",\"build_stage\":\"test\",\"build_status\":\"success\",\"build_started_at\":\"2016-09-20 18:49:22 UTC\",\"build_finished_at\":\"2016-09-20 18:50:24 UTC\",\"build_duration\":62.279854524,\"build_allow_failure\":false,\"project_id\":195,\"project_name\":\"Mario Rossi / awesome-website\",\"user\":{\"id\":null,\"name\":null,\"email\":null},\"commit\":{\"id\":6754,\"sha\":\"ecfccf5ea28af900c6614b499a2b762e029c7492\",\"message\":\"Update gems\\n\",\"author_name\":\"Mario Rossi`\",\"author_email\":\"m.rossi@agave.com\",\"status\":\"success\",\"duration\":62,\"started_at\":\"2016-09-20 18:49:22 UTC\",\"finished_at\":\"2016-09-20 18:50:24 UTC\"},\"repository\":{\"name\":\"awesome-website\",\"url\":\"git@gitlab.com:mariorossi/awesome-website.git\",\"description\":\"\",\"visibility_level\":0}}",
+            "request_headers": {
+              "Via": "1.1 vegur",
+              "Host": "webhooks.agave.com",
+              "Origin": null,
+              "Version": "HTTP/1.1",
+              "Connection": "close",
+              "Connect-Time": "0",
+              "X-Request-Id": "5c1beced-0fe3-4c5b-b45d-68ba4a15b5f3",
+              "X-Gitlab-Event": "Build Hook",
+              "X-Forwarded-For": "46.101.135.219",
+              "X-Request-Start": "1474397424903",
+              "Total-Route-Time": "0",
+              "X-Forwarded-Port": "443",
+              "X-Forwarded-Proto": "https"
+            }
+          }
+        }
+      }
+    },
+    "relationships": {
+      "description": "JSON API links",
+      "type": "object",
+      "required": [ "site" ],
+      "additionalProperties": false,
+      "properties": {
+        "site": {
+          "type": "object",
+          "description": "Source site",
+          "required": [ "data" ],
+          "additionalProperties": false,
+          "properties": {
+            "data": {
+              "$ref": "#/definitions/site/definitions/data"
+            }
+          }
+        }
+      }
+    }
+  },
+  "properties": {
+    "type": {
+      "$ref": "#/definitions/deploy_event/definitions/type"
+    },
+    "id": {
+      "$ref": "#/definitions/deploy_event/definitions/id"
+    },
+    "attributes": {
+      "$ref": "#/definitions/deploy_event/definitions/attributes"
+    },
+    "relationships": {
+      "$ref": "#/definitions/deploy_event/definitions/relationships"
+    }
+  }
+}

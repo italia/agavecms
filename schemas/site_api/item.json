@@ -1,0 +1,381 @@
+{
+  "$mergeExternalRef": "../definitions/item.json",
+  "links": [
+    {
+      "method": "POST",
+      "rel": "validate_existing",
+      "private": true,
+      "title": "Validate existing record",
+      "description": "Validates an existing record field",
+      "href": "/api/items/{(%2Fschemata%2Fitem%23%2Fdefinitions%2Fitem%2Fdefinitions%2Fidentity)}/validate",
+      "schema": {
+        "type": "object",
+        "required": [
+          "data"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "data": {
+            "type": "object",
+            "required": [
+              "id",
+              "type",
+              "attributes",
+              "relationships"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "id": {
+                "$ref": "#/definitions/item/properties/id"
+              },
+              "type": {
+                "$ref": "#/definitions/item/definitions/type"
+              },
+              "attributes": {
+                "$ref": "#/definitions/item/definitions/attributes"
+              },
+              "relationships": {
+                "type": "object",
+                "required": [
+                  "item_type"
+                ],
+                "additionalProperties": false,
+                "properties": {
+                  "item_type": {
+                    "type": "object",
+                    "required": [
+                      "data"
+                    ],
+                    "additionalProperties": false,
+                    "properties": {
+                      "data": {
+                        "$ref": "#/definitions/item_type/definitions/data"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "targetSchema": {
+        "type": "object",
+        "required": [
+          "data",
+          "included"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "data": {
+            "$ref": "#/definitions/item"
+          },
+          "included": {
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/item_type"
+            }
+          }
+        }
+      }
+    },
+    {
+      "method": "POST",
+      "rel": "validate_new",
+      "private": true,
+      "title": "Validate new record",
+      "description": "Validates a record fields",
+      "href": "/api/items/validate",
+      "schema": {
+        "type": "object",
+        "required": [
+          "data"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "data": {
+            "type": "object",
+            "required": [
+              "type",
+              "attributes",
+              "relationships"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "type": {
+                "$ref": "#/definitions/item/definitions/type"
+              },
+              "attributes": {
+                "$ref": "#/definitions/item/definitions/attributes"
+              },
+              "relationships": {
+                "type": "object",
+                "required": [
+                  "item_type"
+                ],
+                "additionalProperties": false,
+                "properties": {
+                  "item_type": {
+                    "type": "object",
+                    "required": [
+                      "data"
+                    ],
+                    "additionalProperties": false,
+                    "properties": {
+                      "data": {
+                        "$ref": "#/definitions/item_type/definitions/data"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "targetSchema": {
+        "type": "object",
+        "required": [
+          "data",
+          "included"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "data": {
+            "$ref": "#/definitions/item"
+          },
+          "included": {
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/item_type"
+            }
+          }
+        }
+      }
+    },
+
+    {
+      "method": "POST",
+      "rel": "create",
+      "title": "Create",
+      "description": "Create a new record",
+      "href": "/api/items",
+      "schema": {
+        "type": "object",
+        "required": [ "data" ],
+        "additionalProperties": false,
+        "properties": {
+          "data": {
+            "type": "object",
+            "required": [ "type", "attributes", "relationships" ],
+            "additionalProperties": false,
+            "properties": {
+              "type": {
+                "$ref": "#/definitions/item/definitions/type"
+              },
+              "attributes": {
+                "$ref": "#/definitions/item/definitions/attributes"
+              },
+              "relationships": {
+                "type": "object",
+                "required": [ "item_type" ],
+                "additionalProperties": false,
+                "properties": {
+                  "item_type": {
+                    "type": "object",
+                    "description": "The record model",
+                    "required": [ "data" ],
+                    "additionalProperties": false,
+                    "properties": {
+                      "data": {
+                        "$ref": "#/definitions/item_type/definitions/data"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "targetSchema": {
+        "type": "object",
+        "required": [ "data", "included" ],
+        "additionalProperties": false,
+        "properties": {
+          "data": {
+            "$ref": "#/definitions/item"
+          },
+          "included": {
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/item_type"
+            }
+          }
+        }
+      }
+    },
+
+    {
+      "method": "POST",
+      "rel": "duplicate",
+      "title": "Duplicate",
+      "description": "Duplicate a record",
+      "href": "/api/items/{(%2Fschemata%2Fitem%23%2Fdefinitions%2Fitem%2Fdefinitions%2Fidentity)}/duplicate",
+      "targetSchema": {
+        "type": "object",
+        "required": [ "data", "included" ],
+        "additionalProperties": false,
+        "properties": {
+          "data": {
+            "$ref": "#/definitions/item"
+          },
+          "included": {
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/item_type"
+            }
+          }
+        }
+      }
+    },
+
+    {
+      "method": "PUT",
+      "rel": "update",
+      "title": "Update",
+      "description": "Updates a record",
+      "href": "/api/items/{(%2Fschemata%2Fitem%23%2Fdefinitions%2Fitem%2Fdefinitions%2Fidentity)}",
+      "schema": {
+        "type": "object",
+        "required": [ "data" ],
+        "additionalProperties": false,
+        "properties": {
+          "data": {
+            "type": "object",
+            "required": [ "type", "id", "attributes" ],
+            "additionalProperties": false,
+            "properties": {
+              "type": {
+                "$ref": "#/definitions/item/properties/type"
+              },
+              "id": {
+                "$ref": "#/definitions/item/properties/id"
+              },
+              "attributes": {
+                "$ref": "#/definitions/item/properties/attributes"
+              }
+            }
+          }
+        }
+      },
+      "targetSchema": {
+        "type": "object",
+        "required": [ "data" ],
+        "additionalProperties": false,
+        "properties": {
+          "data": {
+            "$ref": "#/definitions/item"
+          }
+        }
+      }
+    },
+
+    {
+      "method": "GET",
+      "rel": "instances",
+      "title": "Index",
+      "description": "Lists records",
+      "href": "/api/items",
+      "schema": {
+        "type": [ "object" ],
+        "properties": {
+          "filter[ids]": {
+            "description": "IDs to fetch, comma separated",
+            "example": "12,31",
+            "type": [ "string" ]
+          },
+          "filter[type]": {
+            "description": "model ID to filter",
+            "example": "44",
+            "type": [ "string" ]
+          },
+          "filter[query]": {
+            "description": "textual query to match",
+            "example": "foo",
+            "type": [ "string" ]
+          },
+          "page[offset]": {
+            "description": "index of first record to fetch",
+            "example": 2,
+            "default": 1,
+            "type": [ "integer" ]
+          },
+          "page[limit]": {
+            "description": "number of records to fetch",
+            "example": 15,
+            "default": 30,
+            "type": [ "integer" ]
+          }
+        }
+      },
+      "targetSchema": {
+        "type": "object",
+        "required": [ "data" ],
+        "additionalProperties": false,
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/item"
+            }
+          },
+          "meta": {
+            "type": "object",
+            "required": [ "total_count" ],
+            "additionalProperties": false,
+            "properties": {
+              "total_count": { "type": "integer" }
+            }
+          }
+        }
+      }
+    },
+
+    {
+      "method": "GET",
+      "rel": "self",
+      "title": "Show",
+      "description": "Show record",
+      "href": "/api/items/{(%2Fschemata%2Fitem%23%2Fdefinitions%2Fitem%2Fdefinitions%2Fidentity)}",
+      "targetSchema": {
+        "type": "object",
+        "required": [ "data" ],
+        "additionalProperties": false,
+        "properties": {
+          "data": {
+            "$ref": "#/definitions/item"
+          }
+        }
+      }
+    },
+
+    {
+      "method": "DELETE",
+      "rel": "destroy",
+      "title": "Delete",
+      "description": "Deletes a record",
+      "href": "/api/items/{(%2Fschemata%2Fitem%23%2Fdefinitions%2Fitem%2Fdefinitions%2Fidentity)}",
+      "targetSchema": {
+        "type": "object",
+        "required": [ "data" ],
+        "additionalProperties": false,
+        "properties": {
+          "data": {
+            "$ref": "#/definitions/item"
+          }
+        }
+      }
+    }
+  ]
+}

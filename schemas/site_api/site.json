@@ -1,0 +1,106 @@
+{
+  "$mergeExternalRef": "../definitions/site.json",
+  "links": [
+    {
+      "rel": "self",
+      "method": "GET",
+      "title": "Show",
+      "description": "Retrieve a site",
+      "href": "/api/site",
+      "targetSchema": {
+        "type": "object",
+        "required": [ "data" ],
+        "additionalProperties": false,
+        "properties": {
+          "data": {
+            "$ref": "#/definitions/site"
+          },
+          "included": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "oneOf": [
+                { "$ref": "#/definitions/menu_item" },
+                { "$ref": "#/definitions/user" },
+                { "$ref": "#/definitions/item_type" },
+                { "$ref": "#/definitions/role" },
+                { "$ref": "#/definitions/field" },
+                { "$ref": "#/definitions/upload" }
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "method": "PUT",
+      "rel": "update",
+      "title": "Update",
+      "description": "Updates a site settings",
+      "href": "/api/site",
+      "schema": {
+        "type": "object",
+        "required": [ "data" ],
+        "additionalProperties": false,
+        "properties": {
+          "data": {
+            "type": "object",
+            "required": [ "type", "id", "attributes" ],
+            "additionalProperties": false,
+            "properties": {
+              "type": {
+                "$ref": "#/definitions/site/properties/type"
+              },
+              "id": {
+                "$ref": "#/definitions/site/properties/id"
+              },
+              "attributes": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "no_index": {
+                    "$ref": "#/definitions/site/definitions/attributes/properties/no_index"
+                  },
+                  "favicon": {
+                    "$ref": "#/definitions/site/definitions/attributes/properties/favicon"
+                  },
+                  "global_seo": {
+                    "$ref": "#/definitions/site/definitions/attributes/properties/global_seo"
+                  },
+                  "name": {
+                    "$ref": "#/definitions/site/definitions/attributes/properties/name"
+                  },
+                  "theme": {
+                    "$ref": "#/definitions/site/definitions/attributes/properties/theme"
+                  },
+                  "locales": {
+                    "$ref": "#/definitions/site/definitions/attributes/properties/locales"
+                  },
+                  "timezone": {
+                    "$ref": "#/definitions/site/definitions/attributes/properties/timezone"
+                  },
+                  "git_repo_url": {
+                    "$ref": "#/definitions/site/definitions/attributes/properties/git_repo_url"
+                  },
+                  "production_frontend_url": {
+                    "$ref": "#/definitions/site/definitions/attributes/properties/production_frontend_url"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "targetSchema": {
+        "type": "object",
+        "required": [ "data" ],
+        "additionalProperties": false,
+        "properties": {
+          "data": {
+            "$ref": "#/definitions/site"
+          }
+        }
+      }
+    }
+  ]
+}

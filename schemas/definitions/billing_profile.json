@@ -1,0 +1,77 @@
+{
+  "$schema": "http://json-schema.org/draft-04/hyper-schema",
+  "title": "Billing profile",
+  "description": "A billing profile",
+  "type": "object",
+  "required": [ "type", "id", "attributes" ],
+  "additionalProperties": false,
+  "definitions": {
+    "data": {
+      "description": "JSON API data",
+      "type": "object",
+      "required": [ "type", "id" ],
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "$ref": "#/definitions/billing_profile/properties/type"
+        },
+        "id": {
+          "$ref": "#/definitions/billing_profile/properties/id"
+        }
+      }
+    },
+    "identity": {
+      "$ref": "#/definitions/billing_profile/properties/id"
+    },
+    "type": {
+      "description": "JSON API type field",
+      "type": [ "string" ],
+      "pattern": "^billing_profile$",
+      "example": "billing_profile"
+    },
+    "id": {
+      "description": "ID of billing_profile",
+      "type": "string",
+      "example": "124"
+    },
+    "attributes": {
+      "description": "JSON API attributes",
+      "type": "object",
+      "additionalProperties": false,
+      "required": [ "full_name", "company", "card_masked_number" ],
+      "properties": {
+        "full_name": {
+          "description": "Cardholder full name",
+          "type": ["string"]
+        },
+        "card_masked_number": {
+          "description": "Card masked number",
+          "type": ["string"]
+        },
+        "company": {
+          "description": "Cardholder company name",
+          "type": ["string"]
+        },
+        "next_billing_at": {
+          "description": "Date of next billing",
+          "type": ["string"]
+        },
+        "is_active": {
+          "description": "Is the billing profile active?",
+          "type": ["boolean"]
+        }
+      }
+    }
+  },
+  "properties": {
+    "type": {
+      "$ref": "#/definitions/billing_profile/definitions/type"
+    },
+    "id": {
+      "$ref": "#/definitions/billing_profile/definitions/id"
+    },
+    "attributes": {
+      "$ref": "#/definitions/billing_profile/definitions/attributes"
+    }
+  }
+}

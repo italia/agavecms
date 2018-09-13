@@ -1,0 +1,50 @@
+.ChoicesInput
+  display: flex
+  flex-wrap: wrap
+  margin-right: -10px
+  margin-bottom: -10px
+
+.ChoicesInput__item
+  width: 50%
+  padding-right: 10px
+  box-sizing: border-box
+  text-decoration: none
+  margin-bottom: 10px
+
+.ChoicesInput__item__inner
+  border: 1px solid $border-color
+  text-align: center
+  +padding(1)
+
+  &:hover
+    +accent-color-rule(border-color)
+
+.ChoicesInput__item--active .ChoicesInput__item__inner
+  border: 2px solid $primary-color
+  +accent-color-rule(border-color)
+
+.ChoicesInput__item__image
+  width: 25px
+  padding-right: 10px
+  display: inline-block
+  vertical-align: middle
+
+  img
+    display: block
+
+.ChoicesInput__item__label
+  display: inline-block
+  vertical-align: middle
+
+.ChoicesInput__item__sub
+  +font-size(milli)
+  color: $light-body-color
+  margin-top: 5px
+
+.ChoicesInput__item--recommendend
+  width: 100%
+  +font-size(beta)
+
+  .ChoicesInput__item__image
+    width: 35px
+

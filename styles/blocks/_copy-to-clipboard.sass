@@ -1,0 +1,24 @@
+.copy-to-clipboard
+  position: relative
+
+  textarea
+    padding-right: 90px
+    white-space: pre
+    overflow-wrap: normal
+    overflow-x: auto
+    line-height: 1.2
+    +font-size(smallprint)
+
+.copy-to-clipboard__button
+  opacity: 0
+  transition: opacity 0.2s $material-ease
+  +position(absolute, null 10px 10px null)
+  +accent-color-rule(background-color)
+  text-decoration: none
+  color: white
+  border-radius: 3px
+  border: 0
+  padding: 0.7em 1em
+
+  .copy-to-clipboard:hover &
+    opacity: 1

@@ -1,0 +1,36 @@
+.FileInput
+  border: 1px solid $border-color
+  text-align: center
+  +padding(2)
+
+.FileInput__dropzone
+  border: 1px dashed $border-color
+  text-align: center
+  +padding(2)
+
+.FileInput__dropzone__label
+  +font-size(gamma)
+
+.FileInput__dropzone__hint
+  color: $light-body-color
+  +margin-top(0.5)
+  +font-size(smallprint)
+
+.FileInput__progressHint
+  color: $light-body-color
+  +margin-top(1)
+  +font-size(smallprint)
+
+.FileInput__dropzone--active
+  +accent-color-rule(border-color)
+
+.FileInput__actions
+  +margin-top(1)
+
+.FileInput__image-preview
+  display: inline-block
+  background-color: $light-bg-color
+  box-shadow: 0 2px 3px rgba(black, 0.4)
+
+  img
+    display: block

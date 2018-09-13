@@ -1,0 +1,15 @@
+/bin/stubs/
+/bower_components/
+/coverage/
+/docker/
+!/docker/app/start
+/.dockerignore
+/.env*
+/.git/
+!/.git/HEAD
+!/.git/refs/heads
+/.gitignore
+/log/*
+/node_modules/
+/.rubocop.yml
+/tmp/*

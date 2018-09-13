@@ -1,0 +1,67 @@
+.ColorInput
+  position: relative
+  display: inline-block
+
+.ColorInput__color
+  border: 1px solid $border-color
+  padding: 5px
+  border-radius: 3px
+  display: inline-block
+
+.ColorInput__value
+  border-radius: 2px
+  background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAMUlEQVQ4T2NkYGAQYcAP3uCTZhw1gGGYhAGBZIA/nYDCgBDAm9BGDWAAJyRCgLaBCAAgXwixzAS0pgAAAABJRU5ErkJggg==") left center
+  cursor: pointer
+  display: inline-block
+  vertical-align: middle
+
+  &:hover
+    opacity: 0.9
+
+.ColorInput.is-disabled .ColorInput__value
+  cursor: default
+
+  &:hover
+    opacity: 1
+
+.ColorInput__no-value
+  color: $light-body-color
+  height: 30px
+  line-height: 30px
+  padding: 0 10px
+  display: inline-block
+  +font-size(smallprint)
+  cursor: pointer
+
+.ColorInput__inner-value
+  border-radius: 2px
+  width: 50px
+  height: 30px
+  display: block
+
+.ColorInput__clear
+  border-radius: 50%
+  display: inline-block
+  width: 20px
+  height: 20px
+  background-color: $light-body-color
+  color: white
+  cursor: pointer
+  vertical-align: middle
+  position: relative
+  margin-left: 5px
+
+  &:hover
+    background-color: darken($light-body-color, 10%)
+
+  i
+    +center
+    font-size: 14px
+    padding-top: 2px
+    line-height: 12px
+
+.ColorInput__pane
+  +position(absolute, 100% null null 0)
+  padding-top: 5px
+  +margin-bottom(3)
+  z-index: 100

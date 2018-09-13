@@ -1,0 +1,162 @@
+{
+  "$mergeExternalRef": "../definitions/field.json",
+  "links": [
+    {
+      "method": "POST",
+      "rel": "create",
+      "title": "Create",
+      "description": "Create a new field",
+      "href": "/api/item-types/{(%2Fschemata%2Fitem_type%23%2Fdefinitions%2Fitem_type%2Fdefinitions%2Fidentity)}/fields",
+      "schema": {
+        "type": "object",
+        "required": [ "data" ],
+        "additionalProperties": false,
+        "properties": {
+          "data": {
+            "type": "object",
+            "required": [ "type", "attributes" ],
+            "additionalProperties": false,
+            "properties": {
+              "type": {
+                "$ref": "#/definitions/field/definitions/type"
+              },
+              "attributes": {
+                "$ref": "#/definitions/field/definitions/attributes"
+              }
+            }
+          }
+        }
+      },
+      "targetSchema": {
+        "type": "object",
+        "required": [ "data" ],
+        "additionalProperties": false,
+        "properties": {
+          "data": {
+            "$ref": "#/definitions/field"
+          }
+        }
+      }
+    },
+    {
+      "method": "PUT",
+      "rel": "update",
+      "title": "Update",
+      "description": "Updates a field",
+      "href": "/api/fields/{(%2Fschemata%2Ffield%23%2Fdefinitions%2Ffield%2Fdefinitions%2Fidentity)}",
+      "schema": {
+        "type": "object",
+        "required": [ "data" ],
+        "additionalProperties": false,
+        "properties": {
+          "data": {
+            "type": "object",
+            "required": [ "type", "id", "attributes" ],
+            "additionalProperties": false,
+            "properties": {
+              "type": {
+                "$ref": "#/definitions/field/properties/type"
+              },
+              "id": {
+                "$ref": "#/definitions/field/properties/id"
+              },
+              "attributes": {
+                "type": "object",
+                "properties": {
+                  "label": {
+                    "$ref": "#/definitions/field/definitions/attributes/properties/label"
+                  },
+                  "api_key": {
+                    "$ref": "#/definitions/field/definitions/attributes/properties/api_key"
+                  },
+                  "localized": {
+                    "$ref": "#/definitions/field/definitions/attributes/properties/localized"
+                  },
+                  "validators": {
+                    "$ref": "#/definitions/field/definitions/attributes/properties/validators"
+                  },
+                  "appeareance": {
+                    "$ref": "#/definitions/field/definitions/attributes/properties/appeareance"
+                  },
+                  "position": {
+                    "$ref": "#/definitions/field/definitions/attributes/properties/position"
+                  },
+                  "hint": {
+                    "$ref": "#/definitions/field/definitions/attributes/properties/hint"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "targetSchema": {
+        "type": "object",
+        "required": [ "data" ],
+        "additionalProperties": false,
+        "properties": {
+          "data": {
+            "$ref": "#/definitions/field"
+          }
+        }
+      }
+    },
+
+    {
+      "method": "GET",
+      "rel": "instances",
+      "title": "Index",
+      "description": "Lists fields",
+      "href": "/api/item-types/{(%2Fschemata%2Fitem_type%23%2Fdefinitions%2Fitem_type%2Fdefinitions%2Fidentity)}/fields",
+      "targetSchema": {
+        "type": "object",
+        "required": [ "data" ],
+        "additionalProperties": false,
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/field"
+            }
+          }
+        }
+      }
+    },
+
+    {
+      "method": "GET",
+      "rel": "self",
+      "title": "Show",
+      "description": "Show field",
+      "href": "/api/fields/{(%2Fschemata%2Ffield%23%2Fdefinitions%2Ffield%2Fdefinitions%2Fidentity)}",
+      "targetSchema": {
+        "type": "object",
+        "required": [ "data" ],
+        "additionalProperties": false,
+        "properties": {
+          "data": {
+            "$ref": "#/definitions/field"
+          }
+        }
+      }
+    },
+
+    {
+      "method": "DELETE",
+      "rel": "destroy",
+      "title": "Delete",
+      "description": "Deletes field",
+      "href": "/api/fields/{(%2Fschemata%2Ffield%23%2Fdefinitions%2Ffield%2Fdefinitions%2Fidentity)}",
+      "targetSchema": {
+        "type": "object",
+        "required": [ "data" ],
+        "additionalProperties": false,
+        "properties": {
+          "data": {
+            "$ref": "#/definitions/field"
+          }
+        }
+      }
+    }
+  ]
+}

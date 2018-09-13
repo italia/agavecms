@@ -1,0 +1,155 @@
+.Items
+  +position(absolute, 0 0 0 0)
+  display: flex
+  flex-direction: column
+  border-right: 1px solid $border-color
+  background-color: white
+
+.Items__blank-slate
+  +position(absolute, 0 0 0 0)
+
+.Items__blank-slate__inner
+  position: absolute
+  left: 50%
+  top: 50%
+  transform: translate(-50%, -70%)
+  width: 70%
+
+.Items__blank-slate__image
+  +margin-bottom(2)
+
+  img
+    max-width: 150px
+    display: block
+
+.Items__blank-slate__title
+  +font-size(beta)
+
+.Items__blank-slate__description
+  +margin-top(1)
+  color: $light-body-color
+
+.Items__blank-slate__guide
+  +margin-top(1)
+  display: block
+  text-decoration: underline
+  color: $primary-color
+
+  i
+    display: inline-block
+    vertical-align: middle
+    font-size: 1.4em
+    line-height: 0.6
+    margin-right: 0.5em
+
+.Items__blank-slate__arrow
+  position: absolute
+  bottom: 90px
+  left: 60%
+  width: 77px
+  height: 134px
+  background: image-url("arrow.png") no-repeat
+  background-position: bottom right
+  background-size: contain
+
+.Items__wrap
+  +position(absolute, 0 0 0 0)
+
+.Items__items
+  +position(absolute, 0 0 0 0)
+  background-color: white
+  overflow: auto
+  padding: 10px 0
+  flex: 1 0
+
+.Items__items--no-absolute
+  +position(static, null null null null)
+
+.Items__subitems
+  +position(absolute, 0 0 0 0)
+  background-color: white
+  display: flex
+  flex-direction: column
+
+.Items__subitems__title
+  +primary-color-rule(background-color)
+  color: white
+  +horizontal-padding(2)
+  +vertical-padding(1)
+  font-weight: 500
+  position: relative
+
+.Items__subitems__open-close
+  font-size: 20px
+  line-height: 20px
+  +center-vertically
+  +right(1)
+  border-radius: 4px
+  transition: background-color 0.2s $material-ease
+  -webkit-appearance: none
+  border: 0
+  background-color: transparent
+
+  &:hover
+    background-color: rgba(black, 0.2)
+
+.Items__subitems__content
+  overflow: auto
+  padding: 10px 0
+  flex: 1 0
+
+.Items__search
+  position: relative
+  padding: 8px
+  box-shadow: 0 1px 4px rgba(black, 0.08)
+
+  &:before
+    @extend .icon--search:before
+    left: 10px
+    font-size: 20px
+    color: $light-body-color
+    +center-vertically
+
+  input
+    border: 0
+    padding-left: 40px
+    background-color: transparent
+
+    &:focus, &:active
+      box-shadow: none
+
+.Items__button
+  +position(absolute, null 15px 15px null)
+  color: white
+  background-color: $primary-color
+  text-decoration: none
+  height: 60px
+  width: 60px
+  line-height: 60px
+  text-align: center
+  border-radius: 50%
+  box-shadow: 0 3px 5px rgba(black, 0.2)
+  z-index: 100
+
+  i
+    position: relative
+    z-index: 2
+    font-size: 20px
+
+  &:before
+    content: ""
+    +position(absolute, 0 0 0 0)
+    border-radius: 50%
+    z-index: 1
+    transition: all 0.3s $material-ease
+    background-color: transparent
+
+  &:hover:before
+    background-color: rgba(white, 0.2)
+
+  &:active:before
+    background-color: rgba(white, 0.3)
+
+.Items__button--fixed
+  position: fixed
+  z-index: 3

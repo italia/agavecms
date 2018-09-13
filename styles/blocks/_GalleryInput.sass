@@ -1,0 +1,152 @@
+.GalleryInput
+  border: 1px solid $border-color
+  text-align: center
+  +padding(2)
+
+  &.is-dropping
+    +accent-color-rule(border-color)
+    outline: 1px solid black
+    +accent-color-rule(outline-color)
+
+.GalleryInput__empty__label
+  +font-size(gamma)
+
+.GalleryInput__empty__hint
+  color: $light-body-color
+  +margin-top(0.5)
+  +font-size(smallprint)
+
+.GalleryInput__empty__actions
+  +margin-top(1)
+
+.GalleryInput__item
+  +position(absolute, 0 0 0 0)
+
+  &.is-draggable
+    cursor: move
+
+  &.is-dragging
+    opacity: 0.2
+
+.GalleryInput__item--selectable
+  border: 3px solid transparent
+  cursor: pointer
+
+.GalleryInput__item--selectable.is-selected
+  +accent-color-rule(border-color)
+
+.GalleryInput__item__image-preview
+  display: block
+  background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAMUlEQVQ4T2NkYGAQYcAP3uCTZhw1gGGYhAGBZIA/nYDCgBDAm9BGDWAAJyRCgLaBCAAgXwixzAS0pgAAAABJRU5ErkJggg==") left center
+  box-shadow: 0 2px 3px rgba(black, 0.3)
+  +position(absolute, 0 0 0 0)
+  overflow: hidden
+
+  img
+    display: block
+    max-width: none
+    height: 100%
+    +center
+
+  .GalleryInput__item__image-preview__temp
+    +position(absolute, 0 0 0 0)
+    background-size: cover
+    background-position: center center
+
+.GalleryInput__item__image-preview__document
+  overflow: hidden
+  box-shadow: 0 2px 3px rgba(black, 0.3)
+  +position(absolute, 0 0 0 0)
+  +accent-color-rule(color)
+  background-color: $border-color
+  text-align: center
+  padding: 10px
+
+  > div
+    position: relative
+    top: 50%
+    transform: translateY(-50%)
+
+.GalleryInput__item__image-preview__document--text
+  white-space: nowrap
+
+  &:after
+    content: ''
+    display: block
+    background: linear-gradient(to right, rgba(200, 215, 225, 0), $border-color 60%)
+    +position(absolute, 0 0 0 0)
+    left: auto
+    right: -10px
+    width: 20%
+    height: auto
+
+.GalleryInput__item__overlay
+  +position(absolute, 0 0 0 0)
+  background-color: rgba(black, 0.2)
+
+.GalleryInput__item__progress
+  width: 60px
+  height: 60px
+  margin-left: auto
+  margin-right: auto
+  +center
+
+.GalleryInput__item__actions
+  +center
+  white-space: nowrap
+
+.GalleryInput__item__caption
+  +position(absolute, null 0 0 0)
+  padding: 3px 8px
+  background-color: rgba(black, 0.5)
+  color: white
+  +font-size(micro)
+
+  p
+    white-space: nowrap
+    overflow: hidden
+    text-overflow: ellipsis
+
+.GalleryInput__item__button
+  background-color: white
+  height: 30px
+  width: 30px
+  border-radius: 15px
+  color: black
+  display: block
+  margin: 0 auto
+  display: inline-block
+  vertical-align: middle
+  position: relative
+  margin: 4px
+  box-shadow: 0 1px 6px rgba(black, 0.6)
+
+  &:hover
+    background-color: rgba(white, 0.9)
+
+  i
+    +center
+
+  .icon--alt
+    font-size: 1.3em
+
+.GalleryInput__item__button--danger
+  background-color: $alert-color
+  color: white
+
+  &:hover
+    background-color: rgba($alert-color, 0.9)
+
+.on-hover
+  .GalleryInput__item &
+    opacity: 0
+    transition: opacity 0.2s $material-ease
+
+  .GalleryInput__item:hover &
+    opacity: 1
+
+  .GalleryInput.is-dropping &
+    opacity: 0 !important
+
+  .GalleryInput__item.is-dragging &
+    opacity: 0 !important

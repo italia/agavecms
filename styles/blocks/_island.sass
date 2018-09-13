@@ -1,0 +1,38 @@
+.island
+  min-height: 100vh
+  +primary-color-rule(background-color)
+  +vertical-padding(4)
+  box-sizing: border-box
+
+.island__wrap
+  width: 500px
+  margin: 0 auto
+
+.island__site-name
+  color: white
+  +font-size(gamma)
+  +margin-bottom(1)
+
+  img
+    display: block
+    height: 35px
+
+.island__title
+  color: white
+  +font-size(alpha)
+  +margin-bottom(2)
+
+.island__content
+  background-color: white
+  box-shadow: 0 2px 4px rgba(black, 0.2)
+  +padding(2)
+
+.island__footer
+  display: block
+  +margin-top(2)
+
+.island__logo
+  @extend .logo
+  width: 110px
+  display: inline-block
+  vertical-align: middle

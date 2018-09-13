@@ -1,0 +1,22 @@
+<%= render partial: "header" %>
+
+<wrapper>
+  <container>
+    <row>
+      <columns>
+        <spacer size="30"></spacer>
+        <h3>
+          Hello <%= @user.first_name %>!
+        </h3>
+        <p>
+          click on the following link to complete your registration process,
+          which will let you edit the content of the site <strong><%= @site.name %></strong>:
+        </p>
+        <spacer size="20"></spacer>
+        <button href="<%= @url %>" class="expanded">Complete registration</button>
+      </columns>
+    </row>
+  </container>
+</wrapper>
+
+<%= render partial: "footer" %>

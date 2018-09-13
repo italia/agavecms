@@ -1,0 +1,376 @@
+{
+  "$schema": "http://json-schema.org/draft-04/hyper-schema",
+  "title": "Site",
+  "description": "A site represents a specific Agave administrative area",
+  "type": "object",
+  "required": [ "type", "id", "relationships", "attributes" ],
+  "additionalProperties": false,
+  "definitions": {
+    "data": {
+      "type": "object",
+      "description": "JSON API data",
+      "required": [ "type", "id" ],
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "$ref": "#/definitions/site/properties/type"
+        },
+        "id": {
+          "$ref": "#/definitions/site/properties/id"
+        }
+      }
+    },
+    "identity": {
+      "$ref": "#/definitions/site/properties/id"
+    },
+    "type": {
+      "description": "JSON API type field",
+      "type": [ "string" ],
+      "pattern": "^site$",
+      "example": "site"
+    },
+    "id": {
+      "description": "ID of site",
+      "type": "string",
+      "example": "155"
+    },
+    "attributes": {
+      "description": "JSON API attributes",
+      "type": "object",
+      "required": [
+        "name",
+        "locales",
+        "domain",
+        "theme"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Site name",
+          "example": "My Awesome Website"
+        },
+        "domain": {
+          "type": ["string", "null"],
+          "description": "Administrative area custom domain",
+          "example": "admin.my-awesome-website.com"
+        },
+        "image_host": {
+          "type": ["string", "null"],
+          "description": "Image host",
+          "example": "http://localhost:3000/uploads"
+        },
+        "internal_domain": {
+          "type": ["string", "null"],
+          "description": "Agave internal domain for the administrative area",
+          "example": "my-website.admin.agave.com"
+        },
+        "locales": {
+          "type": "array",
+          "description": "Available locales",
+          "items": { "type": "string" },
+          "minItems": 1,
+          "example": [ "en" ]
+        },
+        "timezone": {
+          "type": "string",
+          "description": "Site default timezone",
+          "example": "Europe/London"
+        },
+        "items_count": {
+          "type": "integer",
+          "description": "Number of items present in the site",
+          "example": 812
+        },
+        "no_index": {
+          "type": "boolean",
+          "description": "Whether the website needs to be indexed by search engines or not",
+          "example": true
+        },
+        "favicon": {
+          "type": [ "null", "object" ],
+          "required": [ "path", "width", "height", "format", "size" ],
+          "properties": {
+            "path": {
+              "type": [ "string" ],
+              "example": "/7/1455102967-image.png"
+            },
+            "width": {
+              "type": [ "integer" ],
+              "description": "Image width",
+              "example": 400
+            },
+            "height": {
+              "type": [ "integer" ],
+              "description": "Image height",
+              "example": 500
+            },
+            "format": {
+              "type": [ "string" ],
+              "enum": [ "png", "jpg", "gif" ],
+              "description": "Image format",
+              "example": "png"
+            },
+            "size": {
+              "type": [ "integer" ],
+              "description": "The size of the image in bytes",
+              "example": 424112
+            }
+          }
+        },
+        "theme_hue": {
+          "description": "Specifies the hue to use primary color in Site backend",
+          "type": "integer",
+          "example": 167
+        },
+        "last_data_change_at": {
+          "description": "Specifies the last time when a change of data occurred",
+          "type": ["null", "string"],
+          "format": "date-time",
+          "example": "2017-03-30T09:29:14.872Z"
+        },
+        "last_dump_at": {
+          "description": "Specifies the last time an integration plugin called the API",
+          "type": ["null", "string"],
+          "format": "date-time",
+          "example": "2017-02-10T11:03:42.208Z"
+        },
+        "deployable": {
+          "description": "Specifies whether all the deploy informations are correctly setup or not",
+          "type": "boolean",
+          "example": true
+        },
+        "production_deploy_status": {
+          "description": "Specifies deploy status",
+          "type": [ "string" ],
+          "enum": [ "unstarted", "pending", "success", "fail" ],
+          "example": "success"
+        },
+        "git_repo_url": {
+          "description": "Specifies the git repository URL",
+          "type": ["string", "null"],
+          "example": "https://github.com/matteomanzo/agave-example-school"
+        },
+        "production_frontend_url": {
+          "description": "Specifies the production URL of the generated static website (legacy)",
+          "type": ["string", "null"],
+          "example": "https://www.my-awesome-website.com"
+        },
+        "theme": {
+          "description": "Specifies the theme to use in administrative area",
+          "type": "object",
+          "properties": {
+            "primary_color": {
+              "type": "object",
+              "required": [ "red", "green", "blue", "alpha" ],
+              "properties": {
+                "red": {
+                  "type": "integer",
+                  "example": 128
+                },
+                "green": {
+                  "$ref": "#/definitions/site/definitions/attributes/properties/theme/properties/primary_color/properties/red"
+                },
+                "blue": {
+                  "$ref": "#/definitions/site/definitions/attributes/properties/theme/properties/primary_color/properties/red"
+                },
+                "alpha": {
+                  "$ref": "#/definitions/site/definitions/attributes/properties/theme/properties/primary_color/properties/red"
+                }
+              }
+            },
+            "light_color": {
+              "$ref": "#/definitions/site/definitions/attributes/properties/theme/properties/primary_color"
+            },
+            "accent_color": {
+              "$ref": "#/definitions/site/definitions/attributes/properties/theme/properties/primary_color"
+            },
+            "dark_color": {
+              "$ref": "#/definitions/site/definitions/attributes/properties/theme/properties/primary_color"
+            },
+            "logo": {
+              "type": [ "object", "null" ],
+              "required": [ "path", "format", "size", "width", "height" ],
+              "properties": {
+                "path": {
+                  "type": [ "string" ],
+                  "example": "/7/1455102967-image.png"
+                },
+                "width": {
+                  "type": [ "integer", "null" ],
+                  "description": "Image width",
+                  "example": 400
+                },
+                "height": {
+                  "type": [ "integer", "null" ],
+                  "description": "Image height",
+                  "example": 500
+                },
+                "format": {
+                  "type": [ "string" ],
+                  "enum": [ "png", "jpg", "gif", "svg" ],
+                  "description": "Image format",
+                  "example": "png"
+                },
+                "size": {
+                  "type": [ "integer" ],
+                  "description": "The size of the image in bytes",
+                  "example": 424112
+                }
+              }
+            }
+          }
+        },
+        "global_seo": {
+          "description": "Specifies default global settings",
+          "type": ["object", "null"],
+          "properties": {
+            "site_name": {
+              "type": [ "string" ],
+              "description": "Site name, used in social sharing",
+              "example": "My Awesome Website"
+            },
+            "fallback_seo": {
+              "type": [ "object" ],
+              "required": [ "title", "description", "image" ],
+              "properties": {
+                "title": {
+                  "type": [ "string" ],
+                  "example": "Default meta title"
+                },
+                "description": {
+                  "type": [ "string" ],
+                  "example": "Default meta description"
+                },
+                "image": {
+                  "type": [ "object", "null" ],
+                  "required": [ "path", "width", "height", "format", "size" ],
+                  "properties": {
+                    "path": {
+                      "type": [ "string" ],
+                      "example": "/7/1455102967-image.png"
+                    },
+                    "width": {
+                      "type": [ "integer" ],
+                      "description": "Image width",
+                      "example": 400
+                    },
+                    "height": {
+                      "type": [ "integer" ],
+                      "description": "Image height",
+                      "example": 500
+                    },
+                    "format": {
+                      "type": [ "string" ],
+                      "enum": [ "png", "jpg", "gif" ],
+                      "description": "Image format",
+                      "example": "png"
+                    },
+                    "size": {
+                      "type": [ "integer" ],
+                      "description": "The size of the image in bytes",
+                      "example": 424112
+                    }
+                  }
+                }
+              }
+            },
+            "title_suffix": {
+              "type": [ "null", "string" ],
+              "example": " - My Awesome Website",
+              "description": "Title meta tag suffix"
+            },
+            "facebook_page_url": {
+              "type": [ "null", "string" ],
+              "description": "URL of facebook page",
+              "example": "http://facebook.com/awesomewebsite"
+            },
+            "twitter_account": {
+              "type": [ "null", "string" ],
+              "description": "Twitter account associated to website",
+              "example": "@awesomewebsite"
+            }
+          }
+        }
+      }
+    },
+    "relationships": {
+      "description": "JSON API links",
+      "type": "object",
+      "required": [ "menu_items", "item_types", "users", "roles" ],
+      "additionalProperties": false,
+      "properties": {
+        "menu_items": {
+          "type": "object",
+          "required": [ "data" ],
+          "additionalProperties": false,
+          "properties": {
+            "data": {
+              "type": "array",
+              "description": "The list of site menu items",
+              "items": {
+                "$ref": "#/definitions/menu_item/definitions/data"
+              }
+            }
+          }
+        },
+        "users": {
+          "type": "object",
+          "required": [ "data" ],
+          "additionalProperties": false,
+          "properties": {
+            "data": {
+              "type": "array",
+              "description": "The list of site users",
+              "items": {
+                "$ref": "#/definitions/user/definitions/data"
+              }
+            }
+          }
+        },
+        "item_types": {
+          "type": "object",
+          "required": [ "data" ],
+          "additionalProperties": false,
+          "properties": {
+            "data": {
+              "description": "The list of site item types",
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/item_type/definitions/data"
+              }
+            }
+          }
+        },
+        "roles": {
+          "type": "object",
+          "required": [ "data" ],
+          "additionalProperties": false,
+          "properties": {
+            "data": {
+              "description": "The list of site roles",
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/role/definitions/data"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "properties": {
+    "type": {
+      "$ref": "#/definitions/site/definitions/type"
+    },
+    "id": {
+      "$ref": "#/definitions/site/definitions/id"
+    },
+    "attributes": {
+      "$ref": "#/definitions/site/definitions/attributes"
+    },
+    "relationships": {
+      "$ref": "#/definitions/site/definitions/relationships"
+    }
+  }
+}

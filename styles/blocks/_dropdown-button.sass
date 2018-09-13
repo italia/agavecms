@@ -1,0 +1,42 @@
+.dropdown-button
+  position: relative
+  display: inline-block
+
+.dropdown-button__button
+  @extend .button
+  @extend .button--small
+
+.dropdown-button__dropdown
+  position: absolute
+  bottom: 110%
+  left: 0
+  background-color: white
+  box-shadow: 0 3px 10px rgba(black, 0.2)
+  border-radius: 3px
+  z-index: 1
+
+  &:after
+    content: ""
+    position: absolute
+    left: 10px
+    top: 100%
+    +triangle(15px, white, down)
+
+.dropdown-button__dropdown__item
+  border-bottom: 1px solid $border-color
+  text-decoration: none
+  display: block
+  line-height: 40px
+  white-space: nowrap
+  +horizontal-padding(2)
+
+  &:first-child
+    border-radius: 2px 2px 0 0
+
+  &:last-child
+    border-bottom-width: 0
+    border-radius: 0 0 2px 2px
+
+  &:hover
+    +accent-color-rule(background-color)
+    color: white

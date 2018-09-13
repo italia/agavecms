@@ -1,0 +1,63 @@
+.ItemHistory__details
+
+.ItemHistory__details__field
+  +vertical-padding(2)
+  border-bottom: 1px solid $border-color
+
+  &:first-child
+    padding-top: 0
+
+  &:last-child
+    padding-bottom: 0
+    border-bottom-width: 0
+
+.ItemHistory__details__field__title
+  font-weight: bold
+  +margin-bottom(1)
+
+  code
+    background-color: $light-bg-color
+    padding: 0.1em 0.3em
+
+.ItemHistory__details__field__value
+  +padding(1)
+  +margin-bottom(1)
+  border: 1px solid $border-color
+  border-radius: 3px
+  +monospaced-font-family
+  line-height: 14px
+  font-size: 11px
+
+  &:last-child
+    margin-bottom: 0
+
+.ItemHistory__details__complete
+  +padding(2)
+  line-height: 14px
+  font-size: 11px
+  +monospaced-font-family
+
+.Diff__title
+  background: $light-bg-color
+  font-weight: bold
+  +vertical-padding(0.5)
+  +horizontal-padding(1)
+  +font-size(milli)
+
+.Diff__content
+  +padding(1)
+  border: 1px solid $border-color
+  +monospaced-font-family
+  line-height: 14px
+  font-size: 11px
+
+  pre
+    word-wrap: break-word
+    white-space: pre-wrap
+
+.Diff__part__added
+  background-color: #dfd
+
+.Diff__part__removed
+  background-color: #ffb6ba
+  text-decoration: line-through

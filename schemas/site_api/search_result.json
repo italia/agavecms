@@ -1,0 +1,33 @@
+{
+  "$mergeExternalRef": "../definitions/search_result.json",
+  "links": [
+    {
+      "method": "GET",
+      "rel": "instances",
+      "title": "Index",
+      "description": "Search for results",
+      "href": "/search-results",
+      "targetSchema": {
+        "type": "object",
+        "required": [ "data" ],
+        "additionalProperties": false,
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/search_result"
+            }
+          },
+          "meta": {
+            "type": "object",
+            "required": [ "total_count" ],
+            "additionalProperties": false,
+            "properties": {
+              "total_count": { "type": "integer" }
+            }
+          }
+        }
+      }
+    }
+  ]
+}

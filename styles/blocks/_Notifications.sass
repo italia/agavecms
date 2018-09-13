@@ -1,0 +1,69 @@
+.Notifications
+  z-index: 9999
+  max-width: 400px
+
+.Notifications__item
+  transition: transform 0.3s ease-out, opacity 0.3s ease-out, max-height 0.3s ease-out
+  padding-top: 10px
+
+  &.show-enter
+    opacity: 0
+    transform: translateX(-30%)
+
+  &.show-enter.show-enter-active
+    opacity: 1
+    transform: translateX(0)
+
+  &.show-leave
+    max-height: 50px
+    opacity: 1
+    overflow: hidden
+
+  &.show-leave.show-leave-active
+    max-height: 0
+    opacity: 0
+    overflow: hidden
+
+.Notifications__item--notice,
+.Notifications__item--alert
+  @extend .Notifications__item
+
+.Notifications__item__inner
+  background-color: rgba(black, 0.9)
+  border-radius: 3px
+  color: white
+  +padding(2)
+
+  a
+    color: white
+
+  ul, ol
+    padding-left: 20px
+    +margin-top(0.5)
+
+  ul li
+    list-style-type: disc
+
+  ol li
+    list-style-type: decimal
+
+  ul li, ol li
+    +margin-bottom(0.2)
+
+  .Notifications__item--alert &
+    background-color: rgba($alert-color, 0.9)
+
+.Notifications__item__close
+  color: rgba(white, 0.7)
+  +margin-top(1.5)
+  +font-size(milli)
+  text-decoration: none
+  display: block
+
+.Notifications
+  position: fixed
+  +bottom(2)
+  +left(1)
+
+.Notifications__item__inner
+  display: inline-block

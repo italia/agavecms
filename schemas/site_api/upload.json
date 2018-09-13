@@ -1,0 +1,216 @@
+{
+  "$mergeExternalRef": "../definitions/upload.json",
+  "links": [
+    {
+      "method": "POST",
+      "rel": "create",
+      "title": "Create",
+      "description": "Create a new upload",
+      "href": "/api/uploads",
+      "schema": {
+        "type": "object",
+        "required": [ "data" ],
+        "additionalProperties": false,
+        "properties": {
+          "data": {
+            "type": "object",
+            "required": [ "type", "attributes" ],
+            "additionalProperties": false,
+            "properties": {
+              "type": {
+                "$ref": "#/definitions/upload/definitions/type"
+              },
+              "attributes": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [ "size", "path", "format" ],
+                "properties": {
+                  "size": {
+                    "$ref": "#/definitions/upload/definitions/attributes/properties/size"
+                  },
+                  "width": {
+                    "$ref": "#/definitions/upload/definitions/attributes/properties/width"
+                  },
+                  "height": {
+                    "$ref": "#/definitions/upload/definitions/attributes/properties/height"
+                  },
+                  "path": {
+                    "$ref": "#/definitions/upload/definitions/attributes/properties/path"
+                  },
+                  "format": {
+                    "$ref": "#/definitions/upload/definitions/attributes/properties/format"
+                  },
+                  "alt": {
+                    "$ref": "#/definitions/upload/definitions/attributes/properties/alt"
+                  },
+                  "title": {
+                    "$ref": "#/definitions/upload/definitions/attributes/properties/title"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "targetSchema": {
+        "type": "object",
+        "required": [ "data" ],
+        "additionalProperties": false,
+        "properties": {
+          "data": {
+            "$ref": "#/definitions/upload"
+          }
+        }
+      }
+    },
+    {
+      "method": "GET",
+      "rel": "instances",
+      "title": "Index",
+      "description": "Lists uploads",
+      "href": "/api/uploads",
+      "schema": {
+        "type": [ "object" ],
+        "properties": {
+          "filter[type]": {
+            "description": "Type of uplod",
+            "enum": [ "file", "image", "video", "not_used", "other" ],
+            "type": [ "string" ],
+            "example": "image"
+          },
+          "filter[query]": {
+            "description": "Textual query to match",
+            "example": "foobar",
+            "type": [ "string" ]
+          },
+          "sort[direction]": {
+            "description": "Ordering direction by upload date",
+            "enum": [ "asc", "desc" ],
+            "type": [ "string" ],
+            "example": "desc"
+          },
+          "page[offset]": {
+            "description": "Index of first record to fetch",
+            "example": 2,
+            "default": 1,
+            "type": [ "integer" ]
+          },
+          "page[limit]": {
+            "description": "Number of records to fetch",
+            "example": 15,
+            "default": 30,
+            "type": [ "integer" ]
+          }
+        }
+      },
+      "targetSchema": {
+        "type": "object",
+        "required": [ "data" ],
+        "additionalProperties": false,
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/upload"
+            }
+          },
+          "meta": {
+            "type": "object",
+            "required": [ "total_count", "uploaded_bytes" ],
+            "additionalProperties": false,
+            "properties": {
+              "total_count": { "type": "integer" },
+              "uploaded_bytes": { "type": "integer" }
+            }
+          }
+        }
+      }
+    },
+
+    {
+      "method": "GET",
+      "rel": "self",
+      "title": "Show",
+      "description": "Show upload",
+      "href": "/api/uploads/{(%2Fschemata%2Fupload%23%2Fdefinitions%2Fupload%2Fdefinitions%2Fidentity)}",
+      "targetSchema": {
+        "type": "object",
+        "required": [ "data" ],
+        "additionalProperties": false,
+        "properties": {
+          "data": {
+            "$ref": "#/definitions/upload"
+          }
+        }
+      }
+    },
+
+    {
+      "method": "DELETE",
+      "rel": "destroy",
+      "title": "Delete",
+      "description": "Deletes upload",
+      "href": "/api/uploads/{(%2Fschemata%2Fupload%23%2Fdefinitions%2Fupload%2Fdefinitions%2Fidentity)}",
+      "targetSchema": {
+        "type": "object",
+        "required": [ "data" ],
+        "additionalProperties": false,
+        "properties": {
+          "data": {
+            "$ref": "#/definitions/upload"
+          }
+        }
+      }
+    },
+
+    {
+      "method": "PUT",
+      "rel": "update",
+      "title": "Update",
+      "description": "Updates a upload",
+      "href": "/api/uploads/{(%2Fschemata%2Fupload%23%2Fdefinitions%2Fupload%2Fdefinitions%2Fidentity)}",
+      "schema": {
+        "type": "object",
+        "required": [ "data" ],
+        "additionalProperties": false,
+        "properties": {
+          "data": {
+            "type": "object",
+            "required": [ "type", "id", "attributes" ],
+            "additionalProperties": false,
+            "properties": {
+              "type": {
+                "$ref": "#/definitions/upload/properties/type"
+              },
+              "id": {
+                "$ref": "#/definitions/upload/properties/id"
+              },
+              "attributes": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "alt": {
+                    "$ref": "#/definitions/upload/definitions/attributes/properties/alt"
+                  },
+                  "title": {
+                    "$ref": "#/definitions/upload/definitions/attributes/properties/title"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "targetSchema": {
+        "type": "object",
+        "required": [ "data" ],
+        "additionalProperties": false,
+        "properties": {
+          "data": {
+            "$ref": "#/definitions/upload"
+          }
+        }
+      }
+    }
+  ]
+}

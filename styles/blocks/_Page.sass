@@ -1,0 +1,89 @@
+.Page
+  +position(absolute, 0 0 0 0)
+  overflow: auto
+  +padding(3)
+  +vertical-padding(2)
+
+.Page__sidebar-container
+  display: flex
+
+.Page__inner
+  width: 750px
+
+.Page__sidebar
+  width: 260px
+  +margin-left(2)
+
+.Page__content
+  background-color: white
+  position: relative
+  border-radius: 3px
+  +padding(2)
+  +margin-bottom(3)
+
+  &:last-child
+    margin-bottom: 0
+
+.Page__content--note
+  +margin-bottom(3)
+  background-color: transparent
+  border-radius: 3px
+  line-height: 1.4
+  +horizontal-padding(2)
+  +vertical-padding(1.5)
+  +light-color-rule(background-color)
+
+  .formatted-content
+    +font-size(smallprint)
+
+.Page__content--alert
+  +margin-bottom(3)
+  background-color: #CE0606
+  border-radius: 3px
+  line-height: 1.4
+  +horizontal-padding(2)
+  +vertical-padding(1.5)
+
+  .formatted-content
+    color: #FFFFFF
+    +font-size(smallprint)
+
+.Page__content--transparent
+  background-color: transparent
+  padding: 0
+  box-shadow: none
+
+.Page__content--no-padding
+  padding: 0
+
+.Page__header
+  display: flex
+  align-items: center
+  +margin-bottom(2)
+
+.Page__title
+  +heading-font-family
+  +font-size(alpha)
+  letter-spacing: -0.05em
+  margin-right: 15px
+  line-height: 1.1
+
+.Page__code
+  font-family: $monospaced-font-family
+  margin-right: 15px
+
+.Page__space
+  flex: 1
+
+.Page__action
+  display: inline-block
+  margin-left: 10px
+  @extend .button
+  @extend .button--tiny
+
+  &:first-child
+    margin-left: 0
+
+.Page__action--delete
+  @extend .Page__action
+  @extend .button--alert

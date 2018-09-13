@@ -1,0 +1,68 @@
+{
+  "$schema": "http://json-schema.org/draft-04/hyper-schema",
+  "title": "Session",
+  "description": "A session is required to access to read-and-write API endpoints",
+  "type": "object",
+  "required": [ "type", "id", "relationships" ],
+  "additionalProperties": false,
+  "definitions": {
+    "data": {
+      "description": "JSON API data",
+      "type": "object",
+      "required": [ "type", "id" ],
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "$ref": "#/definitions/session/properties/type"
+        },
+        "id": {
+          "$ref": "#/definitions/session/properties/id"
+        }
+      }
+    },
+    "identity": {
+      "$ref": "#/definitions/session/properties/id"
+    },
+    "type": {
+      "description": "JSON API type field",
+      "type": [ "string" ],
+      "pattern": "^session$",
+      "example": "session"
+    },
+    "id": {
+      "description": "JSON web token for the session",
+      "type": "string",
+      "example": "eyJCJhbGci.eyJhaWwuY29tIn0.32wQOMci"
+    },
+    "relationships": {
+      "description": "JSON API links",
+      "type": "object",
+      "required": [ "account" ],
+      "additionalProperties": false,
+      "properties": {
+        "account": {
+          "type": "object",
+          "description": "The account associated with the session",
+          "required": [ "data" ],
+          "additionalProperties": false,
+          "properties": {
+            "data": {
+              "$ref": "#/definitions/account/definitions/data"
+            }
+          }
+        }
+      }
+    }
+  },
+  "properties": {
+    "type": {
+      "$ref": "#/definitions/session/definitions/type"
+    },
+    "id": {
+      "$ref": "#/definitions/session/definitions/id"
+    },
+    "relationships": {
+      "$ref": "#/definitions/session/definitions/relationships"
+    }
+  }
+}

@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+mkdir -p /images/uploads/imageflow_log
+
+exec \
+  /home/imageflow/imageflow_server \
+  start \
+  --bind-address 0.0.0.0 \
+  --mount '/uploads/:ir4_local:./uploads' \
+  --data-dir '/images/uploads/imageflow_log';

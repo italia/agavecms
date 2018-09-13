@@ -1,0 +1,30 @@
+.FormLocaleSwitcher
+  background-color: $light-bg-color
+  padding: 5px
+  padding-bottom: 0
+  overflow: hidden
+  border-radius: 3px 3px 0 0
+
+.FormLocaleSwitcher__item
+  text-decoration: none
+  display: inline-block
+  margin-right: 5px
+  +font-size(beta)
+  +padding(2)
+  +vertical-padding(1)
+  border-radius: 3px 3px 0 0
+  color: $light-body-color
+
+  &:hover
+    color: $base-body-color
+
+.FormLocaleSwitcher__item__errors
+  +font-size(regular)
+  display: inline-block
+  margin-left: 10px
+  color: $alert-color
+
+.FormLocaleSwitcher__item--active
+  background-color: white
+  color: $base-body-color
+  box-shadow: 0 3px 4px rgba(black, 0.1)

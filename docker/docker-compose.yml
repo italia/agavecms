@@ -1,0 +1,61 @@
+version: "3"
+
+services:
+  db:
+    image: postgres:9.6
+    volumes:
+      - db:/var/lib/postgresql/data
+
+  images:
+    image: agavecms/agave_images:latest
+    working_dir: /images
+    volumes:
+      - uploads:/images/uploads
+    ports:
+      - "39876:39876"
+
+  app:
+    image: agavecms/agave_app:latest
+    working_dir: /app
+    command: ./start
+    restart: on-failure
+    ports:
+      - "3000:3000"
+    stdin_open: true
+    tty: true
+    depends_on:
+      - db
+    volumes:
+      - agave-static:/app/static
+      - uploads:/app/public/uploads
+
+  webserver:
+    image: agavecms/agave_webserver:latest
+    env_file: ../.env
+    depends_on:
+      - app
+      - images
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - agave-static:/webserver/agave
+      - auto-ssl:/etc/resty-auto-ssl
+      - ssl:/webserver/ssl
+      - uploads:/webserver/uploads
+      - build:/webserver/static_site
+
+  worker:
+    image: agavecms/agave_app:latest
+    command: bundle exec rake jobs:work
+    ports: []
+    volumes:
+      - build:/app/tmp/build
+
+volumes:
+  agave-static:
+  auto-ssl:
+  build:
+  db:
+  ssl:
+  uploads:

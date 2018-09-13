@@ -1,0 +1,6 @@
+#!/usr/bin/env ruby
+
+require_relative "../lib/json_schema_external_ref"
+
+data = JsonSchemaExternalRef.new(ARGV.first).expanded 
+puts JSON.pretty_generate(data)

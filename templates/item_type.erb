@@ -1,0 +1,21 @@
+<table border="0" align="center" cellspacing="0.5" cellpadding="0" width="<%= NODE_WIDTH + 4 %>">
+  <tr>
+    <td align="center" valign="bottom" width="<%= NODE_WIDTH %>">
+      <font face="<%= FONTS[:bold] %>" point-size="11"><%= escape_html(item_type.name) %></font>
+      <br/>
+      <font face="<%= FONTS[:italic] %>" color="grey30"><%= escape_html(item_type.api_key) %></font>
+    </td>
+  </tr>
+</table>
+<% if fields.any? %>
+|
+<table border="0" align="left" cellspacing="5" cellpadding="0" width="<%= NODE_WIDTH + 4 %>">
+<% fields.each do |field| %>
+  <tr>
+    <td align="left" width="<%= NODE_WIDTH / 2 %>" port="<%= escape_html(field.api_key) %>"><%= escape_html(field.label) %><%= field_required?(field) ? "*" : "" %></td>
+    <td align="left" width="<%= NODE_WIDTH / 3 %>"><%= escape_html(field.api_key) %></td>
+    <td align="right" width="<%= NODE_WIDTH / 3 %>"><font face="<%= FONTS[:italic] %>" color="grey30"><%= escape_html(field.field_type) %></font></td>
+  </tr>
+<% end %>
+</table>
+<% end %>

@@ -1,0 +1,78 @@
+.EmbedsManyRow
+  display: flex
+  +margin-bottom(2)
+
+  &.is-dragging
+    opacity: 0
+
+.EmbedsManyRow__handle
+  width: 20px
+  color: $light-body-color
+  font-size: 20px
+  cursor: move
+  cursor: -webkit-grabbing
+  cursor: -moz-grab
+  cursor: -moz-grabbing
+  margin-right: 15px
+  position: relative
+
+  .EmbedsManyRow.has-image &
+    height: 70px
+
+  i
+    +center-vertically
+    left: 0
+
+.EmbedsManyRow__content
+  flex: 1
+
+.EmbedsManyRow__content__details
+  color: $light-body-color
+  font-size: 12px
+  line-height: 1.1
+  margin-bottom: 5px
+
+.EmbedsManyRow__content__title
+  +margin-bottom(1)
+
+.EmbedsManyRow__invalid-tag
+  display: inline-block
+  margin-left: 10px
+  width: 10px
+  height: 10px
+  border-radius: 5px
+  background-color: $alert-color
+
+.EmbedsManyRow__image
+  margin-right: 15px
+  width: 70px
+
+  img, .EmbedsManyRow__image__placeholder
+    border-radius: 100%
+    background-color: $light-bg-color
+    display: block
+    width: 70px
+    height: 70px
+    box-shadow: 0 1px 3px rgba(black, 0.2)
+
+.EmbedsManyRow__complete
+  border-left: 1px solid $border-color
+  border-right: 1px solid $border-color
+  position: relative
+  +padding(2)
+  +padding-top(0)
+
+  &:first-child
+    border-top: 1px solid $border-color
+    +padding-top(2)
+
+  &:last-child
+    border-bottom: 1px solid $border-color
+
+.EmbedsManyRow__complete__actions
+  +position(absolute, null 0 0 0)
+  +padding(2)
+  display: none
+
+.EmbedsManyRow__complete__md
+  +monospaced-font-family

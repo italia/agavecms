@@ -1,0 +1,110 @@
+{
+  "$schema": "http://json-schema.org/draft-04/hyper-schema",
+  "type": "object",
+  "title": "Access token",
+  "description": "Agave access token",
+  "required": [
+    "type",
+    "id",
+    "attributes",
+    "relationships"
+  ],
+  "additionalProperties": false,
+  "definitions": {
+    "data": {
+      "description": "JSON API data",
+      "type": "object",
+      "required": [
+        "type",
+        "id"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "$ref": "#/definitions/access_token/properties/type"
+        },
+        "id": {
+          "$ref": "#/definitions/access_token/properties/id"
+        }
+      }
+    },
+    "identity": {
+      "$ref": "#/definitions/access_token/properties/id"
+    },
+    "type": {
+      "description": "JSON API type field",
+      "type": [
+        "string"
+      ],
+      "pattern": "^access_token$",
+      "example": "access_token"
+    },
+    "id": {
+      "description": "ID of access_token",
+      "type": "string",
+      "example": "312"
+    },
+    "attributes": {
+      "description": "JSON API attributes",
+      "type": "object",
+      "required": [
+        "name",
+        "hardcoded_type"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Name of access token",
+          "example": "Read-only API token"
+        },
+        "token": {
+          "type": "string",
+          "description": "The actual API token",
+          "example": "XXXXXXXXXXXXXXX"
+        },
+        "hardcoded_type": {
+          "type": ["null", "string"]
+        }
+      }
+    },
+    "relationships": {
+      "description": "JSON API links",
+      "type": "object",
+      "required": [
+        "role"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "role": {
+          "type": "object",
+          "description": "Role",
+          "required": [ "data" ],
+          "additionalProperties": false,
+          "properties": {
+            "data": {
+              "anyOf": [
+                { "$ref": "#/definitions/role/definitions/data" },
+                { "type": [ "null" ] }
+              ]
+            }
+          }
+        }
+      }
+    }
+  },
+  "properties": {
+    "type": {
+      "$ref": "#/definitions/access_token/definitions/type"
+    },
+    "id": {
+      "$ref": "#/definitions/access_token/definitions/id"
+    },
+    "attributes": {
+      "$ref": "#/definitions/access_token/definitions/attributes"
+    },
+    "relationships": {
+      "$ref": "#/definitions/access_token/definitions/relationships"
+    }
+  }
+}

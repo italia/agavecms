@@ -1,0 +1,42 @@
+{
+  "$mergeExternalRef": "../definitions/deploy_event.json",
+  "links": [
+    {
+      "method": "GET",
+      "rel": "instances",
+      "title": "Index",
+      "description": "Lists deploy events",
+      "href": "/api/deploy-events",
+      "targetSchema": {
+        "type": "object",
+        "required": [ "data" ],
+        "additionalProperties": false,
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/deploy_event"
+            }
+          }
+        }
+      }
+    },
+    {
+      "method": "GET",
+      "rel": "self",
+      "title": "Show",
+      "description": "Show deploy event",
+      "href": "/api/deploy-events/{(%2Fschemata%2Fdeploy_event%23%2Fdefinitions%2Fdeploy_event%2Fdefinitions%2Fidentity)}",
+      "targetSchema": {
+        "type": "object",
+        "required": [ "data" ],
+        "additionalProperties": false,
+        "properties": {
+          "data": {
+            "$ref": "#/definitions/deploy_event"
+          }
+        }
+      }
+    }
+  ]
+}
