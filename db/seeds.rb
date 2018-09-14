@@ -9,16 +9,16 @@ site.update_attributes!(
   theme: {
     "logo" => nil,
     "dark_color" => {
-      "red" => 51, "blue" => 51, "alpha" => 255, "green" => 51
+      "red" => 46, "blue" => 41, "alpha" => 255, "green" => 41
     },
     "light_color" => {
-      "red" => 227, "blue" => 252, "alpha" => 255, "green" => 248
+      "red" => 227, "blue" => 245, "alpha" => 255, "green" => 252
     },
     "accent_color" => {
-      "red" => 20, "blue" => 204, "alpha" => 255, "green" => 173
+      "red" => 20, "blue" => 148, "alpha" => 255, "green" => 204
     },
     "primary_color" => {
-      "red" => 17, "blue" => 178, "alpha" => 255, "green" => 151
+      "red" => 17, "blue" => 126, "alpha" => 255, "green" => 178
     }
   }
 )
@@ -45,7 +45,9 @@ role.update_attributes!(
   can_publish_to_production: true,
   can_edit_favicon: true,
   can_manage_access_tokens: true,
-  can_perform_site_search: true
+  can_perform_site_search: true,
+  can_dump_data: true,
+  can_import_and_export: true
 )
 
 RoleItemTypePermission.where(
