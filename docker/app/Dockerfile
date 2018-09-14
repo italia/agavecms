@@ -74,5 +74,7 @@ COPY docker/app/start .
 # Mark the image with the latest Git commit SHA
 RUN cat .git/`cat .git/HEAD | cut -f 2 -d ' '` > APP_VERSION
 
+RUN yarn build:webfonts
+
 EXPOSE 3000
 EXPOSE 3001
