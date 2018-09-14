@@ -45,7 +45,9 @@ role.update_attributes!(
   can_publish_to_production: true,
   can_edit_favicon: true,
   can_manage_access_tokens: true,
-  can_perform_site_search: true
+  can_perform_site_search: true,
+  can_dump_data: true,
+  can_import_and_export: true
 )
 
 RoleItemTypePermission.where(
