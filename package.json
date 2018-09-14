@@ -9,8 +9,9 @@
     "build:clean": "rm -f public/assets/*.js public/assets/*.map public/assets/*.css || :",
     "build:webfonts": "mkdir -p public/assets/fonts && bemo-webfonts -s assets/fonts/svg -f public/assets/fonts -S styles/variables/_icon-glyphs.scss",
     "build:js": "NODE_ENV=production webpack --progress",
-    "build": "yarn run build:clean && yarn run build:js",
+    "build": "yarn run build:clean && yarn run build:webfonts && yarn run build:js",
     "dev": "NODE_ENV=development APP_VERSION=development webpack-dev-server --public --host 0.0.0.0 --progress --inline --hot",
+    "build:dev": "yarn run build:clean && yarn run build:webfonts && yarn run dev",
     "postinstall": "node -e \"try { require('fs').symlinkSync(require('path').resolve('node_modules/@bower_components'), 'bower_components', 'junction') } catch (e) { }\""
   },
   "author": "Cantiere creativo Srl",
