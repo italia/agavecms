@@ -29,6 +29,7 @@ AllCops:
     - "spaces/**/*"
     - "lib/repl/**/*"
     - "schemas/all.rb"
+    - "docker/**/**"
   DisplayCopNames: false
   StyleGuideCopsOnly: false
 Layout/AccessModifierIndentation:
