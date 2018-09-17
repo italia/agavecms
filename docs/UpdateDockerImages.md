@@ -1,16 +1,16 @@
 Login:
 
 ```
-export DOCKER_ID_USER="agavecms"
+export DOCKER_ID_USER="{{il tuo utente su docker hub}}"
 docker login
 ```
 
 agave_images:
 
 ```
-docker build . --tag agave_images --file docker/images/Dockerfile
-docker tag agave_images:latest agavecms/agave_images
-docker push agavecms/agave_images
+docker build ./docker/images/ --tag agavecms_images
+docker tag agavecms_images:latest italia/agavecms_images
+docker push italia/agavecms_images
 ```
 
 agave_app:
@@ -18,18 +18,24 @@ agave_app:
 ```
 docker build \
   . \
-  --tag agave_app \
+  --tag agavecms_app \
   --file docker/app/Dockerfile \
   --build-arg NODE_ENV=production \
   --build-arg RAILS_ENV=production
-docker tag agave_app:latest agavecms/agave_app
-docker push agavecms/agave_app
+docker tag agavecms_app:latest italia/agavecms_app
+docker push italia/agavecms_app
 ```
 
 agave_webserver:
 
 ```
-docker build docker/webserver --tag agave_webserver
-docker tag agave_webserver:latest agavecms/agave_webserver
-docker push agavecms/agave_webserver
+docker build ./docker/webserver --tag agavecms_webserver
+docker tag agavecms_webserver:latest italia/agavecms_webserver
+docker push italia/agavecms_webserver
 ```
+
+## N.B.
+
+Per poter aggiornare le immagini bisogna farsi aggiungere come
+collaboratore all'organizzazione di
+[docker hub Italia](https://hub.docker.com/u/italia/).

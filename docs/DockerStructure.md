@@ -56,7 +56,7 @@ services:
       - db:/var/lib/postgresql/data
 
   images:
-    image: agavecms/agave_images:latest
+    image: italia/agavecms_images:latest
     working_dir: /images
     volumes:
       - uploads:/images/uploads
@@ -64,7 +64,7 @@ services:
       - "39876:39876"
 
   app:
-    image: agavecms/agave_app:latest
+    image: italia/agavecms_app:latest
     working_dir: /app
     command: ./start
     ports:
@@ -78,7 +78,7 @@ services:
       - uploads:/app/public/uploads
 
   webserver:
-    image: agavecms/agave_webserver:latest
+    image: italia/agavecms_webserver:latest
     env_file: ../.env
     depends_on:
       - app
@@ -94,7 +94,7 @@ services:
       - build:/webserver/static_site
 
   worker:
-    image: agavecms/agave_app:latest
+    image: italia/agavecms_app:latest
     command: bundle exec rake jobs:work
     restart: on-failure
     ports: []
