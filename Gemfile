@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 source "https://rubygems.org"
 
 ruby "2.5.1"
@@ -10,43 +12,43 @@ end
 gem "active_model_serializers", ">= 0.10.0"
 gem "addressable"
 gem "bcrypt"
-gem "email_validator"
 gem "delayed_job_active_record"
+gem "dnsruby"
+gem "email_validator"
 gem "faraday"
-gem "faraday_middleware"
 gem "faraday_curl"
+gem "faraday_middleware"
+gem "filesize"
+gem "http-accept"
 gem "inky-rb", require: "inky"
 gem "json_schema"
 gem "jwt"
 gem "language_list"
+gem "nilify_blanks"
 gem "pg"
+gem "premailer-rails"
 gem "prmd"
 gem "pry-byebug"
 gem "pry-rails"
+gem "puma"
+gem "rack-cors", require: "rack/cors"
 gem "rails", "~> 5.2.0"
 gem "rake", "< 11.0"
 gem "redcarpet"
+gem "rest-client", "1.8"
 gem "rouge"
 gem "ruby-graphviz"
+gem "shrine", "~> 2.0"
+gem "typhoeus"
 gem "validate_url"
 gem "validates_hostname"
 gem "virtus"
-gem "nilify_blanks"
-gem "filesize"
-gem "rack-cors", require: "rack/cors"
-gem "dnsruby"
-gem "rest-client", "1.8"
-gem "shrine", "~> 2.0"
-gem "puma"
-gem "typhoeus"
-gem "http-accept"
-gem "premailer-rails"
 
 group :development do
+  gem "bullet"
+  gem "letter_opener"
   gem "spring"
   gem "spring-commands-rspec"
-  gem "letter_opener"
-  gem "bullet"
 end
 
 group :development, :test do
@@ -62,9 +64,9 @@ group :production do
 end
 
 group :test do
-  gem "simplecov", require: false
   gem "database_cleaner"
   gem "shoulda-matchers", require: false
-  gem "webmock"
+  gem "simplecov", require: false
   gem "timecop"
+  gem "webmock"
 end
