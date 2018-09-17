@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 namespace :uploads do
   task fix: :environment do
     ItemUpload.includes(:upload, { field: :item_type }, item: :item_type).find_each do |item_upload|
@@ -5,9 +7,11 @@ namespace :uploads do
       field_site_id = item_upload.field.item_type.site_id
       item_site_id = item_upload.item.item_type.site_id
 
-      if upload_site_id != field_site_id || field_site_id != item_site_id || upload_site_id != item_site_id
+      if upload_site_id != field_site_id ||
+          field_site_id != item_site_id || upload_site_id != item_site_id
         upload = Upload.create!(
-          Upload.first.attributes.except("site_id", "created_at", "updated_at", "id").merge(
+          Upload.first.attributes.
+          except("site_id", "created_at", "updated_at", "id").merge(
             site_id: field_site_id
           )
         )
