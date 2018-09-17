@@ -17,6 +17,7 @@ services:
   app:
     image: italia/agavecms_app:latest
     working_dir: /app
+    env_file: ../.env
     command: ./start
     restart: on-failure
     ports:
