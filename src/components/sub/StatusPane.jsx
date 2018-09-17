@@ -168,6 +168,10 @@ class StatusPane extends Component {
         return 'to-configure'
       }
 
+      if (deployStatus === 'unstarted') {
+        return 'never-deployed'
+      }
+
       if (deployStatus === 'pending') {
         return 'pending'
       }

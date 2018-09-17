@@ -103,6 +103,10 @@ class DeployButton extends Component {
         return 'fail'
       }
 
+      if (deployStatus === 'success') {
+        return 'success'
+      }
+
       return 'clean'
     }
 
@@ -112,6 +116,8 @@ class DeployButton extends Component {
       case 'touched':
         return this.renderDeploy()
       case 'fail':
+        return this.renderDeploy()
+      case 'success':
         return this.renderDeploy()
       case 'pending':
         return this.renderLoading()
