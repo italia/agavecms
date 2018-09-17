@@ -4,7 +4,8 @@
 /log/*
 !/log/.keep
 /node_modules/
-/public/assets/
-/public/docs
+/public/assets/*.js
+/public/assets/*.css
+/public/docs/*.yml
 /tmp
 /public/uploads

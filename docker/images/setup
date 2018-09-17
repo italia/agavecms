@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-mkdir -p /images/uploads/imageflow_log
+sudo mkdir /images/uploads/imageflow_log
 
 exec \
   /home/imageflow/imageflow_server \
