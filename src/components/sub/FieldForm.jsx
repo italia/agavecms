@@ -99,6 +99,7 @@ class FieldForm extends Component {
       dispatch,
       tabErrors,
       field,
+      isBlock
     } = this.props
 
     return (
@@ -136,9 +137,12 @@ class FieldForm extends Component {
             >
               <input type="text" className="form__input--code" />
             </Field>
-            <Field name="localized" intlLabel="field.localized" intlHint="field.localizedHint">
-              <SwitchInput />
-            </Field>
+            {
+              !isBlock &&
+                <Field name="localized" intlLabel="field.localized" intlHint="field.localizedHint">
+                  <SwitchInput />
+                </Field>
+            }
             <SubmitButton
               submitting={submitting}
               dirty={dirty}
@@ -207,6 +211,7 @@ FieldForm.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
   dirty: PropTypes.bool.isRequired,
   valid: PropTypes.bool.isRequired,
+  isBlock: PropTypes.boolean
 }
 
 const formConfig = {
