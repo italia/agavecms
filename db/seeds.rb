@@ -24,6 +24,7 @@ site.update_attributes!(
 )
 
 read_write_token = ENV["READ_WRITE_ACCESS_TOKEN"] || "rwtoken"
+read_token = ENV["READ_ACCESS_TOKEN"] || "rtoken"
 
 access_token = AccessToken.where(
   site: site,
@@ -32,6 +33,14 @@ access_token = AccessToken.where(
 ).first_or_initialize
 
 access_token.update_attributes!(token: read_write_token)
+
+read_access_token = AccessToken.where(
+  site: site,
+  name: "read",
+  hardcoded_type: "readonly"
+).first_or_initialize
+
+read_access_token.update_attributes!(token: read_token)
 
 role = Role.where(
   site: site,

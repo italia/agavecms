@@ -36,9 +36,40 @@ $ bin/docker_shell {app*|images|db|webserver}
 
 ## API Calls
 
+Lettura:
+
 ```shell
 $ curl \
   -H "Accept: application/json" \
+  -H "Authorization: Api-Key rtoken" \
+  http://agave.lvh.me:3000/api/site
+```
+
+Scrittura
+
+```shell
+$ curl \
+  -H "Accept: application/json" \
+  -H "Content-type: application/json" \
   -H "Authorization: Api-Key rwtoken" \
-  http://agave.lvh.me:3000/site
+  -d '
+  {
+    "data": {
+      "type": "item_type",
+      "attributes": {
+        "name": "Blog post",
+        "api_key": "post",
+        "singleton": false,
+        "sortable": false,
+        "tree": true,
+        "ordering_direction": null
+      },
+      "relationships": {
+        "ordering_field": {
+          "data": null
+        }
+      }
+    }
+  }' \
+  http://agave.lvh.me:3000/api/item-types
 ```

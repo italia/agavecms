@@ -13,6 +13,7 @@ Creare il file `.env`
 * `JWT_SECRET`: una password complessa;
 * `RAILS_ENV`: production o development;
 * `READ_WRITE_ACCESS_TOKEN`: un codice esadecimale di almeno 20 cifre;
+* `READ_ACCESS_TOKEN`: un codice esadecimale di almeno 20 cifre;
 * `SECRET_KEY_BASE`: un codice esadecimale di almeno 20 cifre;
 * `STATIC_SITE_DOMAIN`: il dominio del sito statico finale;
 * `GOOGLE_MAPS_API_KEY`: la chiave di accesso per [Google Maps](
