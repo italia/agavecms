@@ -27,6 +27,7 @@ class FieldRow extends Component {
       connectDropTarget,
       connectDragSource,
       isDragging,
+      isBlock
     } = this.props
 
     const className = ['FieldRow']
@@ -83,6 +84,7 @@ class FieldRow extends Component {
 FieldRow.propTypes = {
   field: PropTypes.object.isRequired,
   locales: PropTypes.array.isRequired,
+  isBlock: PropTypes.boolean,
   connectDragSource: PropTypes.func.isRequired,
   connectDragPreview: PropTypes.func.isRequired,
   connectDropTarget: PropTypes.func.isRequired,

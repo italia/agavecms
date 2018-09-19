@@ -89,6 +89,7 @@ class EditItemTypes extends Component {
 
   renderItemType(type, itemType) {
     const classNames = ['ItemTypeRow']
+    const block = type === 'block'
 
     if (type) {
       classNames.push(`ItemTypeRow--${type}`)
@@ -96,7 +97,7 @@ class EditItemTypes extends Component {
 
     return (
       <Link
-        to={`/admin/item_types/${itemType.id}`}
+        to={{ pathname: `/admin/item_types/${itemType.id}`, state: { isBlock: block } }}
         className={classNames.join(' ')}
         activeClassName="ItemTypeRow--active"
         key={itemType.id}

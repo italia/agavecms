@@ -273,6 +273,7 @@ class ItemType extends Component {
         index={index}
         field={field}
         locales={locales}
+        isBlock={this.props.location.state.isBlock}
         onDrag={this.handleDrag.bind(this)}
         onDrop={this.handleDrop.bind(this)}
         onDropCancel={this.handleDropCancel.bind(this)}
@@ -376,6 +377,7 @@ class ItemType extends Component {
                   itemTypeId={itemType.id}
                   field={this.state.activeField}
                   onSubmit={this.handleSubmitField.bind(this)}
+                  isBlock={this.props.location.state.isBlock}
                 />
               </Modal>
           }
@@ -460,6 +462,8 @@ ItemType.propTypes = {
   locales: PropTypes.array,
   itemType: PropTypes.object,
   params: PropTypes.object.isRequired,
+  location: PropTypes.object,
+  isBlock: PropTypes.boolean
 }
 
 function mapStateToProps(state, props) {
