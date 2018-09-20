@@ -1,0 +1,69 @@
+{
+  "$schema": "http://json-schema.org/draft-04/hyper-schema",
+  "title": "Model",
+  "description": "A model is a specific kind of editable content",
+  "type": "object",
+  "required": [ "type", "id", "attributes" ],
+  "additionalProperties": false,
+  "definitions": {
+    "data": {
+      "description": "JSON API data",
+      "type": "object",
+      "required": [ "type", "id" ],
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "$ref": "#/definitions/environment/properties/type"
+        },
+        "id": {
+          "$ref": "#/definitions/environment/properties/id"
+        }
+      }
+    },
+    "identity": {
+      "$ref": "#/definitions/environment/properties/id"
+    },
+    "type": {
+      "description": "JSON API type field",
+      "type": [ "string" ],
+      "pattern": "^environment$",
+      "example": "environment"
+    },
+    "id": {
+      "description": "ID of environment",
+      "type": "string",
+      "example": "44"
+    },
+    "attributes": {
+      "description": "JSON API attributes",
+      "type": "object",
+      "required": [ "name" ],
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "type": "string",
+          "example": "production"
+        },
+        "git_repo_url": {
+          "type": "string",
+          "example": "https://github.com/pippo.git"
+        },
+        "frontend_url": {
+          "type": "string",
+          "example": "https://agave.lvh.me"
+        }
+      }
+    }
+  },
+  "properties": {
+    "type": {
+      "$ref": "#/definitions/environment/definitions/type"
+    },
+    "id": {
+      "$ref": "#/definitions/environment/definitions/id"
+    },
+    "attributes": {
+      "$ref": "#/definitions/environment/definitions/attributes"
+    }
+  }
+}

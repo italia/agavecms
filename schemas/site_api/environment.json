@@ -1,0 +1,141 @@
+{
+  "$mergeExternalRef": "../definitions/environment.json",
+  "links": [
+    {
+      "method": "POST",
+      "rel": "create",
+      "title": "Create",
+      "description": "Create a new model",
+      "href": "/api/environments",
+      "schema": {
+        "type": "object",
+        "required": [ "data" ],
+        "additionalProperties": false,
+        "properties": {
+          "data": {
+            "type": "object",
+            "required": [ "type", "attributes" ],
+            "additionalProperties": false,
+            "properties": {
+              "type": {
+                "$ref": "#/definitions/environment/definitions/type"
+              },
+              "attributes": {
+                "$ref": "#/definitions/environment/definitions/attributes"
+              }
+            }
+          }
+        }
+      },
+      "targetSchema": {
+        "type": "object",
+        "required": [ "data" ],
+        "additionalProperties": false,
+        "properties": {
+          "data": {
+            "$ref": "#/definitions/environment"
+          }
+        }
+      }
+    },
+
+    {
+      "method": "PUT",
+      "rel": "update",
+      "title": "Update",
+      "description": "Updates a model",
+      "href": "/api/environments/{(%2Fschemata%2Fenvironment%23%2Fdefinitions%2Fenvironment%2Fdefinitions%2Fidentity)}",
+      "schema": {
+        "type": "object",
+        "required": [ "data" ],
+        "additionalProperties": false,
+        "properties": {
+          "data": {
+            "type": "object",
+            "required": [ "type", "id", "attributes" ],
+            "additionalProperties": false,
+            "properties": {
+              "type": {
+                "$ref": "#/definitions/environment/properties/type"
+              },
+              "id": {
+                "$ref": "#/definitions/environment/properties/id"
+              },
+              "attributes": {
+                "$ref": "#/definitions/environment/properties/attributes"
+              }
+            }
+          }
+        }
+      },
+      "targetSchema": {
+        "type": "object",
+        "required": [ "data" ],
+        "additionalProperties": false,
+        "properties": {
+          "data": {
+            "$ref": "#/definitions/environment"
+          }
+        }
+      }
+    },
+
+    {
+      "method": "GET",
+      "rel": "instances",
+      "title": "Index",
+      "description": "Lists models",
+      "href": "/api/environments",
+      "targetSchema": {
+        "type": "object",
+        "required": [ "data" ],
+        "additionalProperties": false,
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/environment"
+            }
+          }
+        }
+      }
+    },
+
+    {
+      "method": "GET",
+      "rel": "self",
+      "title": "Show",
+      "description": "Show model",
+      "href": "/api/environments/{(%2Fschemata%2Fenvironment%23%2Fdefinitions%2Fenvironment%2Fdefinitions%2Fidentity)}",
+      "targetSchema": {
+        "type": "object",
+        "required": [ "data" ],
+        "additionalProperties": false,
+        "properties": {
+          "data": {
+            "$ref": "#/definitions/environment"
+          }
+        }
+      }
+    },
+
+    {
+      "method": "DELETE",
+      "rel": "destroy",
+      "title": "Delete",
+      "description": "Deletes model",
+      "href": "/api/environments/{(%2Fschemata%2Fenvironment%23%2Fdefinitions%2Fenvironment%2Fdefinitions%2Fidentity)}",
+      "targetSchema": {
+        "type": "object",
+        "required": [ "data" ],
+        "additionalProperties": false,
+        "properties": {
+          "data": {
+            "$ref": "#/definitions/environment"
+          }
+        }
+      }
+    }
+
+  ]
+}
