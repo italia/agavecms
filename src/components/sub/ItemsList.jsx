@@ -211,8 +211,8 @@ class ItemsList extends Component {
     return (
       <div className="Items ItemsList">
         {
-          (totalEntries > 10 || !!this.state.searchTerm) &&
-            <div className="Items__search">
+          (totalEntries >= 5 || !!this.state.searchTerm) &&
+            <div className="Item__search">
               <input
                 type="text"
                 value={this.state.searchTerm}
