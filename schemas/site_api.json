@@ -49,6 +49,9 @@
     },
     "role": {
       "$ref": "#/definitions/role"
+    },
+    "environment": {
+      "$ref": "#/definitions/environment"
     }
   },
   "definitions": {
@@ -101,6 +104,10 @@
     },
     "upload": {
       "$mergeExternalRef": "site_api/upload.json",
+      "position": 9
+    },
+    "environment": {
+      "$mergeExternalRef": "site_api/environment.json",
       "position": 9
     }
   }
