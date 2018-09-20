@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_13_125404) do
+ActiveRecord::Schema.define(version: 2018_09_20_090945) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "hstore"
@@ -47,6 +47,16 @@ ActiveRecord::Schema.define(version: 2018_09_13_125404) do
 
 # Could not dump table "deploy_events" because of following StandardError
 #   Unknown type 'deploy_event_type' for column 'event_type'
+
+  create_table "environments", force: :cascade do |t|
+    t.bigint "site_id", null: false
+    t.string "git_repo_url"
+    t.string "frontend_url"
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["site_id"], name: "index_environments_on_site_id"
+  end
 
   create_table "fields", force: :cascade do |t|
     t.bigint "item_type_id", null: false
@@ -158,6 +168,7 @@ ActiveRecord::Schema.define(version: 2018_09_13_125404) do
   add_foreign_key "access_tokens", "roles"
   add_foreign_key "access_tokens", "sites"
   add_foreign_key "deploy_events", "sites", on_delete: :cascade
+  add_foreign_key "environments", "sites"
   add_foreign_key "fields", "item_types", on_delete: :cascade
   add_foreign_key "item_types", "fields", column: "ordering_field_id", on_delete: :cascade
   add_foreign_key "item_types", "sites", on_delete: :cascade
