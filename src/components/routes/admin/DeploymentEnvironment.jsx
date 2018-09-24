@@ -1,13 +1,16 @@
 import React, { PropTypes } from 'react'
 import Component from 'components/BaseComponent'
 import { connect } from 'react-redux'
-import { alert, notice } from 'actions/notifications'
 import DeploymentForm from 'components/sub/DeploymentForm'
 import convertToFormErrors from 'utils/convertToFormErrors'
-import { update as updateEnvironment } from 'actions/environments'
-import { deployment as instructions } from 'instructions'
-
+import {
+  destroy as destroyEnvironment,
+  update as updateEnvironment
+} from 'actions/environments'
 import Instructions from 'components/sub/Instructions'
+import { deployment as instructions } from 'instructions'
+import { FormattedMessage } from 'react-intl'
+import { alert, notice } from 'actions/notifications'
 
 class EditDeploymentSettings extends Component {
   handleSubmit(environment) {
@@ -24,9 +27,33 @@ class EditDeploymentSettings extends Component {
       })
   }
 
+  handleDestroy(e) {
+    const { dispatch, environment } = this.props
+
+    e.preventDefault()
+
+    if (!confirm(this.t('messages.areyousure'))) {
+      return
+    }
+
+    dispatch(destroyEnvironment({ id: environment.id }))
+      .then(() => {
+        dispatch(notice(this.t('admin.itemType.destroy.success')))
+        this.pushRoute('/admin/deployment')
+      })
+      .catch(() => {
+        dispatch(alert(this.t('admin.itemType.destroy.failure')))
+      })
+  }
+
   render() {
-    const { site, environments, params: { environmentId } } = this.props
-    const { id, attributes } = environments[environmentId]
+    const { site, environment } = this.props
+
+    if (!environment) {
+      return null
+    }
+
+    const { id, attributes } = environment
     const { name } = attributes
 
     return (
@@ -36,6 +63,15 @@ class EditDeploymentSettings extends Component {
             <div className="Page__title">
               {name}
             </div>
+            <div className="Page__space" />
+            <a
+              href="#"
+              onClick={this.handleDestroy.bind(this)}
+              className="Page__action--delete"
+            >
+              <i className="icon--delete" />
+              <span><FormattedMessage id="itemType.row.delete" /></span>
+            </a>
           </div>
           <div className="Page__content--note">
             <Instructions value={instructions()} />
@@ -57,14 +93,15 @@ EditDeploymentSettings.propTypes = {
   dispatch: PropTypes.func.isRequired,
   site: PropTypes.object,
   params: PropTypes.object.isRequired,
-  environments: PropTypes.object
+  environments: PropTypes.object,
+  environment: PropTypes.object
 }
 
-function mapStateToProps(state) {
-  const site = state.site
-  const environments = state.environments
+function mapStateToProps(state, props) {
+  const { site, environments } = state
+  const environment = environments[props.params.environmentId]
 
-  return { site, environments }
+  return { site, environments, environment }
 }
 
 export default connect(mapStateToProps)(EditDeploymentSettings)
