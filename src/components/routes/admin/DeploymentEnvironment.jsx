@@ -4,16 +4,17 @@ import { connect } from 'react-redux'
 import { alert, notice } from 'actions/notifications'
 import DeploymentForm from 'components/sub/DeploymentForm'
 import convertToFormErrors from 'utils/convertToFormErrors'
-import { update as updateSite } from 'actions/site'
+import { update as updateEnvironment } from 'actions/environments'
 import { deployment as instructions } from 'instructions'
 
 import Instructions from 'components/sub/Instructions'
 
 class EditDeploymentSettings extends Component {
-  handleSubmit(site) {
+  handleSubmit(environment) {
     const { dispatch } = this.props
+    const { id, type, attributes } = environment
 
-    return dispatch(updateSite({ data: site }))
+    return dispatch(updateEnvironment({ id, data: { id, type, attributes } }))
       .then(() => {
         dispatch(notice(this.t('admin.site.update.success')))
       })
@@ -24,14 +25,16 @@ class EditDeploymentSettings extends Component {
   }
 
   render() {
-    const { site, params: { environment } } = this.props
+    const { site, environments, params: { environmentId } } = this.props
+    const { id, attributes } = environments[environmentId]
+    const { name } = attributes
 
     return (
       <div className="Page">
         <div className="Page__inner">
           <div className="Page__header">
             <div className="Page__title">
-              {this.t(`deploymentEnvironments.${environment}`)}
+              {name}
             </div>
           </div>
           <div className="Page__content--note">
@@ -40,7 +43,7 @@ class EditDeploymentSettings extends Component {
           <div className="Page__content">
             <DeploymentForm
               site={site}
-              environment={environment}
+              environment={id}
               onSubmit={this.handleSubmit.bind(this)}
             />
           </div>
@@ -54,11 +57,14 @@ EditDeploymentSettings.propTypes = {
   dispatch: PropTypes.func.isRequired,
   site: PropTypes.object,
   params: PropTypes.object.isRequired,
+  environments: PropTypes.object
 }
 
 function mapStateToProps(state) {
   const site = state.site
-  return { site }
+  const environments = state.environments
+
+  return { site, environments }
 }
 
 export default connect(mapStateToProps)(EditDeploymentSettings)

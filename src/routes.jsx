@@ -86,7 +86,7 @@ const routes = (
         </Route>
         <Route path="site" component={Site} />
         <Route path="deployment" component={DeploymentEnvironments}>
-          <Route path=":environment" component={DeploymentEnvironment} />
+          <Route path=":environmentId" component={DeploymentEnvironment} />
         </Route>
         <Route path="logs" component={DeploymentLogs} />
         <Route path="access_tokens" component={AccessTokens}>

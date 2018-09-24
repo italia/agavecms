@@ -45,7 +45,7 @@ class DeploymentForm extends Component {
             <input type="text" className="form__input" />
           </Field>
           <Field
-            name="production_frontend_url"
+            name="frontend_url"
             intlLabel="site.frontendUrl.label"
             intlHint="site.frontendUrl.hint"
           >
@@ -79,31 +79,33 @@ DeploymentForm.contextTypes = Object.assign(
 )
 
 const formConfig = {
-  form: 'site',
+  form: 'environment',
   fields: ['deploy']
 }
 
 function mapStateToProps(state, props) {
-  const site = props.site.attributes
+  const environment = state.environments[props.environment]
+  const { attributes } = environment
 
   const initialValues = {
-    git_repo_url: site.git_repo_url,
-    production_frontend_url: site.production_frontend_url
+    name: attributes.name,
+    git_repo_url: attributes.git_repo_url,
+    frontend_url: attributes.frontend_url,
   }
 
   return {
     initialValues,
     enableReinitialize: true,
     onSubmit(value) {
-      const newSite = deepClone(props.site)
+      const newEnvironment = deepClone(environment)
 
-      newSite.attributes = {
+      newEnvironment.attributes = {
+        name: attributes.name,
         git_repo_url: value.git_repo_url,
-        production_frontend_url: value.production_frontend_url
+        frontend_url: value.frontend_url,
       }
 
-      delete newSite.relationships
-      return props.onSubmit(newSite)
+      return props.onSubmit(newEnvironment)
     }
   }
 }
