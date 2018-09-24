@@ -27,7 +27,6 @@ class FieldRow extends Component {
       connectDropTarget,
       connectDragSource,
       isDragging,
-      isBlock
     } = this.props
 
     const className = ['FieldRow']
