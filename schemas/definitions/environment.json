@@ -45,11 +45,11 @@
           "example": "production"
         },
         "git_repo_url": {
-          "type": "string",
+          "type": ["string", "null"],
           "example": "https://github.com/pippo.git"
         },
         "frontend_url": {
-          "type": "string",
+          "type": ["string", "null"],
           "example": "https://agave.lvh.me"
         }
       }
