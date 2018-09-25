@@ -51,6 +51,10 @@
         "frontend_url": {
           "type": ["string", "null"],
           "example": "https://agave.lvh.me"
+        },
+        "deploy_status": {
+          "type": ["string", "null"],
+          "example": "pending"
         }
       }
     }

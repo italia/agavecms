@@ -97,7 +97,8 @@ RSpec.describe EnvironmentsController, type: :controller do
               attributes: {
                 name: "environments",
                 git_repo_url: "repo_url",
-                frontend_url: "frontend_url"
+                frontend_url: "frontend_url",
+                deploy_status: "pending"
               }
             }
           }
@@ -126,7 +127,8 @@ RSpec.describe EnvironmentsController, type: :controller do
               attributes: {
                 name: "",
                 git_repo_url: "repo_url",
-                frontend_url: "frontend_url"
+                frontend_url: "frontend_url",
+                deploy_status: "pending"
               }
             }
           }
@@ -192,7 +194,8 @@ RSpec.describe EnvironmentsController, type: :controller do
               attributes: {
                 name: "Post",
                 git_repo_url: "git_repo_url",
-                frontend_url: "frontend_url"
+                frontend_url: "frontend_url",
+                deploy_status: "pending"
               }
             }
           }
