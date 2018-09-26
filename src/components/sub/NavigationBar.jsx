@@ -2,7 +2,6 @@ import React, { PropTypes } from 'react'
 import Link from 'components/sub/Link'
 import Component from 'components/BaseComponent'
 import StatusPane from 'components/sub/StatusPane'
-import DeployButton from 'components/sub/DeployButton'
 import DumpButton from 'components/sub/DumpButton'
 import AuthPane from 'components/sub/AuthPane'
 import VisitSitePane from 'components/sub/VisitSitePane'
@@ -101,7 +100,6 @@ class NavigationBar extends Component {
         }
         <div key="site" className="NavigationBar__space" />
         <StatusPane />
-        <DeployButton />
         <DumpButton />
         {
           currentUser &&
