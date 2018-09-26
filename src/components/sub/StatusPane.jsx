@@ -2,20 +2,92 @@ import React, { PropTypes } from 'react'
 import Component from 'components/BaseComponent'
 import { connect } from 'react-redux'
 import { deploy } from 'actions/site'
+import { fetchAll as fetchEnvironments } from 'actions/environments'
 import { getCurrentRole } from 'utils/storeQueries'
 import { FormattedMessage } from 'react-intl'
 import enhanceWithClickOutside from 'react-click-outside'
 import Link from 'components/sub/Link'
+import _ from 'lodash'
 
 class StatusPane extends Component {
   constructor(props) {
     super(props)
-    this.state = { isOpen: false }
+    this.state = {
+      isOpen: false,
+      upload: false,
+      pendingElements: [],
+    }
+    this.pendings = {}
+  }
+
+  componentDidMount() {
+    const { dispatch } = this.props
+    dispatch(fetchEnvironments())
   }
 
   handlePublish(env, e) {
     e.preventDefault()
-    this.props.dispatch(deploy({ environment: env }))
+
+    this.setState({
+      upload: true,
+      pendingElements: this.state.pendingElements.concat(env.id)
+    })
+
+    this.props.dispatch(deploy({ data: env }))
+      .then(() => {
+        return this.startPolling(env)
+      })
+  }
+
+  startPolling(env) {
+    this.pendings[env.id] = setInterval(() => {
+      this.checkStatus()
+        .then(() => {
+          this.removeCompletedElement()
+
+          if (!this.hasPendingElements()) {
+            this.stopPolling()
+          }
+        })
+    }, 10000)
+  }
+
+  checkStatus() {
+    return this.props.dispatch(fetchEnvironments())
+  }
+
+  stopPolling() {
+    Object.values(this.pendings).forEach((el) => {
+      clearInterval(el)
+    })
+    this.setState({ pendingElements: [] })
+  }
+
+  hasPendingElements() {
+    return this.props.environments.some((el) => {
+      return el.attributes.deploy_status === 'pending'
+    })
+  }
+
+  removeCompletedElement() {
+    this.setState({
+      pendingElements: _.difference(
+        this.filterPendingElements(),
+        this.filterCompletedElements()
+      )
+    })
+  }
+
+  filterPendingElements() {
+    return this.props.environments.filter((el) => {
+      return el.attributes.deploy_status === 'pending'
+    }).map((el) => el.id)
+  }
+
+  filterCompletedElements() {
+    return this.props.environments.filter((el) => {
+      return el.attributes.deploy_status !== 'pending'
+    }).map((el) => el.id)
   }
 
   handleToggle(e) {
@@ -29,19 +101,18 @@ class StatusPane extends Component {
 
   renderToConfigureEnv(env) {
     const { canEditSite } = this.props
-
     return (
       <div className="StatusPane__environment">
         <div className="StatusPane__environment__name">
           <div className="StatusPane__environment__status-icon" />
-          {this.t(`deploymentEnvironments.${env}`)}
+          {env.attributes.name}
         </div>
         <div className="StatusPane__environment__status">
           {this.t('deploymentEnvironments.status.toConfigure')}
           {
             canEditSite &&
               <Link
-                to={`/admin/deployment/${env}`}
+                to={`/admin/deployment/${env.id}`}
                 className="button button--primary button--tiny"
               >
                 {this.t('deployPanel.toConfigure.button')}
@@ -53,13 +124,13 @@ class StatusPane extends Component {
   }
 
   renderFailEnv(env) {
-    const canPublish = this.props.permissions[env]
+    const canPublish = this.props.permissions.production
 
     return (
       <div className="StatusPane__environment">
         <div className="StatusPane__environment__name">
           <div className="StatusPane__environment__status-icon red" />
-          {this.t(`deploymentEnvironments.${env}`)}
+          {env.attributes.name}
         </div>
         <div className="StatusPane__environment__status">
           {this.t('deploymentEnvironments.status.fail')}
@@ -80,13 +151,13 @@ class StatusPane extends Component {
   }
 
   renderTouchedEnv(env) {
-    const canPublish = this.props.permissions[env]
+    const canPublish = this.props.permissions.production
 
     return (
       <div className="StatusPane__environment">
         <div className="StatusPane__environment__name">
           <div className="StatusPane__environment__status-icon yellow" />
-          {this.t(`deploymentEnvironments.${env}`)}
+          {env.attributes.name}
         </div>
         <div className="StatusPane__environment__status">
           {
@@ -110,7 +181,7 @@ class StatusPane extends Component {
       <div className="StatusPane__environment">
         <div className="StatusPane__environment__name">
           <div className="StatusPane__environment__status-icon pending" />
-          {this.t(`deploymentEnvironments.${env}`)}
+          {env.attributes.name}
         </div>
         <div className="StatusPane__environment__status">
           <FormattedMessage id="deploymentEnvironments.status.pending" />
@@ -120,13 +191,13 @@ class StatusPane extends Component {
   }
 
   renderNeverDeployedEnv(env) {
-    const canPublish = this.props.permissions[env]
+    const canPublish = this.props.permissions.production
 
     return (
       <div className="StatusPane__environment">
         <div className="StatusPane__environment__name">
           <div className="StatusPane__environment__status-icon" />
-          {this.t(`deploymentEnvironments.${env}`)}
+          {env.attributes.name}
         </div>
         <div className="StatusPane__environment__status">
           <FormattedMessage id="deploymentEnvironments.status.neverDeployed" />
@@ -147,25 +218,47 @@ class StatusPane extends Component {
   }
 
   renderCleanEnv(env) {
+    const canPublish = this.props.permissions.production
+
     return (
       <div className="StatusPane__environment">
         <div className="StatusPane__environment__name">
           <div className="StatusPane__environment__status-icon green" />
-          {this.t(`deploymentEnvironments.${env}`)}
+          {env.attributes.name}
+        </div>
+        <div className="StatusPane__environment__status">
+          <FormattedMessage id="deploymentEnvironments.status.clean" />
+          {
+            canPublish &&
+              <a
+                href="#"
+                onClick={this.handlePublish.bind(this, env)}
+                className="button button--primary button--tiny"
+              >
+                <i className="icon--upload" />
+                <span>{this.t('deployPanel.update.button')}</span>
+              </a>
+          }
         </div>
       </div>
     )
   }
 
   renderEnv(env) {
-    const { site } = this.props
-
-    const deployGitRepoUrl = site.attributes.git_repo_url
-    const deployStatus = site.attributes[`${env}_deploy_status`]
+    const deployGitRepoUrl = env.attributes.git_repo_url
+    const deployStatus = env.attributes.deploy_status
 
     const calculateStatus = () => {
       if (!deployGitRepoUrl) {
         return 'to-configure'
+      }
+
+      if (this.state.pendingElements.includes(env.id)) {
+        return 'pending'
+      }
+
+      if (deployStatus === null) {
+        return 'never-deployed'
       }
 
       if (deployStatus === 'unstarted') {
@@ -202,6 +295,8 @@ class StatusPane extends Component {
   }
 
   render() {
+    const { environments } = this.props
+
     return (
       <div className="StatusPane">
         <a href="#" className="StatusPane__handle" onClick={this.handleToggle.bind(this)}>
@@ -211,7 +306,7 @@ class StatusPane extends Component {
         {
           this.state.isOpen &&
             <div className="StatusPane__dropdown">
-              {['production'].map(this.renderEnv.bind(this))}
+              { environments.map(this.renderEnv.bind(this)) }
             </div>
         }
       </div>
@@ -224,13 +319,16 @@ StatusPane.propTypes = {
   permissions: PropTypes.object.isRequired,
   dispatch: PropTypes.func.isRequired,
   canEditSite: PropTypes.bool,
+  environments: PropTypes.array,
 }
 
 function mapStateToProps(state) {
   const role = getCurrentRole(state)
+  const environments = Object.values(state.environments)
 
   return {
     site: state.site,
+    environments,
     canEditSite: role && role.attributes.can_edit_site,
     permissions: {
       production: role && role.attributes.can_publish_to_production,
