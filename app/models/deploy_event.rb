@@ -18,10 +18,10 @@ class DeployEvent < ApplicationRecord
   ]
 
   belongs_to :site, inverse_of: :deploy_events
+  belongs_to :environment, inverse_of: :deploy_events
 
   validates :site, :environment, presence: true
   validates :event_type, presence: true, inclusion: { in: EVENT_TYPES }
-  validates :environment, inclusion: { in: %w(production development) }
 
   scope :by_date_reverse, ->() { order("created_at desc") }
 end
