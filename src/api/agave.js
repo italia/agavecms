@@ -185,8 +185,8 @@ export function updateSite(data) {
   return put('/site', { data })
 }
 
-export function deploySite() {
-  return post('/deploys', {})
+export function deploySite(data) {
+  return post('/deploys', { data })
 }
 
 export function abortDeploySite(env) {
