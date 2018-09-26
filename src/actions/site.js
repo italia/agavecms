@@ -27,7 +27,7 @@ export const update = createAsyncAction(
 
 export const deploy = createAsyncAction(
   'site/deploy',
-  ({ environment }) => deploySite(environment)
+  ({ data }) => deploySite(data)
 )
 
 export const abortDeploy = createAsyncAction(

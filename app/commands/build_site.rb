@@ -15,7 +15,7 @@ class BuildSite
       return false
     end
 
-    update_production_deploy_status("pending")
+    update_deploy_status("pending")
 
     Dir.chdir(tmp_path) do
       if !remote_matches?
@@ -85,12 +85,12 @@ class BuildSite
 
   def success!
     update_event("OK", "success")
-    update_production_deploy_status("success")
+    update_deploy_status("success")
   end
 
   def failed!(message)
     update_event(message, "error")
-    update_production_deploy_status("fail")
+    update_deploy_status("fail")
   end
 
   def tmp_path
@@ -109,18 +109,22 @@ class BuildSite
     @site ||= Site.find_by_id(deploy_event.site_id)
   end
 
+  def environment
+    @environment ||= Environment.find_by_id(deploy_event.environment_id)
+  end
+
   def update_event(message, status)
     deploy_event.update_attributes!(
       data: {message: message, status: status}
     )
   end
 
-  def update_production_deploy_status(status)
-    site.update_attribute(:production_deploy_status, status)
+  def update_deploy_status(status)
+    environment.update_attribute(:deploy_status, status)
   end
 
   def git_repo_url
-    Site.first.git_repo_url
+    environment.git_repo_url
   end
 
   def cloned?

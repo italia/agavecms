@@ -7,6 +7,7 @@ import { destroy as destroyMenuItem } from 'actions/menuItems'
 import { destroy as destroyUser } from 'actions/users'
 import { destroy as destroyRole } from 'actions/roles'
 import { destroy as destroyItem } from 'actions/items'
+import { destroy as destroyEnvironment } from 'actions/environments'
 import { destroy as destroyAccessToken } from 'actions/accessTokens'
 
 export { default as ui } from 'reducers/ui'
@@ -25,4 +26,5 @@ export const roles = createEntityReducer('role', destroyRole.receive)
 export const items = createEntityReducer('item', destroyItem.receive)
 export const uploads = createEntityReducer('upload', destroyUpload.receive)
 export const deployEvents = createEntityReducer('deploy_event')
+export const environments = createEntityReducer('environment', destroyEnvironment.receive)
 export const accessTokens = createEntityReducer('access_token', destroyAccessToken.receive)

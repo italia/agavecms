@@ -51,7 +51,7 @@ function hasLocalizedFields(fields) {
     .value()
 
   const resultFields = Object.values(refactorFields)
-    .filter(({ id, localized }) => !localized.some((el, idx, arr) => el === true))
+    .filter(({ localized }) => !localized.some((el) => el === true))
     .map((item) => item.id)
   return { resultFields }
 }

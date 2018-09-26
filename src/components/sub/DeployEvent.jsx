@@ -148,14 +148,14 @@ class DeployEvent extends Component {
   renderReason() {
     const { event } = this.props
 
-    if (!event.attributes.data.reason) {
+    if (!event.attributes.data.message) {
       return undefined
     }
 
     return (
       <Detail title="deployEvent.details.reason">
         <p className="gamma">
-          {titleize(event.attributes.data.reason)}
+          {titleize(event.attributes.data.message)}
         </p>
       </Detail>
     )
@@ -168,8 +168,8 @@ class DeployEvent extends Component {
     return (
       <div className="DeployEvent__details">
         {this.renderCommand()}
-        {this.renderReason(data.reason)}
-        {this.renderStatusCode('deployEvent.details.responseStatusCode', data.response_status)}
+        {this.renderReason()}
+        {this.renderStatusCode('deployEvent.details.responseStatusCode', data.status)}
         {this.renderHeaders('deployEvent.details.responseHeaders', data.response_headers)}
         {this.renderBody('deployEvent.details.responseBody', data.response_body)}
         {this.renderCreatedAt()}
@@ -230,7 +230,7 @@ class DeployEvent extends Component {
         <div className="DeployEvent__inner">
           <div className="DeployEvent__title">
             <div className="DeployEvent__environment">
-              {this.t(`deploymentEnvironments.${event.attributes.environment}`)}
+              {event.attributes.environment.name}
             </div>
             <FormattedMessage id={`deployEvent.type.${event.attributes.event_type}`} />
           </div>

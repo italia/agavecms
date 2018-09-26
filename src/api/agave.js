@@ -185,8 +185,8 @@ export function updateSite(data) {
   return put('/site', { data })
 }
 
-export function deploySite() {
-  return post('/deploys', {})
+export function deploySite(data) {
+  return post('/deploys', { data })
 }
 
 export function abortDeploySite(env) {
@@ -231,6 +231,26 @@ export function getRole(id) {
 
 export function getRoles() {
   return get('/roles')
+}
+
+export function getEnvironment(id) {
+  return get(`/environments/${id}`)
+}
+
+export function getEnvironments() {
+  return get('/environments')
+}
+
+export function createEnvironment(data) {
+  return post('/environments', { data })
+}
+
+export function updateEnvironment(id, data) {
+  return put(`/environments/${id}`, { data })
+}
+
+export function destroyEnvironment(id) {
+  return destroy(`/environments/${id}`)
 }
 
 export function updateAccessToken(id, data) {

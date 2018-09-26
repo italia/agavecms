@@ -14,6 +14,8 @@ Rails.application.routes.draw do
       end
     end
 
+    resources :environments, only: API_CRUD_ACTIONS
+
     resource :dumps do
       member do
         get :full_dump

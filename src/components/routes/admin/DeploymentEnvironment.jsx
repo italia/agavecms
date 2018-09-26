@@ -1,19 +1,23 @@
 import React, { PropTypes } from 'react'
 import Component from 'components/BaseComponent'
 import { connect } from 'react-redux'
-import { alert, notice } from 'actions/notifications'
 import DeploymentForm from 'components/sub/DeploymentForm'
 import convertToFormErrors from 'utils/convertToFormErrors'
-import { update as updateSite } from 'actions/site'
-import { deployment as instructions } from 'instructions'
-
+import {
+  destroy as destroyEnvironment,
+  update as updateEnvironment
+} from 'actions/environments'
 import Instructions from 'components/sub/Instructions'
+import { deployment as instructions } from 'instructions'
+import { FormattedMessage } from 'react-intl'
+import { alert, notice } from 'actions/notifications'
 
 class EditDeploymentSettings extends Component {
-  handleSubmit(site) {
+  handleSubmit(environment) {
     const { dispatch } = this.props
+    const { id, type, attributes } = environment
 
-    return dispatch(updateSite({ data: site }))
+    return dispatch(updateEnvironment({ id, data: { id, type, attributes } }))
       .then(() => {
         dispatch(notice(this.t('admin.site.update.success')))
       })
@@ -23,16 +27,51 @@ class EditDeploymentSettings extends Component {
       })
   }
 
+  handleDestroy(e) {
+    const { dispatch, environment } = this.props
+
+    e.preventDefault()
+
+    if (!confirm(this.t('messages.areyousure'))) {
+      return
+    }
+
+    dispatch(destroyEnvironment({ id: environment.id }))
+      .then(() => {
+        dispatch(notice(this.t('admin.itemType.destroy.success')))
+        this.pushRoute('/admin/deployment')
+      })
+      .catch(() => {
+        dispatch(alert(this.t('admin.itemType.destroy.failure')))
+      })
+  }
+
   render() {
-    const { site, params: { environment } } = this.props
+    const { site, environment } = this.props
+
+    if (!environment) {
+      return null
+    }
+
+    const { id, attributes } = environment
+    const { name } = attributes
 
     return (
       <div className="Page">
         <div className="Page__inner">
           <div className="Page__header">
             <div className="Page__title">
-              {this.t(`deploymentEnvironments.${environment}`)}
+              {name}
             </div>
+            <div className="Page__space" />
+            <a
+              href="#"
+              onClick={this.handleDestroy.bind(this)}
+              className="Page__action--delete"
+            >
+              <i className="icon--delete" />
+              <span><FormattedMessage id="itemType.row.delete" /></span>
+            </a>
           </div>
           <div className="Page__content--note">
             <Instructions value={instructions()} />
@@ -40,7 +79,7 @@ class EditDeploymentSettings extends Component {
           <div className="Page__content">
             <DeploymentForm
               site={site}
-              environment={environment}
+              environment={id}
               onSubmit={this.handleSubmit.bind(this)}
             />
           </div>
@@ -54,11 +93,15 @@ EditDeploymentSettings.propTypes = {
   dispatch: PropTypes.func.isRequired,
   site: PropTypes.object,
   params: PropTypes.object.isRequired,
+  environments: PropTypes.object,
+  environment: PropTypes.object
 }
 
-function mapStateToProps(state) {
-  const site = state.site
-  return { site }
+function mapStateToProps(state, props) {
+  const { site, environments } = state
+  const environment = environments[props.params.environmentId]
+
+  return { site, environments, environment }
 }
 
 export default connect(mapStateToProps)(EditDeploymentSettings)

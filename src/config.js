@@ -7,7 +7,7 @@ export default process.env.NODE_ENV === 'production' ?
   }
   :
   {
-    apiBaseUrl: 'http://site-api.lvh.me:3000/api',
+    apiBaseUrl: 'http://agave.lvh.me:3000/api',
     appVersion: 'development',
     googleMapsApiKey: '',
     iubendaCookiePolicyId: ''

@@ -49,6 +49,10 @@ class Site < ApplicationRecord
     inverse_of: :site,
     dependent: :destroy
 
+  has_many :environments,
+    inverse_of: :site,
+    dependent: :destroy
+
   validates :domain,
     hostname: {
       require_valid_tld: true,
