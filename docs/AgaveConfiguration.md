@@ -88,12 +88,12 @@ server e lanciare i seguenti comandi:
 
 ```
 docker-compose \
--f docker/docker-compose.yml
+-f docker/docker-compose.yml \
 --project-name agave \
 build
 
 docker-compose \
--f docker/docker-compose.yml
+-f docker/docker-compose.yml \
 --project-name agave \
 up -d
 ```
