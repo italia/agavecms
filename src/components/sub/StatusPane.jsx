@@ -40,6 +40,10 @@ class StatusPane extends Component {
   }
 
   startPolling(env) {
+    if (this.pendings[env.id] !== undefined) {
+      return
+    }
+
     this.pendings[env.id] = setInterval(() => {
       this.checkStatus()
         .then(() => {
@@ -177,6 +181,8 @@ class StatusPane extends Component {
   }
 
   renderPendingEnv(env) {
+    this.startPolling(env)
+
     return (
       <div className="StatusPane__environment">
         <div className="StatusPane__environment__name">
