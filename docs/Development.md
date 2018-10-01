@@ -1,4 +1,4 @@
-# Setup
+# Installazione
 
 * Assicurati di aver installato [docker-compose](https://docs.docker.com/compose/install/#install-compose)
 * Clona questo repository sul tuo computer. Cambia directory utilizzando
@@ -9,7 +9,7 @@
   $ ln -s docker/.env.development.docker .env
   ```
 
-# Launch all containers
+# Come eseguire i container:
 
 Lancia i containers tramite:
 
@@ -27,7 +27,7 @@ Dopo aver generato il sito statico, quest'ultimo è disponibile all'indirizzo
 `agave.lvh.me:3002` o all'indirizzo che hai dichiarato nella variabile
 d'ambiente `APP_DOMAIN` (alla porta `3002`).
 
-# Stop containers
+# Come terminare l'esecuzione dei container:
 
 Nel caso in cui ha lanciato docker-compose in modalità _detach_, puoi
 fermare l'esecuzione utilizzando il comando:
@@ -36,7 +36,7 @@ fermare l'esecuzione utilizzando il comando:
 $ docker-compose -f docker/docker-compose-development.yml --project-name agave down
 ```
 
-# Deploy without using images
+# Deploy senza l'utilizzo delle immagini:
 
 Prima di lanciare l'applicazione assicurati di aver installato i seguenti
 pacchetti:
@@ -49,14 +49,13 @@ Successivamente:
 
 * Eseguire la creazione del database, migrazione e seed con `rake db:create && rake db:migrate`. Le
   variabili d'ambiente necessarie per la creazione del database sono `APP_DOMAIN`, `ADMIN_EMAIL` e `ADMIN_PASSWORD`.
-  Per lanciare la creazione del database devi eseguire il comando: `APP_DOMAIN=<es. agave.lvh.me> ADMIN_EMAIL=<email> ADMIN_PASSWORD=<password> rake db:seed`
-* Esegui rails server con `IMAGES_ENDPOINT=<endpoint delle immagini es. http://agave-images.lvh.me:39876/uploads> bundle exec rails server -b 0.0.0.0 -p 3000`
-* Eseguire `yarn dev`
+  Per lanciare la creazione del database devi eseguire il comando: `APP_DOMAIN=<es. agave.lvh.me> ADMIN_EMAIL=<email> ADMIN_PASSWORD=<password> rake db:seed`;
+* Esegui rails server con `IMAGES_ENDPOINT=<endpoint delle immagini es. http://agave-images.lvh.me:39876/uploads> bundle exec rails server -b 0.0.0.0 -p 3000`;
+* Eseguire `yarn` e `yarn dev`.
 
-L'applicazione sarà disponibile all'indirizzo indicato dalla variabile
-`agave.lvh.me:3000`.
+L'applicazione sarà disponibile all'indirizzo `agave.lvh.me:3000` o all'indirizzo indicato nella variabile d'ambiente `APP_DOMAIN`.
 
-# Shell Access
+# Accesso alle Shell
 
 Per eseguire una shell all'interno di un container puoi utilizzare il
 comando:
@@ -65,7 +64,7 @@ comando:
 $ bin/docker_shell {app*|images|db|webserver}
 ```
 
-## API Calls
+## Esempio di chiamate API
 
 Per verificare il corretto funzionamento delle API puoi:
 
