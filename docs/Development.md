@@ -38,12 +38,23 @@ $ docker-compose -f docker/docker-compose-development.yml --project-name agave d
 
 # Deploy without using images
 
-```
-git clone {{repo}}
-cd agave
-docker-compose -f docker/docker-compose-checkout.yml --project-name agave build
-docker-compose -f docker/docker-compose-checkout.yml --project-name agave up
-```
+Prima di lanciare l'applicazione assicurati di aver installato i seguenti
+pacchetti:
+
+* [Yarn](https://yarnpkg.com/lang/en/docs/install).
+* [Node](https://github.com/creationix/nvm)
+* [Ruby](https://github.com/rbenv/rbenv)
+
+Successivamente:
+
+* Eseguire la creazione del database, migrazione e seed con `rake db:create && rake db:migrate`. Le
+  variabili d'ambiente necessarie per la creazione del database sono `APP_DOMAIN`, `ADMIN_EMAIL` e `ADMIN_PASSWORD`.
+  Per lanciare la creazione del database devi eseguire il comando: `APP_DOMAIN=<es. agave.lvh.me> ADMIN_EMAIL=<email> ADMIN_PASSWORD=<password> rake db:seed`
+* Esegui rails server con `IMAGES_ENDPOINT=<endpoint delle immagini es. http://agave-images.lvh.me:39876/uploads> bundle exec rails server -b 0.0.0.0 -p 3000`
+* Eseguire `yarn dev`
+
+L'applicazione sarà disponibile all'indirizzo indicato dalla variabile
+`agave.lvh.me:3000`.
 
 # Shell Access
 
