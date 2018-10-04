@@ -4,17 +4,15 @@ set -e
 
 chmod 777 /etc/resty-auto-ssl;
 
-./create_deploy_env.rb
-
 cat ./app.conf \
   | envsubst '${APP_DOMAIN}' \
   > /usr/local/openresty/nginx/conf/sites-enabled/https_app.conf
 cat ./images.conf \
   | envsubst '${IMAGES_DOMAIN}' \
   > /usr/local/openresty/nginx/conf/sites-enabled/https_images.conf
-cat ./static_site.conf \
-  | envsubst '${STATIC_SITE_DOMAIN}' \
-  > /usr/local/openresty/nginx/conf/sites-enabled/https_static_site.conf
+
+# create multistage environment
+./create_deploy_env.rb
 
 # create fallback SSL certificates
 if [[ ! -f /webserver/ssl/ssl-fallback.key ]]; then
