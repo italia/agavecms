@@ -26,6 +26,10 @@ class ImportSite
         DestroyItemType.new(item_type_ex).call
       end
       site.item_types.reset
+      site.menu_items.each do |item_menu_ex|
+        DestroyMenuItem.new(item_menu_ex).call
+      end
+      site.menu_items.reset
 
       json[:item_types].each do |item|
         if item[:type] == "item_type"
