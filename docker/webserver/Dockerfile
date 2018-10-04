@@ -4,8 +4,8 @@ FROM openresty/openresty:xenial
 WORKDIR /webserver
 
 # create sites-enabled and conf.d directory
-RUN mkdir /usr/local/openresty/nginx/conf/conf.d
-RUN mkdir /usr/local/openresty/nginx/conf/sites-enabled
+RUN mkdir -p /usr/local/openresty/nginx/conf/conf.d
+RUN mkdir -p /usr/local/openresty/nginx/conf/sites-enabled
 
 # create logs
 RUN mkdir /var/log/nginx/
