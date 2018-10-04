@@ -28,6 +28,7 @@ RUN echo "upstream images_upstream { server images:39876; }" \
 COPY app.conf .
 COPY images.conf .
 COPY static_site.conf .
+COPY create_deploy_env.rb .
 COPY setup /setup
 
 ENTRYPOINT ["/setup"]

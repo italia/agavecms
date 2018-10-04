@@ -4,6 +4,8 @@ set -e
 
 chmod 777 /etc/resty-auto-ssl;
 
+./create_deploy_env.rb
+
 cat ./app.conf \
   | envsubst '${APP_DOMAIN}' \
   > /usr/local/openresty/nginx/conf/sites-enabled/https_app.conf
