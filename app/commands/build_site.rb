@@ -182,7 +182,7 @@ class BuildSite
 
   def jekyll_build
     Bundler.with_clean_env do
-      puts `JEKYLL_ENV=production bundle exec jekyll build --destination build/`
+      puts `JEKYLL_ENV=production bundle exec jekyll build`
     end
     $?.success?
   end
