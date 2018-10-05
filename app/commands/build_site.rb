@@ -66,7 +66,11 @@ class BuildSite
           return false
         end
 
-        `cp -r build ../build/#{repo_name}`
+        success = publish
+        if !success
+          failed!("Failed publish")
+          return false
+        end
       end
     end
 
@@ -185,6 +189,11 @@ class BuildSite
 
   def webpack
     puts `yarn build:assets`
+    $?.success?
+  end
+
+  def publish
+    puts `cp -r build ../build/#{repo_name}`
     $?.success?
   end
 
