@@ -1,5 +1,14 @@
 FROM openresty/openresty:xenial
 
+RUN \
+  apt-get install apt-transport-https \
+  && apt-get update --quiet=2 \
+  && apt-get install --assume-yes software-properties-common \
+  && add-apt-repository ppa:brightbox/ruby-ng \
+  && apt-get update --quiet=2 \
+  && apt-get install --assume-yes build-essential \
+  && apt-get install --assume-yes ruby2.5
+
 # Set our working directory inside the image
 WORKDIR /webserver
 
@@ -27,8 +36,8 @@ RUN echo "upstream images_upstream { server images:39876; }" \
 
 COPY app.conf .
 COPY images.conf .
-COPY static_site.conf .
-COPY create_deploy_env.rb .
+COPY static_servers.conf .
+COPY create_static_servers.rb .
 COPY setup /setup
 
 ENTRYPOINT ["/setup"]

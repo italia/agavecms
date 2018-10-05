@@ -7,7 +7,7 @@ services:
       - db:/var/lib/postgresql/data
 
   images:
-    image: italia/agavecms_images:latest
+    image: agavecms/agave_images:latest
     working_dir: /images
     volumes:
       - uploads:/images/uploads
@@ -15,7 +15,7 @@ services:
       - "39876:39876"
 
   app:
-    image: italia/agavecms_app:latest
+    image: agavecms/agave_app:latest
     working_dir: /app
     env_file: ../.env
     command: ./start
@@ -31,7 +31,7 @@ services:
       - uploads:/app/public/uploads
 
   webserver:
-    image: italia/agavecms_webserver:latest
+    image: agavecms/agave_webserver:latest
     env_file: ../.env
     stdin_open: true
     tty: true
@@ -49,7 +49,7 @@ services:
       - build:/webserver/static_site
 
   worker:
-    image: italia/agavecms_app:latest
+    image: agavecms/agave_app:latest
     command: bundle exec rake jobs:work
     stdin_open: true
     tty: true
