@@ -66,7 +66,7 @@ class BuildSite
           return false
         end
 
-        `cp -r build ../build/#{frontend_url}`
+        `cp -r build ../build/#{repo_name}`
       end
     end
 
