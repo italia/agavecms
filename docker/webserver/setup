@@ -7,7 +7,7 @@ chmod 777 /etc/resty-auto-ssl;
 cat ./app.conf \
   | envsubst '${APP_DOMAIN}' \
   > /usr/local/openresty/nginx/conf/sites-enabled/https_app.conf
-:cat ./images.conf \
+cat ./images.conf \
   | envsubst '${IMAGES_DOMAIN}' \
   > /usr/local/openresty/nginx/conf/sites-enabled/https_images.conf
 
