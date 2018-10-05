@@ -66,7 +66,7 @@ class BuildSite
           return false
         end
 
-        `cp build ../build/#{frontend_url}`
+        `cp -r build ../build/#{frontend_url}`
       end
     end
 
@@ -178,7 +178,7 @@ class BuildSite
 
   def jekyll_build
     Bundler.with_clean_env do
-      puts `JEKYLL_ENV=production bundle exec jekyll build`
+      puts `JEKYLL_ENV=production bundle exec jekyll build --destination build/`
     end
     $?.success?
   end
