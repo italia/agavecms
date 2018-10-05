@@ -30,6 +30,7 @@ AllCops:
     - "lib/repl/**/*"
     - "schemas/all.rb"
     - "docker/**/**"
+    - "node_modules/**/*"
   DisplayCopNames: false
   StyleGuideCopsOnly: false
 Layout/AccessModifierIndentation:
