@@ -1,6 +1,4 @@
 class BuildSite
-  REPO_NAME = "site".freeze
-
   attr_reader :deploy_event_id
   attr_reader :initial_path
 
@@ -67,6 +65,8 @@ class BuildSite
           failed!("Failed webpack")
           return false
         end
+
+        `cp build ../build/#{frontend_url}`
       end
     end
 
@@ -98,7 +98,11 @@ class BuildSite
   end
 
   def repo_path
-    File.join(tmp_path, REPO_NAME)
+    File.join(tmp_path, repo_name)
+  end
+
+  def repo_name
+    environment.frontend_url
   end
 
   def deploy_event
@@ -128,7 +132,7 @@ class BuildSite
   end
 
   def cloned?
-    File.directory?(REPO_NAME)
+    File.directory?(repo_name)
   end
 
   def remote_matches?
@@ -144,7 +148,7 @@ class BuildSite
   end
 
   def clone_repo
-    puts `git clone #{git_repo_url} #{REPO_NAME}`
+    puts `git clone #{git_repo_url} #{repo_name}`
     $?.success?
   end
 
