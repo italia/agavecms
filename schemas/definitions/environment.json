@@ -55,6 +55,14 @@
         "deploy_status": {
           "type": ["string", "null"],
           "example": "pending"
+        },
+        "deploy_adapter": {
+          "type": ["string", "null"],
+          "example": "local server"
+        },
+        "deploy_settings": {
+          "description": "Specify the deploy adapter options",
+          "type": ["object", "null"]
         }
       }
     }
