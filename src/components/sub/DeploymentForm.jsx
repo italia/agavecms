@@ -4,6 +4,7 @@ import { reduxForm } from 'redux-form'
 import { Field, SubmitButton, Form } from 'components/form'
 import deepClone from 'deep-clone'
 import { connect } from 'react-redux'
+import DeploySettingsInput from 'components/form/DeploySettingsInput'
 
 class DeploymentForm extends Component {
   componentDidMount() {
@@ -51,6 +52,9 @@ class DeploymentForm extends Component {
           >
             <input type="text" className="form__input" />
           </Field>
+          <Field name="deploy" intlLabel="site.deployAdapter">
+            <DeploySettingsInput />
+          </Field>
           <SubmitButton
             submitting={submitting}
             dirty={dirty}
@@ -91,6 +95,11 @@ function mapStateToProps(state, props) {
     name: attributes.name,
     git_repo_url: attributes.git_repo_url,
     frontend_url: attributes.frontend_url,
+
+    deploy: {
+      adapter: attributes.deploy_adapter,
+      settings: attributes.deploy_settings,
+    }
   }
 
   return {
@@ -103,6 +112,8 @@ function mapStateToProps(state, props) {
         name: attributes.name,
         git_repo_url: value.git_repo_url,
         frontend_url: value.frontend_url,
+        deploy_adapter: value.deploy && value.deploy.adapter,
+        deploy_settings: value.deploy && value.deploy.settings,
       }
 
       return props.onSubmit(newEnvironment)
