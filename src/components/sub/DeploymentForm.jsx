@@ -2,6 +2,8 @@ import React, { PropTypes } from 'react'
 import Component from 'components/BaseComponent'
 import { reduxForm } from 'redux-form'
 import { Field, SubmitButton, Form } from 'components/form'
+import generateFormValidation from 'utils/generateFormValidation'
+import validators from 'utils/validators'
 import deepClone from 'deep-clone'
 import { connect } from 'react-redux'
 import DeploySettingsInput from 'components/form/DeploySettingsInput'
@@ -84,7 +86,11 @@ DeploymentForm.contextTypes = Object.assign(
 
 const formConfig = {
   form: 'environment',
-  fields: ['deploy']
+  fields: ['deploy'],
+  validate: generateFormValidation({
+    git_repo_url: [validators.required(), validators.url()],
+    frontend_url: [validators.required(), validators.url()],
+  })
 }
 
 function mapStateToProps(state, props) {

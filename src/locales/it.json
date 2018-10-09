@@ -286,6 +286,7 @@
   "fieldError.VALIDATION_SIZE": "{ valorizedKeys, select, min { Devono essere presenti almeno {min} item } max { Non è possibile inserire più di {max} item } max_min { Deve essere presente un numero di item compresa tra i {min} e i {max} } eq { È necessario specificare esattamente {eq} item } }",
   "fieldError.VALIDATION_UNIQUE": "Il campo contiene un valore già presente",
   "fieldError.VALIDATION_UNIQUENESS": "Il campo contiene un valore già presente",
+  "fieldError.undefined": "Errore non definito",
   "fieldForm.tab.basic": "Impostazioni",
   "fieldForm.tab.presentation": "Presentazione",
   "fieldForm.tab.validations": "Validazioni",
