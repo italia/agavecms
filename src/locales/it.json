@@ -218,6 +218,7 @@
   "environment.add": "Aggiungi un'ambiente",
   "environment.button.default": "Salva il nuovo ambiente",
   "environment.deployAdapters.local_server": "Server locale",
+  "environment.deployAdapters.local_server.instruction": "Con questo metodo puoi deployare il sito statico direttamente su questa macchina",
   "environment.deployAdapters.sftp": "Ftp",
   "environment.deployAdapters.sftp.button.default": "Salva impostazioni Ftp",
   "environment.deployAdapters.sftp.url.label": "Url",
