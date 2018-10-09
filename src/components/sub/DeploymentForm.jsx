@@ -89,7 +89,7 @@ const formConfig = {
   fields: ['deploy'],
   validate: generateFormValidation({
     git_repo_url: [validators.required(), validators.url()],
-    frontend_url: [validators.required(), validators.url()],
+    frontend_url: [validators.required()],
   })
 }
 
