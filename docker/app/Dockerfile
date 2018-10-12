@@ -32,6 +32,8 @@ RUN \
     nodejs \
     postgresql-client-9.6 \
     yarn \
+    sshpass \
+    rsync \
     2>/dev/null \
   && apt-get clean --assume-yes \
   && apt-get autoremove --assume-yes \
