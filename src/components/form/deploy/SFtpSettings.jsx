@@ -20,9 +20,16 @@ class SFtpSettings extends Component {
       <div className="SFtpSettings">
         <Form error={error} onSubmit={handleSubmit}>
           <Field
-            name="url"
-            intlLabel="environment.deployAdapters.sftp.url.label"
-            intlHint="environment.deployAdapters.sftp.url.hint"
+            name="domain"
+            intlLabel="environment.deployAdapters.sftp.domain.label"
+            intlHint="environment.deployAdapters.sftp.domain.hint"
+          >
+            <input type="text" className="form__input" />
+          </Field>
+          <Field
+            name="remote_directory"
+            intlLabel="environment.deployAdapters.sftp.remote_directory.label"
+            intlHint="environment.deployAdapters.sftp.remote_directory.hint"
           >
             <input type="text" className="form__input" />
           </Field>
@@ -73,18 +80,21 @@ function mapStateToProps(state, props) {
 
   return {
     initialValues: {
-      url: settings.url,
+      domain: settings.domain,
+      remote_directory: settings.remote_directory,
       user: settings.user,
       password: settings.password,
     },
     validate: generateFormValidation({
-      url: [validators.required()],
+      domain: [validators.required()],
+      remote_directory: [validators.required()],
       user: [validators.required()],
       password: [validators.required()],
     }),
-    onSubmit({ url, user, password }) {
+    onSubmit({ domain, remote_directory, user, password }) {
       return props.onSubmit({
-        url,
+        domain,
+        remote_directory,
         user,
         password
       })
