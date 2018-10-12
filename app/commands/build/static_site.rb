@@ -1,5 +1,5 @@
 module Build
-  class BuildOnLocalServer
+  class StaticSite
     attr_reader :deploy_event_id
     attr_reader :initial_path
 
@@ -64,16 +64,9 @@ module Build
             failed!("Failed webpack")
             return false
           end
-
-          success = publish
-          if !success
-            failed!("Failed publish")
-            return false
-          end
         end
       end
 
-      success!
       true
     end
 
@@ -84,11 +77,6 @@ module Build
       return false if !git_repo_url
 
       true
-    end
-
-    def success!
-      update_event("OK", "success")
-      update_deploy_status("success")
     end
 
     def failed!(message)
@@ -188,11 +176,6 @@ module Build
 
     def webpack
       puts `yarn build:assets`
-      $?.success?
-    end
-
-    def publish
-      puts `cp -r build ../build/#{repo_name}`
       $?.success?
     end
 
