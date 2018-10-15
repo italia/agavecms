@@ -11,6 +11,8 @@ class BuildSite
       Deploy::OnLocalServer.new(deploy_event_id).perform
     when "secure_ftp_with_password"
       Deploy::OnSecureFtpWithPassword.new(deploy_event_id).perform
+    when "secure_ftp_with_identity_file"
+      Deploy::OnSecureFtpWithIdentityFile.new(deploy_event_id).perform
     else
       raise "Invalid deploy adapter"
     end
