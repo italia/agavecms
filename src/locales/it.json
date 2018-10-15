@@ -229,7 +229,7 @@
   "environment.deployAdapters.sftp.user.hint": "Nome utente ftp",
   "environment.deployAdapters.sftp.password.label": "Password",
   "environment.deployAdapters.sftp.password.hint": "Password utente ftp",
-  "environment.deployAdapters.secure_ftp": "Secure Ftp",
+  "environment.deployAdapters.secure_ftp_with_password": "Secure Ftp con password",
   "environment.frontend_url": "URL del sito pubblico",
   "environment.frontend_url.hint": "Specificare l'URL del sito pubblico",
   "environment.frontend_url.placeholder": "URL del sito pubblico",

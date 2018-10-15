@@ -9,8 +9,8 @@ class BuildSite
     case environment.deploy_adapter
     when "local_server"
       Deploy::OnLocalServer.new(deploy_event_id).perform
-    when "secure_ftp"
-      Deploy::OnSecureFtp.new(deploy_event_id).perform
+    when "secure_ftp_with_password"
+      Deploy::OnSecureFtpWithPassword.new(deploy_event_id).perform
     else
       raise "Invalid deploy adapter"
     end

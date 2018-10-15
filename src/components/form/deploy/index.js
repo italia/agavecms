@@ -1,7 +1,7 @@
 import LocalServerSettings from './LocalServerSettings'
-import SFtpSettings from './SFtpSettings'
+import SecureFtpWithPasswordSettings from './SecureFtpWithPasswordSettings'
 
 export default {
   local_server: LocalServerSettings,
-  secure_ftp: SFtpSettings,
+  secure_ftp_with_password: SecureFtpWithPasswordSettings,
 }

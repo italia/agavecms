@@ -40,9 +40,9 @@ class DeploySettingsInput extends Component {
         recommended: true,
       },
       {
-        label: this.t('environment.deployAdapters.secure_ftp'),
+        label: this.t('environment.deployAdapters.secure_ftp_with_password'),
         iconUrl: '/assets/images/sftp.png',
-        value: 'secure_ftp',
+        value: 'secure_ftp_with_password',
       },
     ]
 

@@ -1,5 +1,5 @@
 module Deploy
-  class OnSecureFtp
+  class OnSecureFtpWithPassword
     attr_reader :deploy_event_id
     attr_reader :initial_path
 

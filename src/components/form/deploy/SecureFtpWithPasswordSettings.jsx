@@ -6,7 +6,7 @@ import { reduxForm } from 'redux-form'
 import generateFormValidation from 'utils/generateFormValidation'
 import validators from 'utils/validators'
 
-class SFtpSettings extends Component {
+class SecureFtpWithPasswordSettings extends Component {
   render() {
     const {
       error,
@@ -59,13 +59,13 @@ class SFtpSettings extends Component {
   }
 }
 
-SFtpSettings.smallModal = true
+SecureFtpWithPasswordSettings.smallModal = true
 
 const formConfig = {
-  form: 'SFtpSettings'
+  form: 'SecureFtpWithPasswordSettings'
 }
 
-SFtpSettings.propTypes = {
+SecureFtpWithPasswordSettings.propTypes = {
   submitting: PropTypes.bool.isRequired,
   error: PropTypes.string,
   handleSubmit: PropTypes.func.isRequired,
@@ -103,4 +103,4 @@ function mapStateToProps(state, props) {
 }
 
 
-export default connect(mapStateToProps)(reduxForm(formConfig)(SFtpSettings))
+export default connect(mapStateToProps)(reduxForm(formConfig)(SecureFtpWithPasswordSettings))
