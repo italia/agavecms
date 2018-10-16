@@ -34,6 +34,7 @@ RUN \
     yarn \
     sshpass \
     rsync \
+    lftp \
     2>/dev/null \
   && apt-get clean --assume-yes \
   && apt-get autoremove --assume-yes \
