@@ -49,6 +49,11 @@ class DeploySettingsInput extends Component {
         iconUrl: '/assets/images/sftp.png',
         value: 'secure_ftp_with_identity_file',
       },
+      {
+        label: this.t('environment.deployAdapters.ftp'),
+        iconUrl: '/assets/images/ftp.png',
+        value: 'ftp',
+      },
     ]
 
     const FormComponent = activeAdapter ? deploySettings[activeAdapter] : null
