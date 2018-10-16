@@ -253,9 +253,10 @@ class StatusPane extends Component {
   renderEnv(env) {
     const deployGitRepoUrl = env.attributes.git_repo_url
     const deployStatus = env.attributes.deploy_status
+    const deployAdapter = env.attributes.deploy_adapter
 
     const calculateStatus = () => {
-      if (!deployGitRepoUrl) {
+      if (!deployGitRepoUrl || !deployAdapter) {
         return 'to-configure'
       }
 
