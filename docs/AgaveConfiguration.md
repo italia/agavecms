@@ -123,25 +123,18 @@ Per avviare Docker, dunque è necessario copiare il file `.env` e
 ## 6. Build & Up
 
 Per avviare l'immagine Docker bisogna entrare all'interno del cloud
-server e lanciare i seguenti comandi:
+server e eseguire:
 
 ```
-docker-compose \
--f docker/docker-compose.yml \
---project-name agave \
-build
-
 docker-compose \
 -f docker/docker-compose.yml \
 --project-name agave \
 up -d
 ```
 
-Il primo esegue la fase di **build**, dove vengono generati tutti i
-file necessario all'avvio dell'applicazione. Il secondo comando
-lancia l'applicazione in base ai parametri forniti dal file `.env`.
-L'opzione `-d` è quella di `detach` avvaindo l'applicazione in
-background.
+Questo comando lancia l'applicazione in base ai parametri forniti dal 
+file `.env`. L'opzione `-d` è quella di `detach` avvaindo l'applicazione
+in background.
 
 ## 7. GDPR
 
