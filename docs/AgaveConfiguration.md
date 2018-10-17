@@ -136,6 +136,11 @@ Questo comando lancia l'applicazione in base ai parametri forniti dal
 file `.env`. L'opzione `-d` è quella di `detach` avvaindo l'applicazione
 in background.
 
+### Come accedere in un container
+
+Visualizzare il nome di un servizio utilizzando il comando `docker ps -a`.
+Eseguire `docker exec -ti <NOME_SERVIZIO> bash` per aprire una shell.
+
 ## 7. GDPR
 
 Per poter essere in linea con le attuali leggi in materia di privacy
