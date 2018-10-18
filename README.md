@@ -45,7 +45,6 @@ Per la gestione dei contenuti invece consultare la guida relativa al [CMS](/docs
 Il sito statico è un template Jekyll popolato al momento del build con i contenuti creati sull'area amministrativa.
 Esiste un template di esempio su questo [repository](https://github.com/cantierecreativo/agave-template-school) .
 
-
 # Documentazione e Configurazione
 
 * Cos'è [Agave](/docs/AgaveGeneralDocumentation.md)?
@@ -56,6 +55,11 @@ Esiste un template di esempio su questo [repository](https://github.com/cantiere
 * Come [pubblico](/docs/Build.md) il mio sito?
 * Come posso provare Agave in [locale](/docs/Development.md)?
 * Come posso [esportare](docs/GenerateBackup.md) i dati?
+
+# Agave admin di esempio
+
+E' possibile vedere in anteprima la demo dell'area admin di Agave al seguente
+[indirizzo](https://agaveitalia-admin.cantierecreativo.eu).
 
 # Bug noti
 
