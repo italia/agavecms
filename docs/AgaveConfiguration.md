@@ -100,9 +100,8 @@ etc.).
 
 Dopo aver creato un'istanza, è necessario:
 
-1. Creare il file `.env`;
-2. Copiare il file `docker-compose.yml`;
-3. Avviare l'immagine Docker.
+1. Copiare i file `.env` e `docker-compose.yml`;
+2. Avviare l'immagine Docker.
 
 **N.B.**
 Lo spazio dei volumi da dedicare all'applicazione dipendono dal numero
