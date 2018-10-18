@@ -53,7 +53,7 @@ agave devi eseguire i seguenti passi:
 
 * Indicare il nome del _dominio_ del server remoto, la _directory_ di
   destinazione della compilazione, il nome utente (_users_) e la
-  _chiave privata_.
+  _chiave privata_ creata sul server dove si vuole effettuare il deploy.
 
   Per poter funzionare correttamente, la chiave non deve essere crittografata
   con la password. Ad esempio, utilizzando il software `ssh-keygen`:
@@ -64,6 +64,9 @@ agave devi eseguire i seguenti passi:
     Enter file in which to save the key (/home/user/.ssh/id_rsa): /tmp/tmp_key
     Enter passphrase (empty for no passphrase): <Premere invio per non crittografare la chiave>
   ```
+  
+  Aggiungere la chiave pubblica (in questo caso `/tmp/tmp_key.pub` all'interno
+  del file `~/.ssh/authorized_keys`.
 
 # Link esterni
 
