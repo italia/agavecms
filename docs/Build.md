@@ -61,7 +61,7 @@ agave devi eseguire i seguenti passi:
 
 # Link esterni
 
-Esistono dei siti statici di esempio già preconfigurati [agave-example-school](https://github.com/matteomanzo/agave-example-school).
+Esistono dei siti statici di esempio già preconfigurati [agave-example-school](https://github.com/italia/agave-template-school).
 
 # N.B.
 Essendo i contenuti statici, se sono stati modificati i dati, è
