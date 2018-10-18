@@ -28,6 +28,9 @@ agave devi eseguire i seguenti passi:
   In questo modo puoi impostare uno o più ambienti di deploy.
   __Attenzione__, la variabile deve necessariamente essere scritta su
   una singola riga.
+* Rilanciare la build dell'immagine docker. Questa operazione è necessaria
+  per ricreare i file di configurazione di ngnix e i certificati
+  del nuovo domini.
 * Impostare gli ambienti configurati su _Impostazioni di deploy_,
   creando gli ambienti precedentemente dichiarati su STATIC_DOMAINS.
   Impostare l'URL del repository Git e il nome del dominio.
