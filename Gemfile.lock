@@ -334,6 +334,7 @@ DEPENDENCIES
   pry-byebug
   pry-rails
   puma
+  rack (>= 2.0.6)
   rack-cors
   rails (~> 5.2.0)
   rails_12factor
