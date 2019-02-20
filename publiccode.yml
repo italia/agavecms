@@ -1,0 +1,68 @@
+publiccode-yaml-version: '0.1'
+
+releaseDate: '2018-12-17'
+name: Agave CMS
+url: 'https://github.com/italia/agavecms'
+softwareType: standalone
+developmentStatus: stable
+
+platforms:
+  - web
+  - windows
+  - mac
+  - linux
+tags:
+  - content-management
+
+softwareVersion: 1.0.0
+
+maintenance:
+  type: community
+  contacts:
+    - name: Cantiere Creativo
+      email: info@cantierecreativo.net
+
+legal:
+  license: GNU Affero General Public License version 3
+  repoOwner: Developers Italia
+
+localisation:
+  localisationReady: 'yes'
+  availableLanguages:
+    - ita
+    - eng
+
+it:
+  conforme:
+    sicuro: 'yes'
+    privacy: 'yes'
+
+description:
+  ita:
+    shortDescription: >-
+      Agave è un software open-source composto da una serie di strumenti
+      interconnessi che cooperano tra loro per la generazione di un sito statico
+    documentation: >-
+      https://github.com/italia/agavecms/blob/master/docs/AgaveGeneralDocumentation.md
+    freeTags:
+      - cms
+      - static-site
+      - docker
+      - jekyll
+    longDescription: >-
+      <p>Agave è un software open-source composto da una serie di strumenti
+      interconnessi che cooperano tra loro per la generazione di un sito
+      statico.</p>
+
+      <p>Lo scopo è fornire una soluzione avanzata che permetta di realizzare e
+      mantenere un sito statico, mettendo a disposizione gli automatismi per
+      publicare contenuti ed estendere le sezioni del sito tramite
+      un'interfaccia usabile e immediata.</p>
+
+      <p>Agave è composto dai seguenti blocchi logici:</p>
+
+      <ul>
+        <li>Un'<strong>area amministrativa</strong> (CMS);</li>
+        <li>Un <strong>sito web statico</strong> (Jekyll) contenente un <strong>template</strong> Jekyll ;</li>
+        <li>Un'<strong>ambiente di produzione</strong> per la generazione e la pubblicazione del sito e della parte di amministrazione (ambiente Docker).</li>
+      </ul>
