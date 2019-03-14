@@ -1,9 +1,9 @@
-publiccode-yaml-version: '0.1'
+publiccodeYmlVersion: '0.2'
 
 releaseDate: '2018-12-17'
 name: Agave CMS
 url: 'https://github.com/italia/agavecms'
-softwareType: standalone
+softwareType: 'standalone/web'
 developmentStatus: stable
 
 platforms:
@@ -11,58 +11,64 @@ platforms:
   - windows
   - mac
   - linux
-tags:
-  - content-management
 
-softwareVersion: 1.0.0
+categories:
+  - content-management
+  - cms
+  - website-builder
+
+softwareVersion: '1.0.0'
 
 maintenance:
   type: community
   contacts:
     - name: Cantiere Creativo
-      email: info@cantierecreativo.net
+      email: 'info@cantierecreativo.net'
 
 legal:
-  license: GNU Affero General Public License version 3
+  license: 'AGPL-3.0'
   repoOwner: Developers Italia
 
 localisation:
-  localisationReady: 'yes'
+  localisationReady: yes
   availableLanguages:
-    - ita
-    - eng
+    - it
+    - en
 
 it:
+  countryExtensionVersion: '0.2'
   conforme:
-    sicuro: 'yes'
-    privacy: 'yes'
+    misureMinimeSicurezza: yes
+    gdpr: yes
 
 description:
-  ita:
+  it:
+    genericName: Content Management System
+    features:
+      - editor HTML 
+      - gestione SEO
+      - gestione modelli dei dati
+      - gestione menu di navigazione
+      - gestione utenti e ruoli
+      - backup dei dati 
+
     shortDescription: >-
-      Agave è un software open-source composto da una serie di strumenti
+      Agave è un software open source composto da una serie di strumenti
       interconnessi che cooperano tra loro per la generazione di un sito statico
     documentation: >-
       https://github.com/italia/agavecms/blob/master/docs/AgaveGeneralDocumentation.md
-    freeTags:
-      - cms
-      - static-site
-      - docker
-      - jekyll
     longDescription: >-
-      <p>Agave è un software open-source composto da una serie di strumenti
+      Agave è un software open-source composto da una serie di strumenti
       interconnessi che cooperano tra loro per la generazione di un sito
-      statico.</p>
+      statico.
 
-      <p>Lo scopo è fornire una soluzione avanzata che permetta di realizzare e
+      Lo scopo è fornire una soluzione avanzata che permetta di realizzare e
       mantenere un sito statico, mettendo a disposizione gli automatismi per
       publicare contenuti ed estendere le sezioni del sito tramite
-      un'interfaccia usabile e immediata.</p>
+      un'interfaccia usabile e immediata.
 
-      <p>Agave è composto dai seguenti blocchi logici:</p>
+      Agave è composto dai seguenti blocchi logici:
 
-      <ul>
-        <li>Un'<strong>area amministrativa</strong> (CMS);</li>
-        <li>Un <strong>sito web statico</strong> (Jekyll) contenente un <strong>template</strong> Jekyll ;</li>
-        <li>Un'<strong>ambiente di produzione</strong> per la generazione e la pubblicazione del sito e della parte di amministrazione (ambiente Docker).</li>
-      </ul>
+      * Un'**area amministrativa** (CMS)
+      * Un **sito web statico** (Jekyll) contenente un **template** Jekyll 
+      * Un **ambiente di produzione** per la generazione e la pubblicazione del sito e della parte di amministrazione (ambiente Docker).
