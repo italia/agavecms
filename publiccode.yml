@@ -14,7 +14,6 @@ platforms:
 
 categories:
   - content-management
-  - cms
   - website-builder
 
 softwareVersion: '1.0.0'
