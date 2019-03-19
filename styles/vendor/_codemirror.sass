@@ -411,7 +411,9 @@ span.CodeMirror-selectedtext
       margin: 0
       padding: 0
 
-  a
+  a, button
+    border: none
+    padding: 0
     display: inline-block
     text-align: center
     text-decoration: none !important
@@ -430,7 +432,7 @@ span.CodeMirror-selectedtext
       color: white !important
 
     &:hover:after
-      content: attr(data-title)
+      content: attr(title)
       position: absolute
       z-index: 1054
       text-align: center
