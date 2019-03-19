@@ -59,7 +59,7 @@ description:
       interconnessi che cooperano tra loro per la generazione di un sito statico
     documentation: >-
       https://github.com/italia/agavecms/blob/master/docs/AgaveGeneralDocumentation.md
-    longDescription: >-
+    longDescription: |
       Agave è un software open-source composto da una serie di strumenti
       interconnessi che cooperano tra loro per la generazione di un sito
       statico.
