@@ -8,9 +8,6 @@ developmentStatus: stable
 
 platforms:
   - web
-  - windows
-  - mac
-  - linux
 
 categories:
   - content-management
@@ -26,7 +23,7 @@ maintenance:
 
 legal:
   license: 'AGPL-3.0'
-  repoOwner: Developers Italia
+  repoOwner: Team per la Trasformazione Digitale - Presidenza del Consiglio dei Ministri
 
 localisation:
   localisationReady: yes
@@ -39,6 +36,8 @@ it:
   conforme:
     misureMinimeSicurezza: yes
     gdpr: yes
+  riuso:
+    codiceIPA: PCM
 
 description:
   it:
@@ -50,6 +49,10 @@ description:
       - gestione menu di navigazione
       - gestione utenti e ruoli
       - backup dei dati 
+
+    screenshots:
+      - screenshots/admin.png
+      - screenshots/edit_content.png
 
     shortDescription: >-
       Agave è un software open source composto da una serie di strumenti
