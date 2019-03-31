@@ -2,7 +2,7 @@ const webpack = require('webpack');
 const path = require('path');
 const autoprefixer = require('autoprefixer');
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
-const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 const BUILD_DIR = path.resolve(__dirname, 'public/assets');
@@ -11,7 +11,8 @@ const BOWER_DIR = path.resolve(__dirname, 'bower_components');
 
 const plugins = [
   new webpack.EnvironmentPlugin(['NODE_ENV', 'APP_VERSION', 'API_BASE_URL', 'GOOGLE_MAPS_API_KEY']),
-  new ExtractTextPlugin('style.css'),
+  new MiniCssExtractPlugin({filename: 'style.css'}),
+  new webpack.LoaderOptionsPlugin({ options: {} })
 ];
 
 if (process.env.NODE_ENV === 'production') {
@@ -35,9 +36,11 @@ const config = {
     rules: [
       {
         test: /\.json$/,
-        use: [
-          'json-loader',
-        ]
+        type: 'javascript/auto',
+        exclude: /(node_modules|bower_components)/,
+        use: [{
+          loader: 'json-loader',
+        }],
       },
       {
         test: /\.ejs/,
@@ -50,31 +53,28 @@ const config = {
         exclude: /(node_modules|bower_components)/,
         use: [
           'babel-loader',
-          'eslint-loader',
         ]
       },
       {
         test: /\.s(c|a)ss$/,
-        use: ExtractTextPlugin.extract({
-          fallback: "style-loader",
-          use: [
-            {
-              loader: 'css-loader',
-              options: {
-                minimize: true
-              },
+        use: [
+          { loader: MiniCssExtractPlugin.loader },
+          {
+            loader: 'css-loader',
+            options: {
+              minimize: true
             },
-            {
-              loader: 'postcss-loader',
-              options: {
-                plugins: function() {
-                  return [autoprefixer('last 2 versions', 'ie 10')];
-                }
+          },
+          {
+            loader: 'postcss-loader',
+            options: {
+              plugins: function() {
+                return [autoprefixer('last 2 versions', 'ie 10')];
               }
-            },
-            'sass-loader',
-          ]
-        })
+            }
+          },
+          { loader: "sass-loader" }
+        ],
       }
     ],
   },

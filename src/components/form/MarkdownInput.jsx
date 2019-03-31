@@ -10,8 +10,8 @@ class MarkdownInput extends Component {
       return
     }
 
-    require.ensure(['simplemde'], (require) => {
-      const SimpleMDE = require('simplemde')
+    require.ensure(['easymde'], (require) => {
+      const EasyMDE = require('easymde')
 
       if (!this.isComponentMounted) {
         return
@@ -20,7 +20,7 @@ class MarkdownInput extends Component {
       const { onChange, onBlur, value } = this.props
       const input = ReactDOM.findDOMNode(this.refs.input)
 
-      this.mde = new SimpleMDE({
+      this.mde = new EasyMDE({
         element: input,
         status: false,
         spellChecker: false,
@@ -28,49 +28,49 @@ class MarkdownInput extends Component {
         toolbar: [
           {
             name: 'heading',
-            action: SimpleMDE.toggleHeadingSmaller,
+            action: EasyMDE.toggleHeadingSmaller,
             className: 're-icon re-formatting',
             title: 'Heading',
           },
           {
             name: 'bold',
-            action: SimpleMDE.toggleBold,
+            action: EasyMDE.toggleBold,
             className: 're-icon re-bold',
             title: 'Bold',
           },
           {
             name: 'italic',
-            action: SimpleMDE.toggleItalic,
+            action: EasyMDE.toggleItalic,
             className: 're-icon re-italic',
             title: 'Italic',
           },
           {
             name: 'strikethrough',
-            action: SimpleMDE.toggleStrikethrough,
+            action: EasyMDE.toggleStrikethrough,
             className: 're-icon re-deleted',
             title: 'Strikethrough',
           },
           {
             name: 'unordered-list',
-            action: SimpleMDE.toggleUnorderedList,
+            action: EasyMDE.toggleUnorderedList,
             className: 're-icon re-unorderedlist',
             title: 'Generic List',
           },
           {
             name: 'ordered-list',
-            action: SimpleMDE.toggleOrderedList,
+            action: EasyMDE.toggleOrderedList,
             className: 're-icon re-orderedlist',
             title: 'Numbered List',
           },
           {
             name: 'quote',
-            action: SimpleMDE.toggleBlockquote,
+            action: EasyMDE.toggleBlockquote,
             className: 're-icon re-quote',
             title: 'Quote',
           },
           {
             name: 'link',
-            action: SimpleMDE.drawLink,
+            action: EasyMDE.drawLink,
             className: 're-icon re-link',
             title: 'Create Link',
           },
