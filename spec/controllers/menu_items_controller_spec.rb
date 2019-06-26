@@ -76,8 +76,7 @@ RSpec.describe MenuItemsController, type: :controller do
     let(:payload) { {} }
 
     let(:action) do
-      request.env["RAW_POST_DATA"] = payload.to_json
-      post :create
+      post :create, body: payload.to_json
     end
 
     it_behaves_like "an endpoint"
@@ -192,8 +191,7 @@ RSpec.describe MenuItemsController, type: :controller do
     let(:menu_item) { create(:menu_item, site: site) }
 
     let(:action) do
-      request.env["RAW_POST_DATA"] = payload.to_json
-      put :update, params: {id: menu_item}
+      put :update, params: {id: menu_item}, body: payload.to_json
     end
 
     it_behaves_like "an endpoint"
@@ -241,8 +239,7 @@ RSpec.describe MenuItemsController, type: :controller do
 
         context "with invalid id" do
           let(:action) do
-            request.env["RAW_POST_DATA"] = payload.to_json
-            put :update, params: {id: "12"}
+            put :update, params: {id: "12"}, body: payload.to_json
           end
 
           before do
@@ -285,8 +282,9 @@ RSpec.describe MenuItemsController, type: :controller do
     let(:menu_item) { create(:menu_item, site: site) }
 
     let(:action) do
-      request.env["RAW_POST_DATA"] = payload.to_json
-      delete :destroy, params: {id: menu_item.id}
+      delete :destroy,
+        params: {id: menu_item.id},
+        body: payload.to_json
     end
 
     it_behaves_like "an endpoint"

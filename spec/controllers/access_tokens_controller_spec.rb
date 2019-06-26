@@ -73,8 +73,7 @@ RSpec.describe AccessTokensController, type: :controller do
     let(:payload) { {} }
 
     let(:action) do
-      request.env["RAW_POST_DATA"] = payload.to_json
-      post :create
+      post :create, body: payload.to_json
     end
 
     it_behaves_like "an endpoint"
@@ -161,8 +160,7 @@ RSpec.describe AccessTokensController, type: :controller do
     let(:new_role) { create(:role, site: site) }
 
     let(:action) do
-      request.env["RAW_POST_DATA"] = payload.to_json
-      put :update, params: {id: access_token}
+      put :update, params: {id: access_token}, body: payload.to_json
     end
 
     it_behaves_like "an endpoint"
@@ -213,8 +211,7 @@ RSpec.describe AccessTokensController, type: :controller do
 
         context "with invalid id" do
           let(:action) do
-            request.env["RAW_POST_DATA"] = payload.to_json
-            put :update, params: {id: "12"}
+            put :update, params: {id: "12"}, body: payload.to_json
           end
 
           before do
@@ -258,8 +255,9 @@ RSpec.describe AccessTokensController, type: :controller do
     end
 
     let(:action) do
-      request.env["RAW_POST_DATA"] = payload.to_json
-      post :regenerate_token, params: {id: access_token.id}
+      post :regenerate_token,
+        params: {id: access_token.id},
+        body: payload.to_json
     end
 
     it_behaves_like "an endpoint"
@@ -284,7 +282,9 @@ RSpec.describe AccessTokensController, type: :controller do
         end
 
         it "conforms with the response schema" do
-          expect(response).to conform_to_schema(:site_api, :access_token, :regenerate_token)
+          expect(response).to conform_to_schema(
+            :site_api, :access_token, :regenerate_token
+          )
         end
       end
     end
@@ -295,8 +295,9 @@ RSpec.describe AccessTokensController, type: :controller do
     let(:access_token) { create(:access_token, :custom, site: site) }
 
     let(:action) do
-      request.env["RAW_POST_DATA"] = payload.to_json
-      delete :destroy, params: {id: access_token.id}
+      delete :destroy,
+        params: {id: access_token.id},
+        body: payload.to_json
     end
 
     it_behaves_like "an endpoint"
@@ -320,7 +321,9 @@ RSpec.describe AccessTokensController, type: :controller do
       end
 
       it "conforms with the response schema" do
-        expect(response).to conform_to_schema(:site_api, :access_token, :destroy)
+        expect(response).to conform_to_schema(
+          :site_api, :access_token, :destroy
+        )
       end
     end
   end
