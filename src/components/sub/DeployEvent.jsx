@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react'
 import Component from 'components/BaseComponent'
+import { connect } from 'react-redux'
 import {
   FormattedMessage,
   FormattedTime,
@@ -223,14 +224,14 @@ class DeployEvent extends Component {
   }
 
   render() {
-    const { event } = this.props
+    const { event, environment } = this.props
 
     return (
       <div className="DeployEvent">
         <div className="DeployEvent__inner">
           <div className="DeployEvent__title">
             <div className="DeployEvent__environment">
-              {event.attributes.environment.name}
+              {environment.attributes.name}
             </div>
             <FormattedMessage id={`deployEvent.type.${event.attributes.event_type}`} />
           </div>
@@ -267,8 +268,16 @@ class DeployEvent extends Component {
 
 DeployEvent.propTypes = {
   event: PropTypes.object.isRequired,
+  environment: PropTypes.object.isRequired
 }
 
-export default DeployEvent
+function mapStateToProps(state, { event }) {
+  const environment = state.environments[event.relationships.environment.data.id]
+
+  return { environment, event }
+}
+
+
+export default connect(mapStateToProps)(DeployEvent)
 
 /* eslint-enable react/no-multi-comp */
