@@ -29,6 +29,7 @@
     "bemo-webfonts": "1.0.1",
     "bower": "*",
     "css-loader": "^0.28.7",
+    "cypress": "^3.3.1",
     "eslint": "3.4.0",
     "eslint-config-airbnb": "10.0.1",
     "eslint-import-resolver-webpack": "^0.8.3",
