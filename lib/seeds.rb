@@ -1,30 +1,6 @@
 class Seeds
   def setup
-    site = Site.first_or_initialize
-
-    site.update_attributes!(
-      name: "Agave",
-      domain: ENV.fetch("APP_DOMAIN"),
-      timezone: "Europe/Rome",
-      locales: "{it}",
-      production_webhook_token: "production_webhook_token",
-      theme: {
-        "logo" => nil,
-        "dark_color" => {
-          "red" => 46, "blue" => 41, "alpha" => 255, "green" => 41
-        },
-        "light_color" => {
-          "red" => 227, "blue" => 245, "alpha" => 255, "green" => 252
-        },
-        "accent_color" => {
-          "red" => 20, "blue" => 148, "alpha" => 255, "green" => 204
-        },
-        "primary_color" => {
-          "red" => 17, "blue" => 126, "alpha" => 255, "green" => 178
-        }
-      }
-    )
-
+    site
     access_token
     role
 
@@ -66,21 +42,55 @@ class Seeds
 
   private
 
+  def site
+    @site ||= begin
+      site = Site.first_or_initialize
+
+      site.update_attributes!(
+        name: "Agave",
+        domain: ENV.fetch("APP_DOMAIN"),
+        timezone: "Europe/Rome",
+        locales: "{it}",
+        production_webhook_token: "production_webhook_token",
+        theme: {
+          "logo" => nil,
+          "dark_color" => {
+            "red" => 46, "blue" => 41, "alpha" => 255, "green" => 41
+          },
+          "light_color" => {
+            "red" => 227, "blue" => 245, "alpha" => 255, "green" => 252
+          },
+          "accent_color" => {
+            "red" => 20, "blue" => 148, "alpha" => 255, "green" => 204
+          },
+          "primary_color" => {
+            "red" => 17, "blue" => 126, "alpha" => 255, "green" => 178
+          }
+        }
+      )
+
+      site
+    end
+  end
+
+
   def access_token
     @access_token ||= begin
-      AccessToken.where(
+      access_token = AccessToken.where(
         site: site,
         name: "rwtoken",
         hardcoded_type: "admin"
       ).first_or_initialize
       read_write_token = ENV["READ_WRITE_ACCESS_TOKEN"] || "rwtoken"
       access_token.update_attributes!(token: read_write_token)
+
+      access_token
     end
   end
 
   def role
     @role ||= begin
-      Role.where(
+      role = Role.where(
         site: site,
         name: "Admin"
       ).first_or_initialize
@@ -96,6 +106,8 @@ class Seeds
         can_dump_data: true,
         can_import_and_export: true
       )
+
+      role
     end
   end
 end
