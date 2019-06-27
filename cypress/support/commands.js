@@ -4,3 +4,7 @@ Cypress.Commands.add('setSession', () => {
     '{"session" :{"bearerToken": "rwtoken"}}'
   )
 })
+
+Cypress.Commands.add('clearSession', () => {
+  window.localStorage.removeItem('persistedState')
+})
