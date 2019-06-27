@@ -24,6 +24,9 @@ class BaseController < ApplicationController
       controller_name,
       action_name
     ).validate_schema(payload)
+
+    return if performed?
+
     if errors.any?
       render_error ApiError.new("INVALID_FORMAT", messages: errors)
     end
