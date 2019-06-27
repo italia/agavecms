@@ -1,3 +1,3 @@
 require "seeds"
 
-Seeds.setup
+Seeds.new.setup

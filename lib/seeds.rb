@@ -1,5 +1,5 @@
-module Seeds
-  def self.setup
+class Seeds
+  def setup
     site = Site.first_or_initialize
 
     site.update_attributes!(
@@ -25,16 +25,10 @@ module Seeds
       }
     )
 
-    read_write_token = ENV["READ_WRITE_ACCESS_TOKEN"] || "rwtoken"
+    access_token
+    role
+
     read_token = ENV["READ_ACCESS_TOKEN"] || "rtoken"
-
-    access_token = AccessToken.where(
-      site: site,
-      name: "rwtoken",
-      hardcoded_type: "admin"
-    ).first_or_initialize
-
-    access_token.update_attributes!(token: read_write_token)
 
     read_access_token = AccessToken.where(
       site: site,
@@ -43,23 +37,6 @@ module Seeds
     ).first_or_initialize
 
     read_access_token.update_attributes!(token: read_token)
-
-    role = Role.where(
-      site: site,
-      name: "Admin"
-    ).first_or_initialize
-
-    role.update_attributes!(
-      can_edit_site: true,
-      can_edit_schema: true,
-      can_manage_users: true,
-      can_publish_to_production: true,
-      can_edit_favicon: true,
-      can_manage_access_tokens: true,
-      can_perform_site_search: true,
-      can_dump_data: true,
-      can_import_and_export: true
-    )
 
     RoleItemTypePermission.where(
       role: role,
@@ -80,5 +57,45 @@ module Seeds
       last_name: "User",
       role: role
     )
+  end
+
+  def cy_setup
+    setup
+    access_token.update_attributes!(role: role)
+  end
+
+  private
+
+  def access_token
+    @access_token ||= begin
+      AccessToken.where(
+        site: site,
+        name: "rwtoken",
+        hardcoded_type: "admin"
+      ).first_or_initialize
+      read_write_token = ENV["READ_WRITE_ACCESS_TOKEN"] || "rwtoken"
+      access_token.update_attributes!(token: read_write_token)
+    end
+  end
+
+  def role
+    @role ||= begin
+      Role.where(
+        site: site,
+        name: "Admin"
+      ).first_or_initialize
+
+      role.update_attributes!(
+        can_edit_site: true,
+        can_edit_schema: true,
+        can_manage_users: true,
+        can_publish_to_production: true,
+        can_edit_favicon: true,
+        can_manage_access_tokens: true,
+        can_perform_site_search: true,
+        can_dump_data: true,
+        can_import_and_export: true
+      )
+    end
   end
 end
