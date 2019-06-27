@@ -5,13 +5,20 @@ describe('The Home Page for non-autorized users', () => {
   })
 
   context('With wrong credentials', () => {
+    const wrong_email = "foo@bar.com"
+    const wrong_password = "foo_bar"
+
     beforeEach(() => {
       cy.visit('/sign_in')
-      cy.loginByForm('foo@bar.com', 'foo_bar')
+
+      cy.get('input[name=email]').type(wrong_email)
+      cy.get('input[name=password]').type(wrong_password)
+      cy.get('form').submit()
     })
 
     afterEach(() => {
-      cy.clearLoginForm()
+      cy.get('input[name=email]').clear()
+      cy.get('input[name=password]').clear()
     })
 
     it('Displays form error', () => {
@@ -28,12 +35,15 @@ describe('The Home Page for non-autorized users', () => {
   })
 
   context('When user is logged', () =>{
-    const user = "admin@agave.example.it"
+    const email = "admin@agave.example.it"
     const password = "secret"
 
     beforeEach(() => {
       cy.visit('/sign_in')
-      cy.loginByForm(user, password)
+
+      cy.get('input[name=email]').type(email)
+      cy.get('input[name=password]').type(password)
+      cy.get('form').submit()
     })
 
     it('Redirects to /admin/item_types', () => {
@@ -44,10 +54,7 @@ describe('The Home Page for non-autorized users', () => {
 
 describe('The Home Page for autorized users', () => {
   beforeEach(() => {
-    window.localStorage.setItem(
-      'persistedState',
-      '{"session" :{"bearerToken": "rwtoken"}}'
-    )
+    cy.setSession()
   })
 
   it('redirects users to setup', () => {
