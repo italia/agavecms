@@ -35,11 +35,6 @@ class Seeds
     )
   end
 
-  def cy_setup
-    setup
-    access_token.update_attributes!(role: role)
-  end
-
   private
 
   def site

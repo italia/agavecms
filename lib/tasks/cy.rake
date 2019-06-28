@@ -5,6 +5,6 @@ namespace :cy do
   task seed: :environment do
     DatabaseCleaner.strategy = :truncation
     DatabaseCleaner.clean
-    Seeds.new.cy_setup
+    Seeds.new.setup
   end
 end
