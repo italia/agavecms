@@ -53,7 +53,6 @@ describe('The Items', () => {
               validators: {},
               localized: false,
               position: 1,
-              appeareance: {}
             }
           }
         })
@@ -62,6 +61,9 @@ describe('The Items', () => {
   })
 
   describe('When user is logged', () => {
+    const email = "admin@agave.example.it"
+    const password = "secret"
+
     beforeEach(() => {
       cy.visit('/sign_in')
 
@@ -78,6 +80,12 @@ describe('The Items', () => {
     context('When create a new item', () => {
       it('requires login', () => {
         cy.visit(`/editor/item_types/${new_item_type_id}/items/new`)
+        cy.get('.icon--add').click()
+        cy.get('.CodeMirror textarea')
+          .type('Test', { force: true })
+        cy.get('.button--huge').click()
+        cy.visit(`/editor/item_types/${new_item_type_id}/items/new`)
+        cy.contains('Test')
       })
     })
   })
