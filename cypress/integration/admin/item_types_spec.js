@@ -76,9 +76,9 @@ describe('The ItemTypes', () => {
 
       it('Contains price field', () => {
         cy.visit(`/admin/item_types/`)
-
         cy.get('.ItemTypeRow').click()
-        cy.contains("Price")
+
+        cy.contains("Price").should('be.visible')
       })
     })
   })

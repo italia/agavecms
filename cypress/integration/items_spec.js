@@ -85,7 +85,8 @@ describe('The Items', () => {
           .type('Test', { force: true })
         cy.get('.button--huge').click()
         cy.visit(`/editor/item_types/${new_item_type_id}/items/new`)
-        cy.contains('Test')
+
+        cy.contains('Test').should('be.visible')
       })
     })
   })
