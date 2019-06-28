@@ -13,16 +13,10 @@ describe('Item Types', () => {
       let new_item_type_id = ''
 
       beforeEach(() => {
-        cy.request({
-          method: 'POST',
-          url: 'http://agave.lvh.me:3000/api/item-types',
-          headers: {
-            Accept: 'application/json',
-            'Content-type': 'application/json',
-            Authorization: 'Bearer rwtoken'
-          },
-          body: {
-            data: {
+        cy.
+          post(
+            '/item-types',
+            {
               type: 'item_type',
               attributes: {
                 name: 'Blog post',
@@ -38,20 +32,13 @@ describe('Item Types', () => {
                 }
               }
             }
-          }
-        }).then((response) => {
-          new_item_type_id = response.body.data.id
+          ).
+          then(response => {
+            new_item_type_id = response.body.data.id
 
-          cy.request({
-            method: 'POST',
-            url: `http://agave.lvh.me:3000/api/item-types/${new_item_type_id}/fields`,
-            headers: {
-              Accept: 'application/json',
-              'Content-type': 'application/json',
-              Authorization: 'Bearer rwtoken'
-            },
-            body: {
-              data: {
+            cy.post(
+              `/item-types/${new_item_type_id}/fields`,
+              {
                 type: 'field',
                 attributes: {
                   label: 'Price',
@@ -64,13 +51,12 @@ describe('Item Types', () => {
                   appeareance: {}
                 }
               }
-            }
+            )
           })
-        })
       })
 
       it('shows fields', () => {
-        cy.visit(`/admin/item_types/`)
+        cy.visit('/admin/item_types')
         cy.get('.ItemTypeRow').click()
 
         cy.contains('Price').should('be.visible')
