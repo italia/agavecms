@@ -65,16 +65,9 @@ describe('The Items', () => {
     const password = "secret"
 
     beforeEach(() => {
-      cy.visit('/sign_in')
-
-      cy.get('input[name=email]').type(email)
-      cy.get('input[name=password]').type(password)
-      cy.get('form').submit()
-
-    })
-
-    afterEach(() => {
+      cy.clearCookies()
       cy.clearSession()
+      cy.logIn()
     })
 
     context('When create a new item', () => {

@@ -6,11 +6,9 @@ describe('The ItemTypes', () => {
 
   describe('When user is logged', () => {
     beforeEach(() => {
-      cy.setSession()
-    })
-
-    afterEach(() => {
+      cy.clearCookies()
       cy.clearSession()
+      cy.logIn()
     })
 
     context('With an item type', () => {

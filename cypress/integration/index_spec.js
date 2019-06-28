@@ -6,14 +6,11 @@ describe('The Home Page', () => {
 
   context('When user is logged', () =>{
     beforeEach(() => {
-      cy.setSession()
+      cy.clearCookies()
+      cy.logIn()
     })
 
-    afterEach(() => {
-      cy.clearSession()
-    })
-
-    it('redirects users to setup', () => {
+    it('redirects to admin', () => {
       cy.visit('/')
       cy.location('pathname').should('eq', '/admin/item_types')
     })
