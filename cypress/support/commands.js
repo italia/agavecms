@@ -9,7 +9,14 @@ Cypress.Commands.add('clearSession', () => {
   window.localStorage.removeItem('persistedState')
 })
 
+Cypress.Commands.add('logOut', () => {
+  cy.clearCookies()
+  cy.clearSession()
+})
+
 Cypress.Commands.add('logIn', () => {
+  cy.logOut()
+
   const email = 'admin@agave.example.it'
   const password = 'secret'
 

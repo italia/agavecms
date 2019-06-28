@@ -6,7 +6,6 @@ describe('The Home Page', () => {
 
   context('When the user is logged in', () =>{
     beforeEach(() => {
-      cy.clearCookies()
       cy.logIn()
     })
 

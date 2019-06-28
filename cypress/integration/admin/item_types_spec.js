@@ -6,8 +6,6 @@ describe('Item Types', () => {
 
   describe('When the user is logged in', () => {
     beforeEach(() => {
-      cy.clearCookies()
-      cy.clearSession()
       cy.logIn()
     })
 

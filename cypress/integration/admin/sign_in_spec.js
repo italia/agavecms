@@ -4,6 +4,7 @@ describe('The sign in page', () => {
     const wrong_password = "foo_bar"
 
     beforeEach(() => {
+      cy.logOut()
       cy.visit('/sign_in')
       cy.get('input[name=email]').type(wrong_email)
       cy.get('input[name=password]').type(wrong_password)
@@ -28,6 +29,7 @@ describe('The sign in page', () => {
     const password = "secret"
 
     beforeEach(() => {
+      cy.logOut()
       cy.visit('/sign_in')
       cy.get('input[name=email]').type(email)
       cy.get('input[name=password]').type(password)
