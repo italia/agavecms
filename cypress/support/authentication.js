@@ -25,16 +25,3 @@ Cypress.Commands.add('logIn', () => {
   cy.get('input[name=password]').type(password)
   cy.get('form').submit()
 })
-
-Cypress.Commands.add('post', (path, data) => {
-  return cy.request({
-    method: 'POST',
-    url: `http://agave.lvh.me:3000/api${path}`,
-    headers: {
-      Accept: 'application/json',
-      'Content-type': 'application/json',
-      Authorization: 'Bearer rwtoken'
-    },
-    body: {data}
-  })
-})

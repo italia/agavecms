@@ -1,5 +1,5 @@
 describe('Item Types', () => {
-  it('require login', () => {
+  it('requires login', () => {
     cy.visit('/admin/item_types')
     cy.location('pathname').should('eq', '/sign_in')
   })
@@ -10,49 +10,10 @@ describe('Item Types', () => {
     })
 
     context('With an existing item type', () => {
-      let new_item_type_id = ''
-
       beforeEach(() => {
-        cy.
-          post(
-            '/item-types',
-            {
-              type: 'item_type',
-              attributes: {
-                name: 'Blog post',
-                api_key: 'post',
-                singleton: false,
-                sortable: false,
-                tree: true,
-                ordering_direction: null
-              },
-              relationships: {
-                ordering_field: {
-                  data: null
-                }
-              }
-            }
-          ).
-          then(response => {
-            new_item_type_id = response.body.data.id
-
-            cy.post(
-              `/item-types/${new_item_type_id}/fields`,
-              {
-                type: 'field',
-                attributes: {
-                  label: 'Price',
-                  api_key: 'price',
-                  hint: '',
-                  field_type: 'float',
-                  validators: {},
-                  localized: false,
-                  position: 1,
-                  appeareance: {}
-                }
-              }
-            )
-          })
+        cy.create_item_type().then(id => {
+          cy.create_field(id, {label: 'Price'})
+        })
       })
 
       it('shows fields', () => {
