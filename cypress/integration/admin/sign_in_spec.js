@@ -1,11 +1,10 @@
-describe('The signIn', () => {
+describe('The sign in page', () => {
   context('With wrong credentials', () => {
     const wrong_email = "foo@bar.com"
     const wrong_password = "foo_bar"
 
     beforeEach(() => {
       cy.visit('/sign_in')
-
       cy.get('input[name=email]').type(wrong_email)
       cy.get('input[name=password]').type(wrong_password)
       cy.get('form').submit()
@@ -24,13 +23,12 @@ describe('The signIn', () => {
     })
   })
 
-  context('When user is logged', () =>{
+  context('When user is logged in', () =>{
     const email = "admin@agave.example.it"
     const password = "secret"
 
     beforeEach(() => {
       cy.visit('/sign_in')
-
       cy.get('input[name=email]').type(email)
       cy.get('input[name=password]').type(password)
       cy.get('form').submit()

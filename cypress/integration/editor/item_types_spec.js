@@ -1,4 +1,4 @@
-describe('The Items', () => {
+describe('Items', () => {
   let new_item_type_id = ""
 
   beforeEach(() => {
@@ -60,18 +60,15 @@ describe('The Items', () => {
     })
   })
 
-  describe('When user is logged', () => {
-    const email = "admin@agave.example.it"
-    const password = "secret"
-
+  describe('When the user is logged in', () => {
     beforeEach(() => {
       cy.clearCookies()
       cy.clearSession()
       cy.logIn()
     })
 
-    context('When create a new item', () => {
-      it('requires login', () => {
+    context('When they create a new item', () => {
+      it('saves the item', () => {
         cy.visit(`/editor/item_types/${new_item_type_id}/items/new`)
         cy.get('.icon--add').click()
         cy.get('.CodeMirror textarea')

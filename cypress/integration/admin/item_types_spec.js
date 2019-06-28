@@ -1,43 +1,42 @@
-describe('The ItemTypes', () => {
-  it('requires login', () => {
+describe('Item Types', () => {
+  it('require login', () => {
     cy.visit('/admin/item_types')
     cy.location('pathname').should('eq', '/sign_in')
   })
 
-  describe('When user is logged', () => {
+  describe('When the user is logged in', () => {
     beforeEach(() => {
       cy.clearCookies()
       cy.clearSession()
       cy.logIn()
     })
 
-    context('With an item type', () => {
-      let new_field_id = ""
-      let new_item_type_id = ""
+    context('With an existing item type', () => {
+      let new_item_type_id = ''
 
       beforeEach(() => {
         cy.request({
           method: 'POST',
           url: 'http://agave.lvh.me:3000/api/item-types',
           headers: {
-            'Accept': 'application/json',
+            Accept: 'application/json',
             'Content-type': 'application/json',
-            'Authorization': 'Bearer rwtoken'
+            Authorization: 'Bearer rwtoken'
           },
           body: {
-            "data": {
-              "type": "item_type",
-              "attributes": {
-                "name": "Blog post",
-                "api_key": "post",
-                "singleton": false,
-                "sortable": false,
-                "tree": true,
-                "ordering_direction": null
+            data: {
+              type: 'item_type',
+              attributes: {
+                name: 'Blog post',
+                api_key: 'post',
+                singleton: false,
+                sortable: false,
+                tree: true,
+                ordering_direction: null
               },
-              "relationships": {
-                "ordering_field": {
-                  "data": null
+              relationships: {
+                ordering_field: {
+                  data: null
                 }
               }
             }
@@ -49,22 +48,22 @@ describe('The ItemTypes', () => {
             method: 'POST',
             url: `http://agave.lvh.me:3000/api/item-types/${new_item_type_id}/fields`,
             headers: {
-              'Accept': 'application/json',
+              Accept: 'application/json',
               'Content-type': 'application/json',
-              'Authorization': 'Bearer rwtoken'
+              Authorization: 'Bearer rwtoken'
             },
             body: {
-              "data": {
-                "type": "field",
-                "attributes": {
-                  "label": "Price",
-                  "api_key": "price",
-                  "hint": "",
-                  "field_type": "float",
-                  "validators": {},
-                  "localized": false,
-                  "position": 1,
-                  "appeareance": {}
+              data: {
+                type: 'field',
+                attributes: {
+                  label: 'Price',
+                  api_key: 'price',
+                  hint: '',
+                  field_type: 'float',
+                  validators: {},
+                  localized: false,
+                  position: 1,
+                  appeareance: {}
                 }
               }
             }
@@ -72,11 +71,11 @@ describe('The ItemTypes', () => {
         })
       })
 
-      it('Contains price field', () => {
+      it('shows fields', () => {
         cy.visit(`/admin/item_types/`)
         cy.get('.ItemTypeRow').click()
 
-        cy.contains("Price").should('be.visible')
+        cy.contains('Price').should('be.visible')
       })
     })
   })

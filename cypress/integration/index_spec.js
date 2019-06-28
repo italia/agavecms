@@ -4,7 +4,7 @@ describe('The Home Page', () => {
     cy.location('pathname').should('eq', '/sign_in')
   })
 
-  context('When user is logged', () =>{
+  context('When the user is logged in', () =>{
     beforeEach(() => {
       cy.clearCookies()
       cy.logIn()
