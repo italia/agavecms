@@ -1,8 +1,9 @@
 require "seeds"
 
-namespace :cy do
-  desc "Sets up database before each Cypress test"
-  task seed: :environment do
+class TestController < BaseController
+  def reset
+    raise "RAILS_ENV is not test" if !Rails.env.test?
+
     DatabaseCleaner.strategy = :truncation
     DatabaseCleaner.clean
     Seeds.new.setup

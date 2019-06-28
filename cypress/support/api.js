@@ -11,6 +11,10 @@ Cypress.Commands.add('post', (path, data) => {
   })
 })
 
+Cypress.Commands.add('reset_database', () => {
+  return cy.post('/test/reset', {})
+})
+
 Cypress.Commands.add('create_field', (item_type_id, overrides = {}) => {
   const defaults = {
     label: 'My Field',
