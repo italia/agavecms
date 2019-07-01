@@ -1,11 +1,11 @@
 describe('Items', () => {
-  let item_type_id = ''
+  let itemTypeId = ''
 
   beforeEach(() => {
-    cy.create_item_type().then(id => {
-      item_type_id = id
-      cy.create_field(
-        item_type_id,
+    cy.createItemType().then(id => {
+      itemTypeId = id
+      cy.createField(
+        itemTypeId,
         {
           field_type: 'text',
           appeareance: {
@@ -23,7 +23,7 @@ describe('Items', () => {
 
     context('When they create a new item', () => {
       it('saves the item', () => {
-        cy.visit(`/editor/item_types/${item_type_id}/items/new`)
+        cy.visit(`/editor/item_types/${itemTypeId}/items/new`)
         cy
           .get('.icon--add')
           .click()
@@ -33,7 +33,7 @@ describe('Items', () => {
         cy
           .contains('Salva Item')
           .click()
-        cy.visit(`/editor/item_types/${item_type_id}/items/new`)
+        cy.visit(`/editor/item_types/${itemTypeId}/items/new`)
 
         cy.contains('Test').should('be.visible')
       })

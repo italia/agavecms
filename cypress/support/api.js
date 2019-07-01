@@ -25,7 +25,7 @@ Cypress.Commands.add('resetDatabase', () => {
   return cy.apiPost('/test/reset', {})
 })
 
-Cypress.Commands.add('create_field', (item_type_id, overrides = {}) => {
+Cypress.Commands.add('createField', (item_type_id, overrides = {}) => {
   const defaults = {
     label: 'My Field',
     api_key: 'my_field',
@@ -45,7 +45,7 @@ Cypress.Commands.add('create_field', (item_type_id, overrides = {}) => {
   )
 })
 
-Cypress.Commands.add('create_item_type', (overrides = {}) => {
+Cypress.Commands.add('createItemType', (overrides = {}) => {
   const defaults = {
     name: 'My Item Type',
     api_key: 'my_item_type',
