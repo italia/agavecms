@@ -10,4 +10,10 @@ class TestController < BaseController
     DatabaseCleaner.clean
     Seeds.new.setup
   end
+
+  def session
+    session = UserSession.new(User.first, Site.first)
+
+    render json: {data: {token: session.access_token}}
+  end
 end

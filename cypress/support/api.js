@@ -1,18 +1,28 @@
-Cypress.Commands.add('post', (path, data) => {
+const headers = {
+  Accept: 'application/json',
+  'Content-type': 'application/json',
+  Authorization: 'Bearer rwtoken'
+}
+
+Cypress.Commands.add('apiGet', path => {
+  return cy.request({
+    method: 'GET',
+    url: `http://agave.lvh.me:3000/api${path}`,
+    headers
+  })
+})
+
+Cypress.Commands.add('apiPost', (path, data) => {
   return cy.request({
     method: 'POST',
     url: `http://agave.lvh.me:3000/api${path}`,
-    headers: {
-      Accept: 'application/json',
-      'Content-type': 'application/json',
-      Authorization: 'Bearer rwtoken'
-    },
+    headers,
     body: {data}
   })
 })
 
-Cypress.Commands.add('reset_database', () => {
-  return cy.post('/test/reset', {})
+Cypress.Commands.add('resetDatabase', () => {
+  return cy.apiPost('/test/reset', {})
 })
 
 Cypress.Commands.add('create_field', (item_type_id, overrides = {}) => {
@@ -29,7 +39,7 @@ Cypress.Commands.add('create_field', (item_type_id, overrides = {}) => {
 
   const attributes = Object.assign({}, defaults, overrides)
 
-  cy.post(
+  cy.apiPost(
     `/item-types/${item_type_id}/fields`,
     {type: 'field', attributes}
   )
@@ -47,7 +57,7 @@ Cypress.Commands.add('create_item_type', (overrides = {}) => {
 
   const attributes = Object.assign({}, defaults, overrides)
 
-  return cy.post(
+  return cy.apiPost(
     '/item-types',
     {
       type: 'item_type',

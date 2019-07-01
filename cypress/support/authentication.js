@@ -1,7 +1,7 @@
-Cypress.Commands.add('setSession', () => {
+Cypress.Commands.add('setSession', token => {
   window.localStorage.setItem(
     'persistedState',
-    '{"session" :{"bearerToken": "rwtoken"}}'
+    `{"session" :{"bearerToken": "${token}"}}`
   )
 })
 
@@ -10,18 +10,15 @@ Cypress.Commands.add('clearSession', () => {
 })
 
 Cypress.Commands.add('logOut', () => {
-  cy.clearCookies()
   cy.clearSession()
 })
 
 Cypress.Commands.add('logIn', () => {
   cy.logOut()
 
-  const email = 'admin@agave.example.it'
-  const password = 'secret'
-
-  cy.visit('/sign_in')
-  cy.get('input[name=email]').type(email)
-  cy.get('input[name=password]').type(password)
-  cy.get('form').submit()
+  cy.apiGet('/test/session').then(response => {
+    const token = response.body.data.token
+    cy.setSession(token)
+    cy.visit(`/enter?access_token=${token}`)
+  })
 })
