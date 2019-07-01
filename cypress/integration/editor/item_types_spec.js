@@ -27,7 +27,7 @@ describe('Items', () => {
         cy.get('.icon--add').click()
         cy.get('.CodeMirror textarea')
           .type('Test', { force: true })
-        cy.get('.button--huge').click()
+        cy.contains('Salva Item').click()
         cy.visit(`/editor/item_types/${item_type_id}/items/new`)
 
         cy.contains('Test').should('be.visible')
