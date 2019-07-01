@@ -24,10 +24,15 @@ describe('Items', () => {
     context('When they create a new item', () => {
       it('saves the item', () => {
         cy.visit(`/editor/item_types/${item_type_id}/items/new`)
-        cy.get('.icon--add').click()
-        cy.get('.CodeMirror textarea')
+        cy
+          .get('.icon--add')
+          .click()
+        cy
+          .get('.CodeMirror textarea')
           .type('Test', { force: true })
-        cy.contains('Salva Item').click()
+        cy
+          .contains('Salva Item')
+          .click()
         cy.visit(`/editor/item_types/${item_type_id}/items/new`)
 
         cy.contains('Test').should('be.visible')
