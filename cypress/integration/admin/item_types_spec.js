@@ -11,7 +11,7 @@ describe('Item Types', () => {
 
     context('With an existing item type', () => {
       beforeEach(() => {
-        cy.createItemType().then(id => {
+        cy.createItemType().then(({id}) => {
           cy.createField(id, {label: 'Price'})
         })
       })

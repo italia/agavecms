@@ -2,7 +2,7 @@ describe('Items', () => {
   let itemTypeId = ''
 
   beforeEach(() => {
-    cy.createItemType().then(id => {
+    cy.createItemType().then(({id}) => {
       itemTypeId = id
       cy.createField(
         itemTypeId,

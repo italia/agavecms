@@ -42,7 +42,7 @@ Cypress.Commands.add('createField', (item_type_id, overrides = {}) => {
   cy.apiPost(
     `/item-types/${item_type_id}/fields`,
     {type: 'field', attributes}
-  )
+  ).then(response => response.body.data)
 })
 
 Cypress.Commands.add('createItemType', (overrides = {}) => {
@@ -64,5 +64,5 @@ Cypress.Commands.add('createItemType', (overrides = {}) => {
       attributes,
       relationships: {ordering_field: {data: null}}
     }
-  ).then(response => response.body.data.id)
+  ).then(response => response.body.data)
 })
