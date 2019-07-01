@@ -25,6 +25,21 @@ Cypress.Commands.add('resetDatabase', () => {
   return cy.apiPost('/test/reset', {})
 })
 
+Cypress.Commands.add('createEnvironment', (overrides = {}) => {
+  const defaults = {
+    name: 'staging',
+    git_repo_url: 'https://git.example.com/foo/bar.git',
+    frontend_url: 'https://example.com'
+  }
+
+  const attributes = Object.assign({}, defaults, overrides)
+
+  cy.apiPost(
+    `/environments`,
+    {type: 'environment', attributes}
+  ).then(response => response.body.data)
+})
+
 Cypress.Commands.add('createField', (item_type_id, overrides = {}) => {
   const defaults = {
     label: 'My Field',
