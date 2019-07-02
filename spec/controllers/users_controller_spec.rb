@@ -67,8 +67,7 @@ RSpec.describe UsersController, type: :controller do
     let(:payload) { {} }
 
     let(:action) do
-      request.env["RAW_POST_DATA"] = payload.to_json
-      post :create
+      post :create, body: payload.to_json, format: :json
     end
 
     it_behaves_like "an endpoint"
@@ -167,8 +166,7 @@ RSpec.describe UsersController, type: :controller do
     let(:new_role) { create(:role, site: site) }
 
     let(:action) do
-      request.env["RAW_POST_DATA"] = payload.to_json
-      put :update, params: {id: user_to_update}
+      put :update, params: {id: user_to_update}, body: payload.to_json
     end
 
     it_behaves_like "an endpoint"
@@ -245,8 +243,7 @@ RSpec.describe UsersController, type: :controller do
 
         context "with invalid id" do
           let(:action) do
-            request.env["RAW_POST_DATA"] = payload.to_json
-            put :update, params: {id: "12"}
+            put :update, params: {id: "12"}, body: payload.to_json
           end
 
           before do
@@ -292,8 +289,7 @@ RSpec.describe UsersController, type: :controller do
     end
 
     let(:action) do
-      request.env["RAW_POST_DATA"] = payload.to_json
-      post :reset_password
+      post :reset_password, body: payload.to_json
     end
 
     it_behaves_like "an endpoint"
@@ -367,8 +363,7 @@ RSpec.describe UsersController, type: :controller do
     let(:current_user) { create(:user, site: site) }
 
     let(:action) do
-      request.env["RAW_POST_DATA"] = payload.to_json
-      delete :destroy, params: {id: user.id}
+      delete :destroy, params: {id: user.id}, body: payload.to_json
     end
 
     it_behaves_like "an endpoint"

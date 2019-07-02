@@ -29,8 +29,7 @@ RSpec.describe ItemsController, type: :controller do
     let(:payload) { {} }
 
     let(:action) do
-      request.env["RAW_POST_DATA"] = payload.to_json
-      post :create
+      post :create, body: payload.to_json
     end
 
     it_behaves_like "an endpoint"
@@ -125,8 +124,7 @@ RSpec.describe ItemsController, type: :controller do
     let(:payload) { {} }
 
     let(:action) do
-      request.env["RAW_POST_DATA"] = payload.to_json
-      post :validate_new
+      post :validate_new, body: payload.to_json
     end
 
     it_behaves_like "an endpoint"
@@ -284,8 +282,7 @@ RSpec.describe ItemsController, type: :controller do
     let(:item) { create(:item, item_type: item_type) }
 
     let(:action) do
-      request.env["RAW_POST_DATA"] = payload.to_json
-      put :update, params: {id: item}
+      put :update, params: {id: item}, body: payload.to_json
     end
 
     it_behaves_like "an endpoint"
@@ -324,8 +321,7 @@ RSpec.describe ItemsController, type: :controller do
 
         context "with invalid id" do
           let(:action) do
-            request.env["RAW_POST_DATA"] = payload.to_json
-            put :update, params: {id: "12"}
+            put :update, params: {id: "12"}, body: payload.to_json
           end
 
           before do
@@ -368,8 +364,7 @@ RSpec.describe ItemsController, type: :controller do
     let(:item) { create(:item, item_type: item_type) }
 
     let(:action) do
-      request.env["RAW_POST_DATA"] = payload.to_json
-      delete :destroy, params: {id: item.id}
+      delete :destroy, params: {id: item.id}, body: payload.to_json
     end
 
     it_behaves_like "an endpoint"

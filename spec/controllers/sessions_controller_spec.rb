@@ -8,8 +8,7 @@ RSpec.describe SessionsController, type: :controller do
     let(:payload) { {} }
 
     let(:action) do
-      request.env["RAW_POST_DATA"] = payload.to_json
-      post :create
+      post :create, body: payload.to_json
     end
 
     it_behaves_like "an endpoint"

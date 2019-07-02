@@ -76,8 +76,7 @@ RSpec.describe EnvironmentsController, type: :controller do
     let(:payload) { {} }
 
     let(:action) do
-      request.env["RAW_POST_DATA"] = payload.to_json
-      post :create
+      post :create, body: payload.to_json
     end
 
     it_behaves_like "an endpoint"
@@ -172,8 +171,9 @@ RSpec.describe EnvironmentsController, type: :controller do
     let(:environment) { create(:environment, site: site) }
 
     let(:action) do
-      request.env["RAW_POST_DATA"] = payload.to_json
-      put :update, params: {id: environment.id.to_s}
+      put :update,
+        params: {id: environment.id.to_s},
+        body: payload.to_json
     end
 
     it_behaves_like "an endpoint"
@@ -215,8 +215,7 @@ RSpec.describe EnvironmentsController, type: :controller do
 
         context "with invalid id" do
           let(:action) do
-            request.env["RAW_POST_DATA"] = payload.to_json
-            put :update, params: {id: "12"}
+            put :update, params: {id: "12"}, body: payload.to_json
           end
 
           before do
@@ -259,8 +258,9 @@ RSpec.describe EnvironmentsController, type: :controller do
     let(:environment) { create(:environment, site: site) }
 
     let(:action) do
-      request.env["RAW_POST_DATA"] = payload.to_json
-      delete :destroy, params: {id: environment.id}
+      delete :destroy,
+        params: {id: environment.id},
+        body: payload.to_json
     end
 
     it_behaves_like "an endpoint"
@@ -284,7 +284,9 @@ RSpec.describe EnvironmentsController, type: :controller do
       end
 
       it "conforms with the response schema" do
-        expect(response).to conform_to_schema(:site_api, :environment, :destroy)
+        expect(response).to conform_to_schema(
+          :site_api, :environment, :destroy
+        )
       end
     end
   end

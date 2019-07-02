@@ -64,8 +64,7 @@ RSpec.describe RolesController, type: :controller do
     let(:payload) { {} }
 
     let(:action) do
-      request.env["RAW_POST_DATA"] = payload.to_json
-      post :create
+      post :create, body: payload.to_json
     end
 
     it_behaves_like "an endpoint"
@@ -170,8 +169,7 @@ RSpec.describe RolesController, type: :controller do
     let(:role_id) { role.id }
 
     let(:action) do
-      request.env["RAW_POST_DATA"] = payload.to_json
-      put :update, params: {id: role_id}
+      put :update, params: {id: role_id}, body: payload.to_json
     end
 
     it_behaves_like "an endpoint"
@@ -256,8 +254,7 @@ RSpec.describe RolesController, type: :controller do
     let(:role) { create(:role, site: site) }
 
     let(:action) do
-      request.env["RAW_POST_DATA"] = payload.to_json
-      delete :destroy, params: {id: role.id}
+      delete :destroy, params: {id: role.id}, body: payload.to_json
     end
 
     it_behaves_like "an endpoint"

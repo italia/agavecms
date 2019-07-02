@@ -37,7 +37,7 @@
     "attributes": {
       "description": "JSON API attributes",
       "type": "object",
-      "required": [ "event_type", "data", "created_at", "environment" ],
+      "required": [ "event_type", "data", "created_at" ],
       "additionalProperties": false,
       "properties": {
         "event_type": {
@@ -45,12 +45,6 @@
           "enum": [ "request", "request_failed", "response_success", "response_failure", "response_timeout" ],
           "description": "The type of activity",
           "example": "response_success"
-        },
-        "environment": {
-          "description": "Environment",
-          "type": [ "string" ],
-          "example": "production",
-          "enum": [ "production" ]
         },
         "created_at": {
           "description": "The moment the activity occurred",
@@ -96,6 +90,17 @@
           "properties": {
             "data": {
               "$ref": "#/definitions/site/definitions/data"
+            }
+          }
+        },
+        "environment": {
+          "type": "object",
+          "description": "Deploy environment",
+          "required": [ "data" ],
+          "additionalProperties": false,
+          "properties": {
+            "data": {
+              "$ref": "#/definitions/environment/definitions/data"
             }
           }
         }
