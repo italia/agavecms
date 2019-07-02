@@ -12,7 +12,12 @@
     "build": "yarn run build:clean && yarn run build:webfonts && yarn run build:js",
     "dev": "NODE_ENV=development APP_VERSION=development webpack-dev-server --mode development --public --host 0.0.0.0 --progress --inline --hot",
     "build:dev": "yarn run build:clean && yarn run build:webfonts && yarn run dev",
-    "postinstall": "node -e \"try { require('fs').symlinkSync(require('path').resolve('node_modules/@bower_components'), 'bower_components', 'junction') } catch (e) { }\""
+    "postinstall": "node -e \"try { require('fs').symlinkSync(require('path').resolve('node_modules/@bower_components'), 'bower_components', 'junction') } catch (e) { }\"",
+    "cy:beforeSuite": "RAILS_ENV=test rails db:drop db:create db:migrate > /dev/null",
+    "cy:ci": "yarn cy:beforeSuite && RAILS_ENV=test bundle exec rails server & yarn dev & yarn cy:run",
+    "cy:dev": "yarn cy:beforeSuite && yarn cy:open",
+    "cy:open": "cypress open",
+    "cy:run": "cypress run"
   },
   "author": "Cantiere creativo Srl",
   "license": "MIT",
@@ -29,6 +34,7 @@
     "bemo-webfonts": "1.0.1",
     "bower": "*",
     "css-loader": "^0.28.7",
+    "cypress": "^3.3.1",
     "eslint": "3.4.0",
     "eslint-config-airbnb": "10.0.1",
     "eslint-import-resolver-webpack": "^0.8.3",

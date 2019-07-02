@@ -64,6 +64,11 @@ Rails.application.routes.draw do
 
     resources :sessions, only: :create
     resources :menu_items, path: "/menu-items", only: API_CRUD_ACTIONS
+
+    if Rails.env.test?
+      post "/test/reset", to: "test#reset"
+      get "/test/session", to: "test#session"
+    end
   end
 
   # Catch-all routes
