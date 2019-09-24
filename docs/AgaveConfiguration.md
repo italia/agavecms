@@ -39,14 +39,14 @@ Per poter installare AgaveCMS è necessario installare [docker](https://www.digi
 
 ## 2. Impostare le variabili di ambiente:
 
-Creare il file `.env`
+Creare il file `.env`, oppure copiare e modificare `.env.sample`:
 
 * `ADMIN_EMAIL`: la mail dell'amministratore dell'area amministrativa
 * `ADMIN_PASSWORD`: la password dell'amministratore
-
 * `API_BASE_URL`: l'URL dell'endpoint API di Agave;
 * `APP_DOMAIN`: il dominio dell'installazione di Agave;
 * `DATABASE_URL`: `postgres://postgres:@db/<nome_database>`;
+* `FROM_EMAIL: indirizzo da cui vengono spedite le email`;
 * `IMAGES_DOMAIN`: il dominio per le immagini e atri asset;
 * `IMAGES_ENDPOINT`: l'URL dell'endpoint delle immagini;
 * `JWT_SECRET`: una password complessa;
@@ -57,7 +57,8 @@ Creare il file `.env`
 * `STATIC_SITE_DOMAIN`: il dominio del sito statico finale;
 * `GOOGLE_MAPS_API_KEY`: la chiave di accesso per [Google Maps](
    https://developers.google.com/maps/documentation/javascript/get-api-key)
-* `IUBENDA_POLICY_ID`: identificativo di Iubenda
+* `IUBENDA_POLICY_ID`: identificativo di Iubenda;
+* `STATIC_DOMAINS`: array dei domini dove vengono pubblicati i siti statici;
 
 ## 3. Impostazioni DNS:
 
