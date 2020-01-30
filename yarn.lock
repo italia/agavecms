@@ -7518,9 +7518,9 @@ tinycolor2@^1.1.2:
   version "1.4.1"
   resolved "https://registry.yarnpkg.com/tinycolor2/-/tinycolor2-1.4.1.tgz#f4fad333447bc0b07d4dc8e9209d8f39a8ac77e8"
 
-tinymce@^4.6.1:
-  version "4.6.1"
-  resolved "https://registry.yarnpkg.com/tinymce/-/tinymce-4.6.1.tgz#1ce13834c0b5d1810581ed9c7c6de1f921d534cc"
+tinymce@^4.9.7:
+  version "4.9.7"
+  resolved "https://registry.yarnpkg.com/tinymce/-/tinymce-4.9.7.tgz#74ce54f07cfc0268a5ac5e34f610044658c92f47"
 
 tmp@0.1.0:
   version "0.1.0"
