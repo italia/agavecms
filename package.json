@@ -81,7 +81,7 @@
     "ellipsize": "0.0.2",
     "highlight.js": "^9.9.0",
     "jsondiffpatch": "^0.2.4",
-    "lodash": "^4.17.10",
+    "lodash": "^4.17.21",
     "min-md5": "^1.0.0",
     "object.omit": "2.0.0",
     "object.pick": "1.1.2",
